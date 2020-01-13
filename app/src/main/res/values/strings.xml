@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Avla</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="look_for_new_people">Look for new people</string>
+    <string name="interpolation_supports">Interpolation supports a convergent series, which is known even to schoolchildren.</string>
+    <string name="skip_string">Skip</string>
+    <string name="next_sttring">Next</string>
+    <string name="create_tasks">Create tasks to monitor progress</string>
+    <string name="communicate_inside_app">Communicate inside the app</string>
+</resources>
