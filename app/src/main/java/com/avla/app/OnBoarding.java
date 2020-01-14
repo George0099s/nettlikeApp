@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.avla.app.Authorization.RegistrationActivity;
 import com.avla.app.Fragments.FirstOnBoardingFragment;
 import com.avla.app.Fragments.SecondOnBoardingFragment;
 import com.avla.app.Fragments.ThirdOnBoardingFragment;
@@ -49,7 +50,7 @@ public class OnBoarding extends FragmentActivity {
     private void onClick(View v){
         switch (v.getId()){
             case R.id.skip_tv:
-                startActivity(new Intent(OnBoarding.this, MainActivity.class));
+                startActivity(new Intent(OnBoarding.this, RegistrationActivity.class));
                 break;
              case R.id.next_tv:
                  viewPager.setCurrentItem(viewPager.getCurrentItem()+1);

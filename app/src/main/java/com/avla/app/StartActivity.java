@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import com.avla.app.Authorization.RegistrationActivity;
+
 public class StartActivity extends AppCompatActivity {
     SharedPreferences mPrefs;
     @Override
@@ -19,7 +21,7 @@ public class StartActivity extends AppCompatActivity {
 
             mPrefs.edit().putBoolean("firstrun", false).commit();
         } else {
-            startActivity(new Intent(StartActivity.this, MainActivity.class));
+            startActivity(new Intent(StartActivity.this, RegistrationActivity.class));
         }
     }
 }
