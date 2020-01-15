@@ -22,5 +22,10 @@ import retrofit2.http.Query;
 public interface Server {
     @FormUrlEncoded
     @POST("public_api/auth/check_email_registered")
-    Call<EmailValidate> addEmail(@Query("token") String token, @Field("email") String email);
+    Call<EmailValidate> checkIfEmailRegistered(@Query("token") String token, @Field("email") String email);
+
+    @GET("public_api/auth/create_token")
+    Call<String> createToken();
+
+
 }

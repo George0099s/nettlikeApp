@@ -1,6 +1,5 @@
 package com.avla.app.Authorization;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.AsyncTask;
@@ -18,11 +17,13 @@ import com.avla.app.Interface.Server;
 import com.avla.app.Model.EmailValidate;
 import com.avla.app.Model.PayloadModel;
 import com.avla.app.R;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.concurrent.ExecutionException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -36,31 +37,96 @@ public class RegistrationActivity extends AppCompatActivity {
     private EditText mEmailED, mPasswordED;
     private String mEmail, mPass;
     private Button mNextBtn;
-    private GetToken task;
+    private GetToken getToken;
+    private Boolean isExist;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
-        task = new GetToken();
-        task.execute();
 
+        initViews();
+        getToken();
+
+    }
+
+    private void getToken() {
+        getToken = new GetToken();
+        getToken.execute();
+
+    }
+
+    private void initViews() {
         mEmailED = findViewById(R.id.email_ed);
         mPasswordED = findViewById(R.id.password_ed);
         mNextBtn = findViewById(R.id.next_btn);
         mNextBtn.setOnClickListener(this::onClick);
     }
 
+    private Boolean checkIfEmailRegistered(){
+        final String token = getToken.token;
 
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://api.getavla.com/") // Адрес сервера
+                .addConverterFactory(GsonConverterFactory.create()) // говорим ретрофиту что для сериализации необходимо использовать GSON
+                .build();
 
+        Server service = retrofit.create(Server.class);
+        Call<EmailValidate> call = service.checkIfEmailRegistered(token, mEmail);
+        call.enqueue(new Callback<EmailValidate>() {
+            @Override
+            public void onResponse(Call<EmailValidate> call, Response<EmailValidate> response) {
+
+                EmailValidate object = response.body();
+                isExist = object.getPayload().isExists();
+                notifyAboutNewItems();
+                Log.d(TAG, "onResponse: 123 " + isExist);
+            }
+
+            @Override
+            public void onFailure(Call<EmailValidate> call, Throwable t) {
+                Log.d(TAG, "onResponse: onfailure " + t.getMessage());
+
+            }
+        });
+        return  isExist;
+    }
     private void onClick(View v){
         mEmail = mEmailED.getText().toString();
 
-        ValidateEmail validateEmail = new ValidateEmail();
-        validateEmail.doInBackground(mEmail);
-        validateEmail.execute();
-//        Functions.checkEmail(mEmailED, mPasswordED);
+        String regExpn =
+                "^(([\\w-]+\\.)+[\\w-]+|([a-zA-Z]{1}|[\\w-]{2,}))@"
+                        + "((([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
+                        + "[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\."
+                        + "([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
+                        + "[0-9]{1,2}|25[0-5]|2[0-4][0-9])){1}|"
+                        + "([a-zA-Z]+[\\w-]+\\.)+[a-zA-Z]{2,4})$";
+        CharSequence inputStr = mEmailED.getText();
 
-
+        Pattern pattern = Pattern.compile(regExpn, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(inputStr);
+        if (matcher.matches()) {
+            checkIfEmailRegistered();
+//            CheckIfEmailRegistered checkIfEmailRegistered = new CheckIfEmailRegistered();
+//            checkIfEmailRegistered.doInBackground(mEmail);
+//            checkIfEmailRegistered.execute();
+//
+//            try {
+//                Log.d(TAG, "onClick: isExist " + checkIfEmailRegistered.get());
+//            } catch (ExecutionException e) {
+//                e.printStackTrace();
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//            if(isExist){
+//                mEmailED.requestFocus();
+//                mEmailED.setError("Email has already exist");
+//            } else {
+//                mPasswordED.setVisibility(View.VISIBLE);
+//            }
+        }  else {
+            mEmailED.requestFocus();
+            mEmailED.setError("Invalid email");
+        }
     }
 
     private class GetToken extends AsyncTask<Void, Void, String> {
@@ -95,80 +161,43 @@ public class RegistrationActivity extends AppCompatActivity {
         }
     }
 
-    private class ValidateEmail extends AsyncTask<String, Void, String> {
-        String token = task.token;
-
-        @Override
-        protected String doInBackground(String... email) {
-            Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl("https://api.getavla.com/") // Адрес сервера
-                    .addConverterFactory(GsonConverterFactory.create()) // говорим ретрофиту что для сериализации необходимо использовать GSON
-                    .build();
-
-            Server service = retrofit.create(Server.class);
-            Call<EmailValidate> call = service.addEmail(token, mEmail);
-            Log.d(TAG, "doInBackground: 222" + mEmail);
-            call.enqueue(new Callback<EmailValidate>() {
-                @Override
-                public void onResponse(Call<EmailValidate> call, Response<EmailValidate> response) {
-
-                    EmailValidate object = response.body();
-                    PayloadModel payloadModel = object.getPayload();
-
-                    Log.d(TAG, "onResponse: 123" + payloadModel.isExists());
-                }
-
-                @Override
-                public void onFailure(Call<EmailValidate> call, Throwable t) {
-                    Log.d(TAG, "onResponse: onfailure " + t.getMessage());
-
-                }
-            });
-
-            return "123";
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-        }
-    }
-
-//    private class ValidateEmail extends AsyncTask<String, Void, String> {
-//        String token = task.token;
+//    private class CheckIfEmailRegistered extends AsyncTask<String, Void, Boolean> {
+//        String token = getToken.token;
+//        PayloadModel payload = new PayloadModel();
+//
 //        @Override
-//        protected String doInBackground(String... email) {
+//        protected Boolean doInBackground(String... email) {
+//            Boolean ex;
 //            Retrofit retrofit = new Retrofit.Builder()
 //                    .baseUrl("https://api.getavla.com/") // Адрес сервера
 //                    .addConverterFactory(GsonConverterFactory.create()) // говорим ретрофиту что для сериализации необходимо использовать GSON
 //                    .build();
 //
 //            Server service = retrofit.create(Server.class);
-//            Call<JSONObject> addEmail2 = service.addEmail2(token, mEmail);
-//            addEmail2.enqueue(new Callback<JSONObject>() {
-//
+//            Call<EmailValidate> call = service.checkIfEmailRegistered(token, mEmail);
+//            call.enqueue(new Callback<EmailValidate>() {
 //                @Override
-//                public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {
+//                public void onResponse(Call<EmailValidate> call, Response<EmailValidate> response) {
 //
-//                    JSONObject object = response.body();
-//                    Log.d(TAG, "onResponse: 123" + object.toString());
+//                    EmailValidate object = response.body();
+//                    payload = object.getPayload();
+//                    Log.d(TAG, "onResponse: 123 " + payload.isExists());
 //                }
 //
 //                @Override
-//                public void onFailure(Call<JSONObject> call, Throwable t) {
+//                public void onFailure(Call<EmailValidate> call, Throwable t) {
 //                    Log.d(TAG, "onResponse: onfailure " + t.getMessage());
+//
 //                }
 //            });
-//
-//            return "123";
+//            return payload.isExists();
 //        }
 //
 //        @Override
-//        protected void onPostExecute(String s) {
-//            super.onPostExecute(s);
+//        protected void onPostExecute(Boolean exist) {
+//            Log.d(TAG, "onPostExecute: ex" + exist);
+//
+//            super.onPostExecute(exist);
 //        }
 //    }
-
-
-
 }
