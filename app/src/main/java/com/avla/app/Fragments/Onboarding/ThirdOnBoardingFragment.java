@@ -1,14 +1,11 @@
-package com.avla.app.Fragments;
+package com.avla.app.Fragments.Onboarding;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.fragment.app.Fragment;
 
 import com.avla.app.R;
 

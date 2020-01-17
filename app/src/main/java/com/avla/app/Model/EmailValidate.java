@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class EmailValidate {
 
@@ -13,11 +13,22 @@ public class EmailValidate {
     public String toString() {
         return ok+" "+ payload;
     }
-
     @SerializedName("ok")
     private boolean ok;
+    @SerializedName("error")
+    private String error;
     @SerializedName("payload")
     private PayloadModel payload;
+    @SerializedName("account_id")
+    private String accountId;
+    @SerializedName("created_at")
+    private String createdAt;
+    @SerializedName("status")
+    private String status;
+    @SerializedName("token")
+    private String token;
+    @SerializedName("payload")
+    private List<PayloadModel> payloadList = null;
 
     public PayloadModel getPayload() {
         return payload;
@@ -35,23 +46,51 @@ public class EmailValidate {
         this.ok = ok;
     }
 
+    public String getError() {
+        return error;
+    }
 
-//    private class Payload {
-//        @NonNull
-//        @Override
-//        public String toString() {
-//            return ""+exists;
-//        }
-//
-//        @SerializedName("exists")
-//        private boolean exists;
-//
-//        public boolean isExists() {
-//            return exists;
-//        }
-//
-//        public void setExists(boolean exists) {
-//            this.exists = exists;
-//        }
-//    }
+    public void setError(String error) {
+        this.error = error;
+    }
+
+    public String getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(String accountId) {
+        this.accountId = accountId;
+    }
+
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public List<PayloadModel> getPayloadList() {
+        return payloadList;
+    }
+
+    public void setPayloadList(List<PayloadModel> payloadList) {
+        this.payloadList = payloadList;
+    }
 }
