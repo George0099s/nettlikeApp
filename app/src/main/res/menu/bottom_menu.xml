@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/questions"
+        android:title="@string/questions_string"
+        android:icon="@drawable/ic_start"
+        />
+    <item
+        android:id="@+id/people"
+        android:title="@string/people_string"
+        android:icon="@drawable/ic_start"
+        />
+    <item
+        android:id="@+id/messages"
+        android:title="@string/message_string"
+        android:icon="@drawable/ic_start"
+        />
+    <item
+        android:id="@+id/profile"
+        android:title="@string/profile_string"
+        android:icon="@drawable/ic_start"
+        />
+
+</menu>

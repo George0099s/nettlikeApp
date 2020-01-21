@@ -41,22 +41,60 @@ public class OnBoarding extends FragmentActivity {
     private void initViews() {
         tabLayout = findViewById(R.id.tablayout);
         viewPager = findViewById(R.id.viewpager);
+        viewPager.addOnPageChangeListener(listener);
+
         mNext = findViewById(R.id.next_tv);
         mSkip = findViewById(R.id.skip_tv);
         mNext.setOnClickListener(this::onClick);
         mSkip.setOnClickListener(this::onClick);
     }
+    private ViewPager.OnPageChangeListener listener = new ViewPager.OnPageChangeListener() {
+        @Override
+        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
+        }
+
+        @Override
+        public void onPageSelected(int position) {
+            if (position < 2) {
+                mNext.setText("Next");
+            }
+
+            if (position == 2) {
+                mNext.setText("Registration");
+                mNext.setOnClickListener(OnBoarding.this::goToRegistration);
+            }
+        }
+
+        @Override
+        public void onPageScrollStateChanged(int state) {
+
+        }
+    };
     private void onClick(View v){
         switch (v.getId()){
             case R.id.skip_tv:
-                startActivity(new Intent(OnBoarding.this, RegistrationActivity.class));
+                Intent intent = new Intent(OnBoarding.this, RegistrationActivity.class);
+                intent.putExtra("token", getIntent().getStringExtra("token"));
+                startActivity(intent);
                 break;
              case R.id.next_tv:
                  viewPager.setCurrentItem(viewPager.getCurrentItem()+1);
+                 if (viewPager.getCurrentItem() == 2){
+                     mNext.setText("registration");
+                     mNext.setOnClickListener(this::goToRegistration);
+                 } else if(viewPager.getCurrentItem() < 3) {
+                     mNext.setText("Next");
+                 }
                 break;
 
         }
+    }
+
+    private void goToRegistration(View view) {
+        Intent intent = new Intent(OnBoarding.this, RegistrationActivity.class);
+        intent.putExtra("token", getIntent().getStringExtra("token"));
+        startActivity(intent);
     }
 
 }

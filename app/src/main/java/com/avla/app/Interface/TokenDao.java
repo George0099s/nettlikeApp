@@ -28,4 +28,7 @@ public interface TokenDao {
 
     @Delete
     void delete(TokenEntity token);
+
+    @Query("DELETE FROM TokenEntity")
+    void deleteAll();
 }

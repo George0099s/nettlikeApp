@@ -16,6 +16,7 @@ import com.avla.app.Fragments.SignUp.LocationCitiesActivity;
 import com.avla.app.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class LocationCountryAdapter extends RecyclerView.Adapter<LocationCountryAdapter.LocationViewHolder>{
 
@@ -70,5 +71,11 @@ public class LocationCountryAdapter extends RecyclerView.Adapter<LocationCountry
             city= itemView.findViewById(R.id.country_tv);
 
         }
+    }
+
+    public void updateList(List<String> newCountryList){
+        counryListName = new ArrayList<>();
+        counryListName.addAll(newCountryList);
+        notifyDataSetChanged();
     }
 }

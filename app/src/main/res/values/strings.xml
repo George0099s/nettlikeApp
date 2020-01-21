@@ -22,4 +22,8 @@
     <string name="exmple_about_yourself">Like where you worked, what kind of experience you have</string>
     <string name="select_your_location">Select your location</string>
     <string name="close">close</string>
+    <string name="questions_string">Questions</string>
+    <string name="people_string">People</string>
+    <string name="message_string">Message</string>
+    <string name="profile_string">Profile</string>
 </resources>

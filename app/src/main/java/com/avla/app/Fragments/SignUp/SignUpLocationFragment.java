@@ -3,10 +3,13 @@ package com.avla.app.Fragments.SignUp;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -18,11 +21,9 @@ import com.avla.app.Constants;
 import com.avla.app.Database.AppDatabase;
 import com.avla.app.Entity.TokenEntity;
 import com.avla.app.Interface.IServer;
-import com.avla.app.Interface.SignUpInterface;
 import com.avla.app.Interface.TokenDao;
 import com.avla.app.Model.ModelLocation;
 import com.avla.app.Model.Payload;
-import com.avla.app.Model.User;
 import com.avla.app.R;
 
 import java.util.ArrayList;
@@ -39,6 +40,7 @@ public class SignUpLocationFragment extends Fragment {
     public static final String MyPREFERENCES = Constants.MY_PREFERENCES ;
     private SharedPreferences sharedPreferences;
     List<TokenEntity> tokenList ;
+    private String[] countries;
     private RecyclerView recyclerViewLocatoin;
     private LocationCountryAdapter locationCountryAdapter;
     private ArrayList<String> countryListName;
@@ -46,8 +48,7 @@ public class SignUpLocationFragment extends Fragment {
     private ArrayList<String> cityList;
     private String token;
     private Context mContext;
-    private SignUpInterface signUpInterface;
-    private User user;
+    EditText searchCountry;
     public SignUpLocationFragment() {
     }
 
@@ -80,6 +81,28 @@ public class SignUpLocationFragment extends Fragment {
         recyclerViewLocatoin = view.findViewById(R.id.location_recycler);
         recyclerViewLocatoin.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerViewLocatoin.setAdapter(locationCountryAdapter);
+        searchCountry = view.findViewById(R.id.search_country);
+        searchCountry.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                List<String> newCountryList = new ArrayList<>();
+                for (String country: countryListName){
+                    if(country.toLowerCase().contains(searchCountry.getText())){
+                        newCountryList.add(country);
+                    }
+                }
+                locationCountryAdapter.updateList(newCountryList);
+            }
+        });
     }
 
 
@@ -98,10 +121,10 @@ public class SignUpLocationFragment extends Fragment {
                 ModelLocation list = response.body();
                 List<Payload> payload = list.getPayload();
                 for (int i = 0; i < payload.size(); i++) {
-                    Log.d(TAG, "onResponse: all cities + " + payload.get(i).getName());
                     countryListName.add(payload.get(i).getName());
                     countryListId.add(payload.get(i).getId());
                 }
+
             }
 
             @Override
@@ -110,7 +133,6 @@ public class SignUpLocationFragment extends Fragment {
             }
         });
     }
-
 
     @Override
     public void onAttach(Context context) {

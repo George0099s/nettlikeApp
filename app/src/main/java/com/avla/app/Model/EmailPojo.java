@@ -2,23 +2,20 @@ package com.avla.app.Model;
 
 import androidx.annotation.NonNull;
 
-public class Token {
+import com.google.gson.annotations.SerializedName;
+
+public class EmailPojo {
+    @SerializedName("ok")
+    private Boolean ok;
+    @SerializedName("payload")
+    private Payload payload;
+    @SerializedName("error")
+    private String error;
+
     @NonNull
     @Override
     public String toString() {
-        return token +""+ payload+""+ok+""+error;
-    }
-
-    private String token;
-    private Payload payload;
-    private Boolean ok;
-    private String error;
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
+        return ok + " " + payload + " " + error;
     }
 
     public Payload getPayload() {

@@ -3,8 +3,11 @@ package com.avla.app.Fragments.SignUp;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -40,6 +43,7 @@ public class LocationCitiesActivity extends AppCompatActivity  {
     private SignUpInterface signUpInterface;
     private Button closeBtn;
     private SharedPreferences sharedPreferences;
+    private EditText searchCity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,7 +66,29 @@ public class LocationCitiesActivity extends AppCompatActivity  {
         countryId =  getIntent().getStringExtra("id");
         sharedPreferences = getSharedPreferences(Constants.MY_PREFERENCES, Context.MODE_PRIVATE);
         locationRecycerView = findViewById(R.id.location_recycler);
+        searchCity = findViewById(R.id.search__city);
+        searchCity.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                List<String> newCityList = new ArrayList<>();
+                for (String country: citiesList){
+                    if(country.toLowerCase().contains(searchCity.getText())){
+                        newCityList.add(country);
+                    }
+                }
+                locationCityAdapter.updateList(newCityList);
+            }
+        });
         getAllCities(String.valueOf(tokenDao.getToken().get(0)),countryId);
     }
 
