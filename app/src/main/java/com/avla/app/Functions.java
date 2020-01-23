@@ -2,9 +2,6 @@ package com.avla.app;
 
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
-
-import com.avla.app.Authorization.RegistrationActivity;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

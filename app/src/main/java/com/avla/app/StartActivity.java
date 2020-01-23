@@ -14,12 +14,12 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.avla.app.Authorization.RegistrationActivity;
-import com.avla.app.Database.AppDatabase;
-import com.avla.app.Entity.TokenEntity;
+import com.avla.app.authorization.RegistrationActivity;
+import com.avla.app.database.AppDatabase;
+import com.avla.app.entity.TokenEntity;
 import com.avla.app.Interface.IServer;
 import com.avla.app.Interface.TokenDao;
-import com.avla.app.Model.Payload;
+import com.avla.app.model.Payload;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -67,7 +67,7 @@ public class StartActivity extends AppCompatActivity {
 
     private void validateToken(String token2) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://api.getavla.com/") // Адрес сервера
+                .baseUrl(Constants.BASIC_URL) // Адрес сервера
                 .addConverterFactory(GsonConverterFactory.create()) // говорим ретрофиту что для сериализации необходимо использовать GSON
                 .build();
 
@@ -106,7 +106,7 @@ public class StartActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(Void... voids) {
             RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-            String URL = "https://api.getavla.com/public_api/auth/create_token";
+            String URL = Constants.BASIC_URL+"/auth/create_token";
             JsonObjectRequest objectRequest = new JsonObjectRequest(
                     Request.Method.POST,
                     URL,

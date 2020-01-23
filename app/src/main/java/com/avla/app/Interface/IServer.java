@@ -1,19 +1,24 @@
 package com.avla.app.Interface;
 
-import com.avla.app.Model.EmailPojo;
-import com.avla.app.Model.ModelLocation;
-import com.avla.app.Model.ModelTag;
-import com.avla.app.Model.Payload;
-import com.avla.app.Model.Token;
-import com.avla.app.Model.User;
+import android.graphics.Bitmap;
 
-import org.json.JSONArray;
+import com.avla.app.model.EmailPojo;
+import com.avla.app.model.ModelLocation;
+import com.avla.app.model.ModelTag;
+import com.avla.app.model.Payload;
+import com.avla.app.model.PeoplePojo;
+import com.avla.app.model.Token;
+import com.avla.app.model.User;
+
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -52,18 +57,41 @@ public interface IServer {
     @FormUrlEncoded
     @POST("public_api/account/update")
     Call<User> sendUserData(@Query("token") String token,
-                            @Field("last_name") String firstName,
+                            @Field("first_name") String firstName,
                             @Field("last_name") String lastName,
+                            @Field("birth_year") String age,
                             @Field("description") String aboutYourself,
+                            @Field("country") String country,
+                            @Field("city") String city,
                             @Field("job_title") String jobTitle,
-                            @Field("tags") JSONArray tagList);
+                            @Field("tags") ArrayList<String> tagList);
 
+    @FormUrlEncoded
+    @POST("public_api/account/update")
+    Call<User> saveUserData(@Query("token") String token,
+                            @Field("first_name") String firstName,
+                            @Field("last_name") String lastName,
+                            @Field("birth_year") String age,
+                            @Field("job_title") String jobTitle,
+                            @Field("description") String aboutYourself,
+                            @Field("twitter_url") String twitterLink,
+                            @Field("facebook_url") String facebookLink);
 
     @GET("public_api/account/info")
     Call<User> getUserInfo(@Query("token") String token);
 
+    @Multipart
+    @POST("public_api/account/upload_account_picture")
+    Call<User> updateUserImage(@Query("token") String token,
+                                @Part("file") Bitmap file);
 
 
-
+    @GET("public_api/people/discover{category}&{tags}&{offset}&{limit}")
+    Call<PeoplePojo> getAllPeople(@Query("token") String token,
+                                  @Path("category") String category,
+                                  @Path("tags") ArrayList<String> tags,
+                                  @Path("offset") int offset,
+                                  @Path("limit") int limit,
+                                  @Query("query") String query);
 
 }

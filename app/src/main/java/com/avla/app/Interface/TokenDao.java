@@ -6,7 +6,7 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.avla.app.Entity.TokenEntity;
+import com.avla.app.entity.TokenEntity;
 
 import java.util.List;
 

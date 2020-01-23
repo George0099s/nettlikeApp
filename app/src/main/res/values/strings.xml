@@ -26,4 +26,9 @@
     <string name="people_string">People</string>
     <string name="message_string">Message</string>
     <string name="profile_string">Profile</string>
+    <string name="email_string">Email</string>
+    <string name="job_title">Job</string>
+    <string name="profile_username">Profile username</string>
+    <string name="facebook_link">http://www.facebook.com/</string>
+    <string name="twitter_link">http://twitter.com/</string>
 </resources>

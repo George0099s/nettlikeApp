@@ -17,11 +17,12 @@
         android:theme="@style/AppTheme.No"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="n">
-        <activity android:name=".Fragments.SignUp.LocationCitiesActivity"></activity>
-        <activity android:name=".Profile.ProfileActivity" />
-        <activity android:name=".Authorization.SignUp" />
+        <activity android:name=".fragments.Main.EditUserProfileActivity"></activity>
+        <activity android:name=".fragments.SignUp.LocationCitiesActivity" />
+        <activity android:name=".profile.ProfileActivity" />
+        <activity android:name=".authorization.SignUp" />
         <activity
-            android:name=".Authorization.RegistrationActivity"
+            android:name=".authorization.RegistrationActivity"
             android:noHistory="true" />
         <activity
             android:name=".OnBoarding"

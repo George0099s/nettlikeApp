@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Fragments.SignUp.SignUpChooseTagsFragment">
+    tools:context=".fragments.SignUp.SignUpChooseTagsFragment">
   <EditText
       android:id="@+id/job_title"
       android:layout_width="match_parent"

@@ -6,10 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.avla.app.Fragments.Main.MessageFragment;
-import com.avla.app.Fragments.Main.PeopleFragment;
-import com.avla.app.Fragments.Main.ProfileFragment;
-import com.avla.app.Fragments.Main.QuestionFragment;
+import com.avla.app.fragments.Main.MessageFragment;
+import com.avla.app.fragments.Main.PeopleFragment;
+import com.avla.app.fragments.Main.ProfileFragment;
+import com.avla.app.fragments.Main.QuestionFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 

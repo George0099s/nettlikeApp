@@ -9,11 +9,11 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import com.avla.app.Adapter.ViewPagerAdapter;
-import com.avla.app.Authorization.RegistrationActivity;
-import com.avla.app.Fragments.Onboarding.FirstOnBoardingFragment;
-import com.avla.app.Fragments.Onboarding.SecondOnBoardingFragment;
-import com.avla.app.Fragments.Onboarding.ThirdOnBoardingFragment;
+import com.avla.app.adapter.ViewPagerAdapter;
+import com.avla.app.authorization.RegistrationActivity;
+import com.avla.app.fragments.Onboarding.FirstOnBoardingFragment;
+import com.avla.app.fragments.Onboarding.SecondOnBoardingFragment;
+import com.avla.app.fragments.Onboarding.ThirdOnBoardingFragment;
 import com.google.android.material.tabs.TabLayout;
 
 public class OnBoarding extends FragmentActivity {
