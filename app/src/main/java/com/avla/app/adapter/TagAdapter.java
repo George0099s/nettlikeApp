@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -43,7 +44,8 @@ public class TagAdapter extends RecyclerView.Adapter<TagAdapter.TagsViewHolder> 
         holder.tag.setText(tagListName.get(position));
         holder.tag.setOnClickListener(v -> {
             UserSingleton user = UserSingleton.INSTANCE;
-            user.getTagList().add(tagListId.get(position));
+            Toast.makeText(context, tagListId.get(position), Toast.LENGTH_SHORT).show();
+            user.getTagList().put(tagListId.get(position));
         });
     }
 

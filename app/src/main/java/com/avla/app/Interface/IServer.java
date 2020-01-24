@@ -1,17 +1,21 @@
 package com.avla.app.Interface;
 
-import android.graphics.Bitmap;
-
 import com.avla.app.model.EmailPojo;
 import com.avla.app.model.ModelLocation;
 import com.avla.app.model.ModelTag;
 import com.avla.app.model.Payload;
-import com.avla.app.model.PeoplePojo;
+import com.avla.app.model.PeopleModel;
 import com.avla.app.model.Token;
 import com.avla.app.model.User;
 
+import org.json.JSONArray;
+
+import java.io.File;
 import java.util.ArrayList;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -64,7 +68,7 @@ public interface IServer {
                             @Field("country") String country,
                             @Field("city") String city,
                             @Field("job_title") String jobTitle,
-                            @Field("tags") ArrayList<String> tagList);
+                            @Field("tags") JSONArray tagList);
 
     @FormUrlEncoded
     @POST("public_api/account/update")
@@ -80,18 +84,26 @@ public interface IServer {
     @GET("public_api/account/info")
     Call<User> getUserInfo(@Query("token") String token);
 
+//    @Multipart
+//    @POST("public_api/account/upload_account_picture")
+//    Call<User> updateUserImage(@Query("token") String token,
+//                               @Part("file") Bitmap file);
+@Multipart
+@POST("public_api/account/upload_account_picture")
+Call<User> updateUserImage(@Query("token") String token,
+                           @Part("file") File file);
+
     @Multipart
-    @POST("public_api/account/upload_account_picture")
-    Call<User> updateUserImage(@Query("token") String token,
-                                @Part("file") Bitmap file);
-
-
-    @GET("public_api/people/discover{category}&{tags}&{offset}&{limit}")
-    Call<PeoplePojo> getAllPeople(@Query("token") String token,
-                                  @Path("category") String category,
-                                  @Path("tags") ArrayList<String> tags,
-                                  @Path("offset") int offset,
-                                  @Path("limit") int limit,
-                                  @Query("query") String query);
+    @POST("upload")
+    Call<ResponseBody> upload(
+            @Part("description") RequestBody description,
+            @Part MultipartBody.Part file);
+    @GET("public_api/people/discover")
+    Call<PeopleModel> getAllPeople(@Query("category") String category,
+                                   @Query("tags") ArrayList<String> tags,
+                                   @Query("offset") String offset,
+                                   @Query("limit") String limit,
+                                   @Query("query") String query,
+                                   @Query("token") String token);
 
 }

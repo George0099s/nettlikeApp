@@ -4,6 +4,8 @@ package com.avla.app.fragments.SignUp;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,10 +48,9 @@ public class SignUpChooseTagsFragment extends Fragment {
     private static final String TAG = "SignUpChooseTagsFragmen";
     private SharedPreferences sharedPreferences;
     private ArrayList<String> tagListName;
-    private ArrayList<String> tagListId;
+    private ArrayList<String> tagListId = new ArrayList<>();
     private AppDatabase db;
     private TokenDao tokenDao;
-    public static JSONArray tagJsonList;
     private RecyclerView tagRecyclerView;
     private TagAdapter tagAdapter;
     private EditText jobTitle;
@@ -75,10 +76,26 @@ public class SignUpChooseTagsFragment extends Fragment {
         List<TokenEntity> tokenList;
         tokenList = tokenDao.getToken();
 
-        getTags(tokenList.get(0).toString());
+        getTags(getActivity().getIntent().getStringExtra("token"));
         tagRecyclerView = view.findViewById(R.id.tag_reycler);
         jobTitle = view.findViewById(R.id.job_title);
+        jobTitle.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                UserSingleton userSingleton = UserSingleton.INSTANCE;
+                userSingleton.setJobTitle(jobTitle.getText().toString());
+            }
+        });
         return view;
     }
 
@@ -122,7 +139,7 @@ public class SignUpChooseTagsFragment extends Fragment {
                         tagListName.add(payload.get(i).getName());
                     tagListId.add(payload.get(i).getId());
                 }
-                UserSingleton user = UserSingleton.INSTANCE;
+
                 JSONArray tagListIdJson = new JSONArray();
 
                 tagAdapter = new TagAdapter(tagListName, tagListId, tagListIdJson, getContext(), sharedPreferences);

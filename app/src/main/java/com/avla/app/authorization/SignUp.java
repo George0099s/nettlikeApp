@@ -1,5 +1,6 @@
 package com.avla.app.authorization;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -24,7 +25,7 @@ import com.avla.app.model.User;
 import com.avla.app.model.UserPayload;
 import com.avla.app.model.UserSingleton;
 
-import java.util.ArrayList;
+import org.json.JSONArray;
 
 import javax.inject.Inject;
 
@@ -37,12 +38,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class SignUp extends AppCompatActivity {
 
     private static final String TAG = "SignUp";
-    private SharedPreferences sharedPreferences;
+    private SharedPreferences mPrefs;
     private String firstName, lastName, token, aboutYourse1f, jobTitle, country, city, age;
     private ViewPager viewPager;
     private Button mNext;
     private UserSingleton user;
-    private ArrayList<String> tagList;
+    private JSONArray tagList;
 
     @Inject
     public SignUp(){
@@ -70,12 +71,7 @@ public class SignUp extends AppCompatActivity {
         mNext = findViewById(R.id.next_btn);
         mNext.setOnClickListener(this::onClick);
         viewPager = findViewById(R.id.viewpager);
-//        sharedPreferences = getSharedPreferences(Constants.MY_PREFERENCES, Context.MODE_PRIVATE);
-
-
-
-
-
+        mPrefs = getSharedPreferences(Constants.MY_PREFERENCES, Context.MODE_PRIVATE);
 //        AppDatabase db = Room.databaseBuilder(this.getApplicationContext(),
 //                AppDatabase.class, "avlaDB")
 //                .allowMainThreadQueries()
@@ -134,14 +130,14 @@ public class SignUp extends AppCompatActivity {
         sendUserData(token,firstName, lastName,age, aboutYourse1f,country, city, jobTitle, tagList);
     }
 
-    private void sendUserData(String token, String firstName, String lastName, String age,String aboutYorself, String country, String city, String jobTitle, ArrayList<String> tagList) {
+    private void sendUserData(String token, String firstName, String lastName, String age, String aboutYorself, String country, String city, String jobTitle, JSONArray tagList) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Constants.BASIC_URL) // Адрес сервера
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         IServer service = retrofit.create(IServer.class);
-        Call<User> call = service.sendUserData(token, firstName, lastName,age, country, city, aboutYorself, jobTitle, tagList);
+        Call<User> call = service.sendUserData(token, firstName, lastName,age,aboutYorself, country, city, jobTitle, tagList);
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
@@ -149,6 +145,7 @@ public class SignUp extends AppCompatActivity {
                 UserPayload userPayload = object.getPayload();
                 if(object.getOk() == true){
                     Intent intent = new Intent(SignUp.this, MainActivity.class);
+                    mPrefs.edit().putBoolean("isLogIn", true).apply();
                     intent.putExtra("token", token);
                     startActivity(intent);
                 } else {

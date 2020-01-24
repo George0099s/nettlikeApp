@@ -71,28 +71,18 @@
             app:layout_constraintStart_toStartOf="@+id/email"
             app:layout_constraintTop_toBottomOf="@+id/email" />
 
-    <EditText
-        android:id="@+id/editText5"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
-        app:layout_constraintEnd_toEndOf="@+id/job_title"
-        app:layout_constraintStart_toStartOf="@+id/job_title"
-        app:layout_constraintTop_toBottomOf="@+id/job_title" />
-
         <EditText
             android:id="@+id/about_yourself_ed"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="44dp"
+            android:layout_marginTop="72dp"
             android:ems="10"
             android:hint="@string/tell_me_about_yourself"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText5" />
+            app:layout_constraintTop_toBottomOf="@+id/job_title" />
 
         <EditText
             android:id="@+id/facebook_link"
@@ -127,5 +117,14 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/facebook_link" />
+
+        <Button
+            android:id="@+id/log_out_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/log_out_string"
+            app:layout_constraintEnd_toEndOf="@+id/save_data"
+            app:layout_constraintStart_toStartOf="@+id/save_data"
+            app:layout_constraintTop_toBottomOf="@+id/save_data" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

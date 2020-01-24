@@ -50,6 +50,8 @@ public class StartActivity extends AppCompatActivity {
         tokenDao = db.tokenDao();
         getToken(tokenDao);
 
+
+
 //        startActivity(new Intent(StartActivity.this, OnBoarding.class));
 
 
@@ -85,9 +87,17 @@ public class StartActivity extends AppCompatActivity {
                         startActivity(intent);
                         mPrefs.edit().putBoolean("firstrun", false).commit();
                     } else {
-                        Intent intent = new Intent(StartActivity.this, RegistrationActivity.class);
-                        intent.putExtra("token", token2);
-                        startActivity(intent);
+                        Log.d(TAG, "onResponse: true   " + (mPrefs.getBoolean("isLogIn", true) ));
+                        Log.d(TAG, "onResponse: false   " + (mPrefs.getBoolean("isLogIn", false) ));
+                       if(mPrefs.getBoolean("isLogIn", true) == true) {
+                            Intent intent = new Intent(StartActivity.this, MainActivity.class);
+                            intent.putExtra("token", token2);
+                            startActivity(intent);
+                        } else {
+                            Intent intent = new Intent(StartActivity.this, RegistrationActivity.class);
+                            intent.putExtra("token", token2);
+                            startActivity(intent);
+                        }
                     }
                 } else {
                     Toast.makeText(StartActivity.this, "Wrong token", Toast.LENGTH_SHORT).show();
@@ -106,7 +116,7 @@ public class StartActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(Void... voids) {
             RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-            String URL = Constants.BASIC_URL+"/auth/create_token";
+            String URL = Constants.BASIC_URL+"public_api/auth/create_token";
             JsonObjectRequest objectRequest = new JsonObjectRequest(
                     Request.Method.POST,
                     URL,

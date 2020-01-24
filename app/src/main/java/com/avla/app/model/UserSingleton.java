@@ -1,6 +1,6 @@
 package com.avla.app.model;
 
-import java.util.ArrayList;
+import org.json.JSONArray;
 
 public class UserSingleton {
     private String firstName;
@@ -10,7 +10,7 @@ public class UserSingleton {
     private String country;
     private String city;
     private String jobTitle;
-    private ArrayList<String> tagList;
+    private JSONArray tagList = new JSONArray();
 
     public static final UserSingleton INSTANCE = new UserSingleton();
 
@@ -72,11 +72,11 @@ public class UserSingleton {
         this.jobTitle = jobTitle;
     }
 
-    public ArrayList<String> getTagList() {
+    public JSONArray getTagList() {
         return tagList;
     }
 
-    public void setTagList(ArrayList<String> tagList) {
+    public void setTagList(JSONArray tagList) {
         this.tagList = tagList;
     }
 }

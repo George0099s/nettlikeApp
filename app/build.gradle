@@ -65,4 +65,11 @@ dependencies {
     //rxJava2
     implementation 'io.reactivex:rxjava:1.2.3'
     implementation 'io.reactivex:rxandroid:1.2.1'
+
+    implementation 'net.gotev:uploadservice:2.1'
+
+
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'andhradroid.dev:aFilechooser:1.0.1'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
 }

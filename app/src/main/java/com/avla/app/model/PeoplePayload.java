@@ -2,7 +2,9 @@ package com.avla.app.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class PeoplePojo {
+import java.util.List;
+
+public class PeoplePayload {
     @SerializedName("_id")
     private String id;
     @SerializedName("first_name")
@@ -11,9 +13,10 @@ public class PeoplePojo {
     private String lastName;
     @SerializedName("description")
     private String description;
+    @SerializedName("people")
+    private List<People> people;
 
-
-    public PeoplePojo(){}
+    public PeoplePayload(){}
     public String getId() {
         return id;
     }
@@ -40,5 +43,13 @@ public class PeoplePojo {
 
     public String getDescription() {
         return description;
+    }
+
+    public List<People> getPeople() {
+        return people;
+    }
+
+    public void setPeople(List<People> people) {
+        this.people = people;
     }
 }

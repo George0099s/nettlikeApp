@@ -2,7 +2,6 @@ package com.avla.app.fragments.Main.ProfileInnerFragments;
 
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -37,7 +36,7 @@ public class ProfileInnerFragment extends Fragment {
     private static final Scheduler THREAD_2 = Schedulers.newThread();
     private ImageView sendEmal;
     private TextView userJob, aboutUser;
-    GetUserInfo getUserInfo;
+//    GetUserInfo getUserInfo;
     public ProfileInnerFragment() {
         // Required empty public constructor
     }
@@ -67,8 +66,7 @@ public class ProfileInnerFragment extends Fragment {
         sendEmal = view.findViewById(R.id.send_email);
         sendEmal.setOnClickListener(this::onClick);
 
-//        getUserInfo = new GetUserInfo();
-//        getUserInfo.execute();
+
         Observable.just((getUserInfo()))
                 .subscribeOn(Schedulers.io())
                 .observeOn(THREAD_2)
@@ -99,7 +97,6 @@ public class ProfileInnerFragment extends Fragment {
 
                 User object = response.body();
                 UserPayload userPayload = object.getPayload();
-                Log.d(TAG, "onResponse: innerFragmentProfile  " + userPayload.getJobTitle() + "  " + userPayload.getDesctiption());
                 userJob.setText(userPayload.getJobTitle());
                 aboutUser.setText(userPayload.getDesctiption());
             }
@@ -121,40 +118,40 @@ public class ProfileInnerFragment extends Fragment {
     }
 
 
-    private class GetUserInfo extends AsyncTask<String, Void, Void> {
-        @Override
-        protected void onProgressUpdate(Void... values) {
-            super.onProgressUpdate(values);
-        }
-
-        String token = getActivity().getIntent().getStringExtra("token");
-        @Override
-        protected Void doInBackground(String... strings) {
-
-            Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(Constants.BASIC_URL) // Адрес сервера
-                    .addConverterFactory(GsonConverterFactory.create()) // говорим ретрофиту что для сериализации необходимо использовать GSON
-                    .build();
-
-            IServer service = retrofit.create(IServer.class);
-            Call<User> call = service.getUserInfo(token);
-            call.enqueue(new Callback<User>() {
-                @Override
-                public void onResponse(Call<User> call, Response<User> response) {
-
-                    User object = response.body();
-                    UserPayload userPayload = object.getPayload();
-                    Log.d(TAG, "onResponse: innerFragmentProfile  " + userPayload.getJobTitle() + "  " + userPayload.getDesctiption());
-                    userJob.setText(userPayload.getJobTitle());
-                    aboutUser.setText(userPayload.getDesctiption());
-                }
-                @Override
-                public void onFailure(Call<User> call, Throwable t) {
-                    Log.d(TAG, "onResponse: signUp fail " + t.getMessage());
-                }
-            });
-
-            return null;
-        }
-    }
+//    private class GetUserInfo extends AsyncTask<String, Void, Void> {
+//        @Override
+//        protected void onProgressUpdate(Void... values) {
+//            super.onProgressUpdate(values);
+//        }
+//
+//        String token = getActivity().getIntent().getStringExtra("token");
+//        @Override
+//        protected Void doInBackground(String... strings) {
+//
+//            Retrofit retrofit = new Retrofit.Builder()
+//                    .baseUrl(Constants.BASIC_URL) // Адрес сервера
+//                    .addConverterFactory(GsonConverterFactory.create()) // говорим ретрофиту что для сериализации необходимо использовать GSON
+//                    .build();
+//
+//            IServer service = retrofit.create(IServer.class);
+//            Call<User> call = service.getUserInfo(token);
+//            call.enqueue(new Callback<User>() {
+//                @Override
+//                public void onResponse(Call<User> call, Response<User> response) {
+//
+//                    User object = response.body();
+//                    UserPayload userPayload = object.getPayload();
+//                    Log.d(TAG, "onResponse: innerFragmentProfile  " + userPayload.getJobTitle() + "  " + userPayload.getDesctiption());
+//                    userJob.setText(userPayload.getJobTitle());
+//                    aboutUser.setText(userPayload.getDesctiption());
+//                }
+//                @Override
+//                public void onFailure(Call<User> call, Throwable t) {
+//                    Log.d(TAG, "onResponse: signUp fail " + t.getMessage());
+//                }
+//            });
+//
+//            return null;
+//        }
+//    }
 }

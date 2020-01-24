@@ -1,5 +1,6 @@
 package com.avla.app.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.avla.app.R;
 import com.avla.app.fragments.SignUp.LocationCitiesActivity;
+import com.avla.app.model.Payload;
 import com.avla.app.model.UserSingleton;
 
 import java.util.ArrayList;
@@ -20,18 +22,20 @@ import java.util.List;
 
 public class LocationCountryAdapter extends RecyclerView.Adapter<LocationCountryAdapter.LocationViewHolder>{
 
-    private ArrayList<String> counryListName;
+    private ArrayList<Payload> counryListName;
     private ArrayList<String> counryListId;
     private ArrayList<String> cityList;
     private Context mContext;
+    private Activity activity;
     private SharedPreferences sharedPreferences;
 
-    public LocationCountryAdapter(ArrayList<String> counryListName, ArrayList<String> countryListId, ArrayList<String> cityList, Context mContext,  SharedPreferences sharedPrefs) {
+    public LocationCountryAdapter(ArrayList<Payload> counryListName, ArrayList<String> countryListId, ArrayList<String> cityList, Context mContext,  SharedPreferences sharedPrefs, Activity activity) {
         this.counryListName = counryListName;
         this.counryListId = countryListId;
         this.cityList = cityList;
         this.mContext = mContext;
         this.sharedPreferences = sharedPrefs;
+        this.activity = activity;
     }
     @NonNull
     @Override
@@ -43,15 +47,16 @@ public class LocationCountryAdapter extends RecyclerView.Adapter<LocationCountry
 
     @Override
     public void onBindViewHolder(@NonNull LocationViewHolder holder, int position) {
-            holder.country.setText(counryListName.get(position));
+            holder.country.setText(counryListName.get(position).getName());
         holder.country.setOnClickListener(v-> {
             UserSingleton user = UserSingleton.INSTANCE;
-            user.setCountry(counryListName.get(position));
+            user.setCountry(counryListName.get(position).getName());
             Intent intent = new Intent(mContext, LocationCitiesActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.putExtra("token", activity.getIntent().getStringExtra("token"));
             intent.putExtra("country", counryListName.get(position));
             intent.putExtra("id", counryListId.get(position));
-            mContext.startActivity(intent);
+            activity.startActivityForResult(intent, 1);
         });
     }
 
@@ -73,8 +78,10 @@ public class LocationCountryAdapter extends RecyclerView.Adapter<LocationCountry
         }
     }
 
-    public void updateList(List<String> newCountryList){
+    public void updateList(List<Payload> newCountryList, List<String> CountryIdList){
         counryListName = new ArrayList<>();
+//        counryListId = new ArrayList<>();
+//        counryListId.addAll(newCountryList);
         counryListName.addAll(newCountryList);
         notifyDataSetChanged();
     }

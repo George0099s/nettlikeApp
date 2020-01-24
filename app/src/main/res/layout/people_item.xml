@@ -28,12 +28,23 @@
         app:layout_constraintTop_toTopOf="@+id/people_img" />
 
     <TextView
-        tools:text="About user"
         android:id="@+id/about_user"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:lines="1"
+        android:singleLine="true"
         app:layout_constraintBottom_toBottomOf="@+id/people_img"
         app:layout_constraintEnd_toEndOf="@+id/user_name"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/user_name" />
+        app:layout_constraintStart_toStartOf="@+id/user_name"
+        tools:text="About user" />
+
+    <ListView
+        android:id="@+id/tags"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/about_user"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/about_user" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,6 @@
 package com.avla.app.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.view.LayoutInflater;
@@ -20,15 +21,17 @@ public class LocationCityAdapter  extends RecyclerView.Adapter<LocationCityAdapt
 
 
 
-    private ArrayList<String> cityListName;
+    private ArrayList<String> cityListName = new ArrayList<>();
     private Context mContext;
     private SharedPreferences sharedPreferences;
+    private Activity activity;
 
-    public LocationCityAdapter (ArrayList<String> cityListName, Context mContext, SharedPreferences sharedPreferences) {
+    public LocationCityAdapter(ArrayList<String> cityListName, Context mContext, SharedPreferences sharedPreferences, Activity activity) {
 
         this.cityListName = cityListName;
         this.mContext = mContext;
         this.sharedPreferences = sharedPreferences;
+        this.activity = activity;
     }
 
     @NonNull
@@ -45,6 +48,7 @@ public class LocationCityAdapter  extends RecyclerView.Adapter<LocationCityAdapt
         holder.city.setOnClickListener(v-> {
             UserSingleton user = UserSingleton.INSTANCE;
             user.setCity(cityListName.get(position));
+            activity.finish();
         });
     }
 

@@ -43,9 +43,9 @@ public class SignUpAboutYourselfFragment extends Fragment {
         sharedPreferences = this.getActivity().getSharedPreferences(Constants.MY_PREFERENCES, Context.MODE_PRIVATE);
     }
 
-    public void onDestroy() {
+    public void onDestroyView() {
         setUserData();
-        super.onDestroy();
+        super.onDestroyView();
     }
     private void setUserData() {
     user.setAboutMyself(aboutYourselfED.getText().toString());

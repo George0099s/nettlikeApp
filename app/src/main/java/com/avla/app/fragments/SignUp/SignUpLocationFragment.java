@@ -1,6 +1,7 @@
 package com.avla.app.fragments.SignUp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
@@ -43,7 +44,7 @@ public class SignUpLocationFragment extends Fragment {
     private String[] countries;
     private RecyclerView recyclerViewLocatoin;
     private LocationCountryAdapter locationCountryAdapter;
-    private ArrayList<String> countryListName;
+    private ArrayList<Payload> countryListName;
     private ArrayList<String> countryListId;
     private ArrayList<String> cityList;
     private String token;
@@ -75,7 +76,7 @@ public class SignUpLocationFragment extends Fragment {
 
         mContext = getContext();
 
-        locationCountryAdapter = new LocationCountryAdapter(countryListName, countryListId, cityList, mContext, sharedPreferences);
+        locationCountryAdapter = new LocationCountryAdapter(countryListName, countryListId, cityList, mContext, sharedPreferences, getActivity());
         tokenList = tokenDao.getToken();
         token = String.valueOf(tokenList.get(0));
         recyclerViewLocatoin = view.findViewById(R.id.location_recycler);
@@ -94,17 +95,25 @@ public class SignUpLocationFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-                List<String> newCountryList = new ArrayList<>();
-                for (String country: countryListName){
-                    if(country.toLowerCase().contains(searchCountry.getText())){
+                List<Payload> newCountryList = new ArrayList<>();
+                List<String> newCountryIdList = new ArrayList<>();
+                for (Payload country: countryListName){
+                    if(country.getName().toLowerCase().contains(searchCountry.getText())){
                         newCountryList.add(country);
                     }
                 }
-                locationCountryAdapter.updateList(newCountryList);
+                locationCountryAdapter.updateList(newCountryList, newCountryIdList);
             }
         });
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode == 1){
+            Log.d(TAG, "onActivityResult: " + data.getData());
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 
     private void getAllCountries(String token){
         Retrofit retrofit = new Retrofit.Builder()
@@ -117,11 +126,11 @@ public class SignUpLocationFragment extends Fragment {
         call.enqueue(new Callback<ModelLocation>() {
             @Override
             public void onResponse(Call<ModelLocation> call, Response<ModelLocation> response) {
-
+                Log.d(TAG, "onResponse: " + call.request().url());
                 ModelLocation list = response.body();
                 List<Payload> payload = list.getPayload();
                 for (int i = 0; i < payload.size(); i++) {
-                    countryListName.add(payload.get(i).getName());
+                    countryListName.add(payload.get(i));
                     countryListId.add(payload.get(i).getId());
                 }
 

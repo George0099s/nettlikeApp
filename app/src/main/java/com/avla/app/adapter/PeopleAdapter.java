@@ -10,14 +10,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.avla.app.R;
-import com.avla.app.model.PeoplePojo;
+import com.avla.app.model.People;
 
 import java.util.List;
 
 public class PeopleAdapter  extends RecyclerView.Adapter<PeopleAdapter.PeopleViewHolder> {
-    private List<PeoplePojo> people;
+    private List<People> people;
     private Context context;
-    public PeopleAdapter(Context context, List<PeoplePojo> people) {
+    public PeopleAdapter(Context context, List<People> people) {
         this.context = context;
         this.people = people;
     }
@@ -42,10 +42,12 @@ public class PeopleAdapter  extends RecyclerView.Adapter<PeopleAdapter.PeopleVie
 
     public class PeopleViewHolder extends RecyclerView.ViewHolder{
         TextView userName, aboutUser;
+        List tags;
         public PeopleViewHolder(@NonNull View itemView) {
             super(itemView);
             userName = itemView.findViewById(R.id.user_name);
             aboutUser = itemView.findViewById(R.id.about_user);
+
         }
     }
 }

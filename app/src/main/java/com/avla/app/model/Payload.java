@@ -1,10 +1,40 @@
 package com.avla.app.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import androidx.annotation.NonNull;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Payload {
+public class Payload implements Parcelable {
+
+    protected Payload(Parcel in) {
+        byte tmpExists = in.readByte();
+        exists = tmpExists == 0 ? null : tmpExists == 1;
+        id = in.readString();
+        token = in.readString();
+        name = in.readString();
+        if (in.readByte() == 0) {
+            population = null;
+        } else {
+            population = in.readInt();
+        }
+        byte tmpOk = in.readByte();
+        ok = tmpOk == 0 ? null : tmpOk == 1;
+    }
+
+    public static final Creator<Payload> CREATOR = new Creator<Payload>() {
+        @Override
+        public Payload createFromParcel(Parcel in) {
+            return new Payload(in);
+        }
+
+        @Override
+        public Payload[] newArray(int size) {
+            return new Payload[size];
+        }
+    };
 
     @NonNull
     @Override
@@ -23,6 +53,8 @@ public class Payload {
     private Integer population;
     @SerializedName("ok")
     private Boolean ok;
+
+
     @SerializedName("id")
     public String getId() {
         return id;
@@ -75,5 +107,25 @@ public class Payload {
 
     public void setExists(Boolean exists) {
         this.exists = exists;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeByte((byte) (exists == null ? 0 : exists ? 1 : 2));
+        dest.writeString(id);
+        dest.writeString(token);
+        dest.writeString(name);
+        if (population == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(population);
+        }
+        dest.writeByte((byte) (ok == null ? 0 : ok ? 1 : 2));
     }
 }

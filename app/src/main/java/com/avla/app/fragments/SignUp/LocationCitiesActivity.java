@@ -1,5 +1,6 @@
 package com.avla.app.fragments.SignUp;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -8,21 +9,22 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
-import com.avla.app.adapter.LocationCityAdapter;
 import com.avla.app.Constants;
-import com.avla.app.database.AppDatabase;
 import com.avla.app.Interface.IServer;
 import com.avla.app.Interface.SignUpInterface;
 import com.avla.app.Interface.TokenDao;
+import com.avla.app.R;
+import com.avla.app.adapter.LocationCityAdapter;
+import com.avla.app.database.AppDatabase;
 import com.avla.app.model.ModelLocation;
 import com.avla.app.model.Payload;
-import com.avla.app.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,13 +39,14 @@ public class LocationCitiesActivity extends AppCompatActivity  {
     private static final String TAG = "LocationCitiesActivity";
     private LocationCityAdapter locationCityAdapter;
     private RecyclerView locationRecycerView;
-    private String countryId, countryName;
+    private Payload country;
     private ArrayList<String> citiesList;
     private Context mContext;
     private SignUpInterface signUpInterface;
     private Button closeBtn;
     private SharedPreferences sharedPreferences;
     private EditText searchCity;
+    private Activity activity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +57,8 @@ public class LocationCitiesActivity extends AppCompatActivity  {
 
 
     private void initViews() {
+         activity = this;
+
         AppDatabase db = Room.databaseBuilder(this,
                 AppDatabase.class, "avlaDB")
                 .allowMainThreadQueries()
@@ -62,8 +67,8 @@ public class LocationCitiesActivity extends AppCompatActivity  {
 
         closeBtn = findViewById(R.id.close_btn);
         mContext = this;
-        countryName = getIntent().getStringExtra("country");
-        countryId =  getIntent().getStringExtra("id");
+        country = getIntent().getParcelableExtra("country");
+        Toast.makeText(mContext, getIntent().getStringExtra("token"), Toast.LENGTH_SHORT).show();
         sharedPreferences = getSharedPreferences(Constants.MY_PREFERENCES, Context.MODE_PRIVATE);
         locationRecycerView = findViewById(R.id.location_recycler);
         searchCity = findViewById(R.id.search__city);
@@ -89,7 +94,7 @@ public class LocationCitiesActivity extends AppCompatActivity  {
                 locationCityAdapter.updateList(newCityList);
             }
         });
-        getAllCities(String.valueOf(tokenDao.getToken().get(0)),countryId);
+        getAllCities(getIntent().getStringExtra("token"),country.getId());
     }
 
     @Override
@@ -107,16 +112,22 @@ public class LocationCitiesActivity extends AppCompatActivity  {
         IServer service = retrofit.create(IServer.class);
         Call<ModelLocation> call = service.getAllCities(countryId, token);
         call.enqueue(new Callback<ModelLocation>() {
+
+
             @Override
             public void onResponse(Call<ModelLocation> call, Response<ModelLocation> response) {
                 citiesList = new ArrayList<>();
+                Log.d(TAG, "onResponse: " + call.request().url());
                 ModelLocation list = response.body();
                 List<Payload> payload = list.getPayload();
+                Log.d(TAG, "onResponse: " + response.message());
+
+
                 for (int i = 0; i < payload.size(); i++) {
                     citiesList.add(payload.get(i).getName());
                 }
                 locationRecycerView.setLayoutManager(new LinearLayoutManager(mContext));
-                locationCityAdapter = new LocationCityAdapter (citiesList, mContext, sharedPreferences);
+                locationCityAdapter = new LocationCityAdapter (citiesList, mContext, sharedPreferences, activity);
                 locationRecycerView.setAdapter(locationCityAdapter);
             }
 

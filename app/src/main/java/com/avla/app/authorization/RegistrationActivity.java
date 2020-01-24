@@ -34,7 +34,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private String mEmail, mPass, token;
     private Button mNextBtn, mGoToRegistrationBtn, mLogInBtn;
     private Boolean isExist;
-    private SharedPreferences sharedPreferences;
+    private SharedPreferences mPrefs;
 
 
     @Override
@@ -51,7 +51,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
     private void initViews() {
         getToken();
-        sharedPreferences = getSharedPreferences(Constants.MY_PREFERENCES, Context.MODE_PRIVATE);
+        mPrefs = getSharedPreferences(Constants.MY_PREFERENCES, Context.MODE_PRIVATE);
         mEmailED = findViewById(R.id.email_ed);
         mPasswordED = findViewById(R.id.password_ed);
         mNextBtn = findViewById(R.id.next_btn);
@@ -110,6 +110,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 if(object.getOk()){
                     Toast.makeText(RegistrationActivity.this, "Email and pass added", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(RegistrationActivity.this, SignUp.class);
+                    mPrefs.edit().putBoolean("isLogIn", true).apply();
                     intent.putExtra("token", token);
                     startActivity(intent);                }
             }
@@ -137,7 +138,9 @@ public class RegistrationActivity extends AppCompatActivity {
                 if(object.getOk()){
                     Toast.makeText(RegistrationActivity.this, "You logged in", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(RegistrationActivity.this, MainActivity.class);
+                    mPrefs.edit().putBoolean("isLogIn", true).apply();
                     intent.putExtra("token", token);
+
                     startActivity(intent);
                 } else {
                     Toast.makeText(RegistrationActivity.this, object.getError(), Toast.LENGTH_SHORT).show();
@@ -192,39 +195,6 @@ public class RegistrationActivity extends AppCompatActivity {
             emailED.setError("Invalid email");
         }
     }
-
-//    private class GetToken extends AsyncTask<Void, Void, String> {
-//
-//
-//        @Override
-//        protected String doInBackground(Void... voids) {
-//
-//            RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-//            String URL = "https://api.getavla.com/public_api/auth/create_token";
-//            JsonObjectRequest objectRequest = new JsonObjectRequest(
-//                    Request.Method.POST,
-//                    URL,
-//                    null,
-//                    response -> {
-//                        try {
-//                            JSONObject object = response.getJSONObject("payload");
-//                            object = response.getJSONObject("payload");
-//                            token = object.getString("token");
-//                        } catch (JSONException e) {
-//                            e.printStackTrace();
-//                        }
-//                    },
-//                    error -> {
-//                        System.out.println(error);
-//                        Log.e("response error", error.toString());
-//                    }
-//            );
-//            requestQueue.add(objectRequest);
-//
-//            return token;
-//        }
-//    }
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();
