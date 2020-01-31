@@ -16,10 +16,6 @@ public class TokenEntity {
         return token+"";
     }
 
-    public TokenEntity(@NonNull String token) {
-        this.token = token;
-    }
-
     public TokenEntity() {
 
     }

@@ -3,13 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.avla.app"
     android:targetSandboxVersion="1">
+
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
+
+        android:name=".AvlaApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -19,8 +22,10 @@
         android:theme="@style/AppTheme.No"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="n">
-        <activity android:name=".fragments.Main.EditUserProfileActivity"></activity>
-        <activity android:name=".fragments.SignUp.LocationCitiesActivity" />
+        <activity android:name=".fragments.DialogActivity"></activity>
+        <activity android:name=".fragments.main.peopleInner.AnotherUserProfileActivity" />
+        <activity android:name=".fragments.main.profileInnerFragments.EditUserProfileActivity" />
+        <activity android:name=".fragments.signUp.LocationCitiesActivity" />
         <activity android:name=".profile.ProfileActivity" />
         <activity android:name=".authorization.SignUp" />
         <activity

@@ -9,6 +9,7 @@ public class UserSingleton {
     private String aboutMyself;
     private String country;
     private String city;
+    private String userId;
     private String jobTitle;
     private JSONArray tagList = new JSONArray();
 
@@ -78,5 +79,13 @@ public class UserSingleton {
 
     public void setTagList(JSONArray tagList) {
         this.tagList = tagList;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 }

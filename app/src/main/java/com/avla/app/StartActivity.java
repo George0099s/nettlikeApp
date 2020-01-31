@@ -14,11 +14,11 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.avla.app.Interface.IServer;
+import com.avla.app.Interface.TokenDao;
 import com.avla.app.authorization.RegistrationActivity;
 import com.avla.app.database.AppDatabase;
 import com.avla.app.entity.TokenEntity;
-import com.avla.app.Interface.IServer;
-import com.avla.app.Interface.TokenDao;
 import com.avla.app.model.Payload;
 
 import org.json.JSONException;
@@ -36,6 +36,7 @@ public class StartActivity extends AppCompatActivity {
     private static final String TAG = "StartActivity";
     private AppDatabase db;
     private TokenDao tokenDao;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,11 +47,9 @@ public class StartActivity extends AppCompatActivity {
                 AppDatabase.class, "avlaDB")
                 .allowMainThreadQueries()
                 .build();
-
         tokenDao = db.tokenDao();
         getToken(tokenDao);
-
-
+        db.close();
 
 //        startActivity(new Intent(StartActivity.this, OnBoarding.class));
 

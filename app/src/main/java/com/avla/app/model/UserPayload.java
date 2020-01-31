@@ -7,6 +7,12 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class UserPayload {
+    @SerializedName("account")
+    private UserPayload payload;
+    @SerializedName("country")
+    private String country;
+    @SerializedName("city")
+    private String city;
     @SerializedName("_id")
     private String id;
     @SerializedName("birth_year")
@@ -53,6 +59,9 @@ public class UserPayload {
     private String updatedAt;
     @SerializedName("job_title")
     private String jobTitle;
+
+    @SerializedName("picture_id")
+    private String pictureId;
 
     @NonNull
     @Override
@@ -254,6 +263,38 @@ public class UserPayload {
         java.util.Calendar calendar = java.util.Calendar.getInstance(java.util.TimeZone.getDefault(), java.util.Locale.getDefault());
         calendar.setTime(new java.util.Date());
         return calendar.get(java.util.Calendar.YEAR);
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public UserPayload getPayload() {
+        return payload;
+    }
+
+    public void setPayload(UserPayload payload) {
+        this.payload = payload;
+    }
+
+    public String getPictureId() {
+        return pictureId;
+    }
+
+    public void setPictureId(String pictureId) {
+        this.pictureId = pictureId;
     }
 }
 

@@ -32,4 +32,6 @@
     <string name="facebook_link">http://www.facebook.com/</string>
     <string name="twitter_link">http://twitter.com/</string>
     <string name="log_out_string">log out</string>
+    <string name="follow_string">Follow</string>
+    <string name="write_string">Write</string>
 </resources>

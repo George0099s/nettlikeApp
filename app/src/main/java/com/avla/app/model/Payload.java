@@ -5,7 +5,11 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Payload implements Parcelable {
 
@@ -53,7 +57,14 @@ public class Payload implements Parcelable {
     private Integer population;
     @SerializedName("ok")
     private Boolean ok;
-
+    @SerializedName("account")
+    private Account account;
+    @SerializedName("dialog")
+    @Expose
+    private MessageDialog messageDialog;
+    @SerializedName("messages")
+    @Expose
+    private List<Message> messages = new ArrayList<>();
 
     @SerializedName("id")
     public String getId() {
@@ -127,5 +138,29 @@ public class Payload implements Parcelable {
             dest.writeInt(population);
         }
         dest.writeByte((byte) (ok == null ? 0 : ok ? 1 : 2));
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
+    public List<Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(List<Message> messages) {
+        this.messages = messages;
+    }
+
+    public MessageDialog getMessageDialog() {
+        return messageDialog;
+    }
+
+    public void setMessageDialog(MessageDialog messageDialog) {
+        this.messageDialog = messageDialog;
     }
 }

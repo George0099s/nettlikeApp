@@ -4,8 +4,6 @@ import androidx.annotation.NonNull;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
 public class PayloadModel {
     @NonNull
     @Override
@@ -34,8 +32,8 @@ public class PayloadModel {
     private String name;
     @SerializedName("population")
     private Integer population;
-    @SerializedName("payloadList")
-    private List<PayloadModel> payloadList = null;
+    @SerializedName("payload")
+    private Payload payload;
 
 
 
@@ -127,8 +125,11 @@ public class PayloadModel {
     public void setiD(String iD) {
         this.iD = iD;
     }
+    public Payload getPayload() {
+        return payload;
+    }
 
-    public List<PayloadModel> getPayloadList() {
-        return payloadList;
+    public void setPayload(Payload payload) {
+        this.payload = payload;
     }
 }

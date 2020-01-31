@@ -11,9 +11,9 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.avla.app.adapter.ViewPagerAdapter;
 import com.avla.app.authorization.RegistrationActivity;
-import com.avla.app.fragments.Onboarding.FirstOnBoardingFragment;
-import com.avla.app.fragments.Onboarding.SecondOnBoardingFragment;
-import com.avla.app.fragments.Onboarding.ThirdOnBoardingFragment;
+import com.avla.app.fragments.onboarding.FirstOnBoardingFragment;
+import com.avla.app.fragments.onboarding.SecondOnBoardingFragment;
+import com.avla.app.fragments.onboarding.ThirdOnBoardingFragment;
 import com.google.android.material.tabs.TabLayout;
 
 public class OnBoarding extends FragmentActivity {
@@ -42,7 +42,6 @@ public class OnBoarding extends FragmentActivity {
         tabLayout = findViewById(R.id.tablayout);
         viewPager = findViewById(R.id.viewpager);
         viewPager.addOnPageChangeListener(listener);
-
         mNext = findViewById(R.id.next_tv);
         mSkip = findViewById(R.id.skip_tv);
         mNext.setOnClickListener(this::onClick);

@@ -36,7 +36,7 @@ public class ProfileActivity extends AppCompatActivity {
         token = getIntent().getStringExtra("token");
         Log.d(TAG, "initViews: " + token);
         getData(token);
-        userName = findViewById(R.id.user_name);
+        userName = findViewById(R.id.job_title);
     }
 
 

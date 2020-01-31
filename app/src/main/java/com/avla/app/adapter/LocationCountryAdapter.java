@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.avla.app.R;
-import com.avla.app.fragments.SignUp.LocationCitiesActivity;
+import com.avla.app.fragments.signUp.LocationCitiesActivity;
 import com.avla.app.model.Payload;
 import com.avla.app.model.UserSingleton;
 
@@ -48,16 +48,16 @@ public class LocationCountryAdapter extends RecyclerView.Adapter<LocationCountry
     @Override
     public void onBindViewHolder(@NonNull LocationViewHolder holder, int position) {
             holder.country.setText(counryListName.get(position).getName());
-        holder.country.setOnClickListener(v-> {
-            UserSingleton user = UserSingleton.INSTANCE;
-            user.setCountry(counryListName.get(position).getName());
-            Intent intent = new Intent(mContext, LocationCitiesActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            intent.putExtra("token", activity.getIntent().getStringExtra("token"));
-            intent.putExtra("country", counryListName.get(position));
-            intent.putExtra("id", counryListId.get(position));
-            activity.startActivityForResult(intent, 1);
-        });
+            holder.country.setOnClickListener(v-> {
+                UserSingleton user = UserSingleton.INSTANCE;
+                user.setCountry(counryListName.get(position).getName());
+                Intent intent = new Intent(mContext, LocationCitiesActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.putExtra("token", activity.getIntent().getStringExtra("token"));
+                intent.putExtra("country", counryListName.get(position));
+                intent.putExtra("id", counryListId.get(position));
+                activity.startActivityForResult(intent, 1);
+            });
     }
 
     @Override
@@ -80,8 +80,6 @@ public class LocationCountryAdapter extends RecyclerView.Adapter<LocationCountry
 
     public void updateList(List<Payload> newCountryList, List<String> CountryIdList){
         counryListName = new ArrayList<>();
-//        counryListId = new ArrayList<>();
-//        counryListId.addAll(newCountryList);
         counryListName.addAll(newCountryList);
         notifyDataSetChanged();
     }
