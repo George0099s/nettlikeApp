@@ -37,7 +37,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class DialogActivity extends AppCompatActivity {
-    private static final String TAG = "DialogActivity";
+    private static final String TAG = "DialogActivit";
     private JSONObject tokenJson = new JSONObject();
     private String token, dialogId;
     private EditText messageBody;
