@@ -311,8 +311,8 @@ public class MessageMember {
         this.pdfFile = pdfFile;
     }
 
-    //    @SerializedName("tags")
-//    private List<Tag> tags = null;
+    //    @SerializedName("mapTags")
+//    private List<Tag> mapTags = null;
     @SerializedName("saved_questions")
     private List<String> savedQuestions = null;
     @SerializedName("saved_people")

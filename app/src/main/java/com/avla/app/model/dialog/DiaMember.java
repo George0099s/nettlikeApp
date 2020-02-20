@@ -31,7 +31,7 @@ public class DiaMember {
     private String birthYear;
     @SerializedName("country")
     private String country;
-    @SerializedName("picture_id")
+    @SerializedName("picture_url")
     private String pictureId;
 
     public String getId() {

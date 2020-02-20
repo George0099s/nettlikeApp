@@ -5,30 +5,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.main.PeopleFragment">
+    android:background="#FFFFFF"
+
+    tools:context=".view.main.PeopleFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/people_recycler"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tag_recycler" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:orientation="horizontal"
-        android:id="@+id/tag_recycler"
-        android:maxHeight="50dp"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/search_people" />
 
     <EditText
         android:id="@+id/search_people"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/shape_search"
+        android:drawablePadding="2dp"
         android:ems="10"
-        android:hint="Search..."
+        android:hint="@android:string/search_go"
         android:inputType="textPersonName"
+        android:textAlignment="center"
+        android:textColorHint="#AFBCC6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

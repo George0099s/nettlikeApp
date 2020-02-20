@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -9,12 +9,69 @@
 
         <item name="android:background">#FFF</item>
     </style>
-    <style name="AppTheme.No" parent="Theme.AppCompat.Light.NoActionBar">
-    <item name="android:fontFamily">@font/sfpro</item>
-    <item name="windowActionBar">false</item>
-    <item name="windowNoTitle">true</item>
-    <item name="android:windowLightStatusBar">true</item>
-    <item name="android:statusBarColor">#FFF</item>
-    <item name="android:background">#FFF</item>
+    <style name="Theme2" parent="Theme.MaterialComponents.Light.Bridge">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:statusBarColor">#FFF</item>
+        <item name="android:windowLightStatusBar">true</item>
+
+    </style>
+
+    <style name="AppTheme.TabLayout" parent="Widget.MaterialComponents.TabLayout">
+        <item name="android:background">#FFF</item>
+        <item name="tabIndicatorColor">@color/underline_tablayout</item>
+    </style>
+
+    <style name="titleString">
+        <item name="android:textColor">@color/black000</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+
+    <style name="subTitleString">
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:textColor">#35000000</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+
+    <style name="signUpPlaceholder">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:paddingLeft">20dp</item>
+        <item name="android:alpha">125</item>
+        <item name="android:textColorHint">#21000000</item>
+        <item name="android:layout_marginStart">20dp</item>
+        <item name="android:layout_marginEnd">20dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:background">@drawable/shape_signup_placeholder</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:textColor">#000000</item>
+    </style>
+
+    <style name="nextBtnSignUp">
+        <item name="android:layout_height">48dp</item>
+        <item name="android:minWidth">343dp</item>
+        <item name="android:background">@drawable/shape_next_btn_signup</item>
+        <item name="android:textColor">@color/white_FFF</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="AppTabLayout" parent="Widget.Design.TabLayout">
+        <item name="tabMaxWidth">50dp</item>
+        <item name="tabIndicatorColor">?attr/colorAccent</item>
+        <item name="tabIndicatorHeight">4dp</item>
+        <item name="tabPaddingStart">6dp</item>
+        <item name="tabPaddingEnd">6dp</item>
+        <item name="tabBackground">?attr/selectableItemBackground</item>
+        <item name="tabTextAppearance">@style/AppTabTextAppearance</item>
+        <item name="tabSelectedTextColor">@color/underline_tablayout</item>
+    </style>
+
+    <!-- for text -->
+    <style name="AppTabTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/underline_tablayout</item>
+        <item name="textAllCaps">false</item>
     </style>
 </resources>

@@ -1,5 +1,6 @@
 package com.avla.app.model.people;
 
+import com.avla.app.model.PayloadTag;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -13,10 +14,14 @@ public class People {
     private String lastName;
     @SerializedName("description")
     private String description;
+    @SerializedName("country")
+    private String country;
+    @SerializedName("city")
+    private String city;
     @SerializedName("tags")
-    private List tag;
-    @SerializedName("picture_id")
-    private String pictureId;
+    private List<PayloadTag> tag;
+    @SerializedName("picture_url")
+    private String pictureUrl;
 
 
     public String getId() {
@@ -53,19 +58,35 @@ public class People {
         this.description = description;
     }
 
-    public List getTag() {
+    public List<PayloadTag> getTag() {
         return tag;
     }
 
-    public void setTag(List tag) {
+    public void setTag(List<PayloadTag> tag) {
         this.tag = tag;
     }
 
-    public String getPictureId() {
-        return pictureId;
+    public String getPictureUrl() {
+        return pictureUrl;
     }
 
-    public void setPictureId(String pictureId) {
-        this.pictureId = pictureId;
+    public void setPictureUrl(String pictureUrl) {
+        this.pictureUrl = pictureUrl;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 }

@@ -5,6 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class Message {
+    private static final String TAG = "Message";
     @SerializedName("dialog_id")
     private String dialogId;
     @SerializedName("created_at")
@@ -32,7 +33,30 @@ public class Message {
     }
 
     public String getCreatedAt() {
+
+//        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH);
+//        SimpleDateFormat newFormat = new SimpleDateFormat("HH:mm", Locale.ENGLISH);
+//        SimpleDateFormat compareFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+//        df.setTimeZone(TimeZone.getTimeZone("UTC"));
+//        newFormat.setTimeZone(TimeZone.getDefault());
+//        compareFormat.setTimeZone(TimeZone.getDefault());
+//        Date currentDate = Calendar.getInstance().getTime();
+//        Date msgDate = null;
+//        String currentDateString = compareFormat.format(currentDate);
+//        try {
+//            msgDate = df.parse(createdAt);
+//            Date date = compareFormat.parse(createdAt);
+//            currentDate = compareFormat.parse(currentDateString);
+//            String compareDateString = compareFormat.format(msgDate);
+//            if (date.before(currentDate))
+//                this.createdAt = createdAt;
+//                else
+//                this.createdAt = newFormat.format(msgDate);
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
         return createdAt;
+
     }
     public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;

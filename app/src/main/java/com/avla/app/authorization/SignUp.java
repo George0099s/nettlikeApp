@@ -17,11 +17,11 @@ import com.avla.app.Interface.IServer;
 import com.avla.app.MainActivity;
 import com.avla.app.R;
 import com.avla.app.adapter.ViewPagerAdapter;
-import com.avla.app.fragments.signUp.SignUpAboutYourselfFragment;
-import com.avla.app.fragments.signUp.SignUpChooseTagsFragment;
-import com.avla.app.fragments.signUp.SignUpLocationFragment;
-import com.avla.app.fragments.signUp.SignUpNameFragment;
-import com.avla.app.model.User;
+import com.avla.app.view.signUp.SignUpAboutYourselfFragment;
+import com.avla.app.view.signUp.SignUpChooseTagsFragment;
+import com.avla.app.view.signUp.SignUpLocationFragment;
+import com.avla.app.view.signUp.SignUpNameFragment;
+import com.avla.app.model.UserModel;
 import com.avla.app.model.UserPayload;
 import com.avla.app.model.UserSingleton;
 
@@ -137,13 +137,14 @@ public class SignUp extends AppCompatActivity {
                 .build();
 
         IServer service = retrofit.create(IServer.class);
-        Call<User> call = service.sendUserData(token, firstName, lastName,age,aboutYorself, country, city, jobTitle, tagList);
-        call.enqueue(new Callback<User>() {
+        Call<UserModel> call = service.sendUserData(token, firstName, lastName,age,aboutYorself, country, city, jobTitle, tagList);
+        call.enqueue(new Callback<UserModel>() {
             @Override
-            public void onResponse(Call<User> call, Response<User> response) {
-                User object = response.body();
+            public void onResponse(Call<UserModel> call, Response<UserModel> response) {
+                UserModel object = response.body();
                 UserPayload userPayload = object.getPayload();
-                if(object.getOk() == true){
+                Log.d("222", "onResponse: " + object.getOk());
+                if(object.getOk()){
                     Intent intent = new Intent(SignUp.this, MainActivity.class);
                     mPrefs.edit().putBoolean("isLogIn", true).apply();
                     intent.putExtra("token", token);
@@ -154,7 +155,7 @@ public class SignUp extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<User> call, Throwable t) {
+            public void onFailure(Call<UserModel> call, Throwable t) {
                 Log.d(TAG, "onResponse: signUp fail " + t.getMessage());
 
             }

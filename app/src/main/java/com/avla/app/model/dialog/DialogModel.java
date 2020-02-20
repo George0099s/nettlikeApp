@@ -8,7 +8,7 @@ public class DialogModel {
         @SerializedName("ok")
         private Boolean ok;
         @SerializedName("payload")
-        private List<Payload> payload = null;
+        private DiaPayload payload;
 
     public Boolean getOk() {
         return ok;
@@ -18,11 +18,11 @@ public class DialogModel {
         this.ok = ok;
     }
 
-    public List<Payload> getPayload() {
+    public DiaPayload getPayload() {
         return payload;
     }
 
-    public void setPayload(List<Payload> payload) {
+    public void setPayload(DiaPayload payload) {
         this.payload = payload;
     }
 
@@ -268,7 +268,7 @@ public class DialogModel {
         private List<String> savedQuestions = null;
         @SerializedName("status")
         private String status;
-        @SerializedName("tags")
+        @SerializedName("mapTags")
         private List<Tag> tags = null;
         @SerializedName("updated_at")
         private String updatedAt;

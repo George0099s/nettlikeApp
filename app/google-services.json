@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "254698761433",
+    "firebase_url": "https://avla-260112.firebaseio.com",
+    "project_id": "avla-260112",
+    "storage_bucket": "avla-260112.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:254698761433:android:d4e9ac41fec60b6e9122c8",
+        "android_client_info": {
+          "package_name": "com.avla.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "254698761433-35grb9ff5bqqa4no23sa47u1p9u15pke.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.avla.app",
+            "certificate_hash": "963e5372c7746475adf187401b2e6d2b8db44a86"
+          }
+        },
+        {
+          "client_id": "254698761433-31kg55k2lscrekfhsc89stertl6qvlvu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHxy40dDoyrtxgkWq7shHwb6a8DnXz7Qg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "254698761433-31kg55k2lscrekfhsc89stertl6qvlvu.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "254698761433-79ssuvfgpahtnki2hn8hq3p4f10rvbtg.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.SocialNetworking.Avla"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

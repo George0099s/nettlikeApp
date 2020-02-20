@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserPayload {
@@ -28,9 +29,9 @@ public class UserPayload {
     @SerializedName("first_name")
     private String firstName;
     @SerializedName("followers")
-    private List<Object> followers = null;
+    private List<String> followers = null;
     @SerializedName("following")
-    private List<Object> following = null;
+    private List<String> following = null;
     @SerializedName("gender")
     private String gender;
     @SerializedName("hidden_questions")
@@ -48,20 +49,25 @@ public class UserPayload {
     @SerializedName("phone")
     private String phone;
     @SerializedName("saved_people")
-    private List<Object> savedPeople = null;
-    @SerializedName("saved_questions")
-    private List<Object> savedQuestions = null;
+    private ArrayList<String> savedPeople = null;
+    @SerializedName("saved_posts")
+    private ArrayList<String> savedPosts = null;
     @SerializedName("status")
     private String status;
     @SerializedName("tags")
-    private List<Object> tags = null;
+    private List<PayloadTag> tags = null;
     @SerializedName("updated_at")
     private String updatedAt;
     @SerializedName("job_title")
     private String jobTitle;
-
-    @SerializedName("picture_id")
-    private String pictureId;
+    @SerializedName("picture_url")
+    private String pictureUrl;
+    @SerializedName("events")
+    private List<Event> events;
+    @SerializedName("posts")
+    private List<Post> posts;
+    @SerializedName("comments")
+    private List<Comment> comments;
 
     @NonNull
     @Override
@@ -112,19 +118,19 @@ public class UserPayload {
         this.firstName = firstName;
     }
 
-    public List<Object> getFollowers() {
+    public List<String> getFollowers() {
         return followers;
     }
 
-    public void setFollowers(List<Object> followers) {
+    public void setFollowers(List<String> followers) {
         this.followers = followers;
     }
 
-    public List<Object> getFollowing() {
+    public List<String> getFollowing() {
         return following;
     }
 
-    public void setFollowing(List<Object> following) {
+    public void setFollowing(List<String> following) {
         this.following = following;
     }
 
@@ -191,20 +197,20 @@ public class UserPayload {
         this.phone = phone;
     }
 
-    public List<Object> getSavedPeople() {
+    public ArrayList<String> getSavedPeople() {
         return savedPeople;
     }
 
-    public void setSavedPeople(List<Object> savedPeople) {
+    public void setSavedPeople(ArrayList<String> savedPeople) {
         this.savedPeople = savedPeople;
     }
 
-    public List<Object> getSavedQuestions() {
-        return savedQuestions;
+    public ArrayList<String> getSavedPosts() {
+        return savedPosts;
     }
 
-    public void setSavedQuestions(List<Object> savedQuestions) {
-        this.savedQuestions = savedQuestions;
+    public void setSavedPosts(ArrayList<String> savedPosts) {
+        this.savedPosts = savedPosts;
     }
 
     public String getStatus() {
@@ -215,11 +221,11 @@ public class UserPayload {
         this.status = status;
     }
 
-    public List<Object> getTags() {
+    public List<PayloadTag> getTags() {
         return tags;
     }
 
-    public void setTags(List<Object> tags) {
+    public void setTags(List<PayloadTag> tags) {
         this.tags = tags;
     }
 
@@ -289,12 +295,36 @@ public class UserPayload {
         this.payload = payload;
     }
 
-    public String getPictureId() {
-        return pictureId;
+    public String getPictureUrl() {
+        return pictureUrl;
     }
 
-    public void setPictureId(String pictureId) {
-        this.pictureId = pictureId;
+    public void setPictureUrl(String pictureUrl) {
+        this.pictureUrl = pictureUrl;
+    }
+
+    public List<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(List<Event> events) {
+        this.events = events;
+    }
+
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 }
 

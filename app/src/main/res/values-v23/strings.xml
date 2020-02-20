@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="choose_3_tags">Choose 3 tags</string>
+    <string name="add_tags">Add tags</string>
+    <string name="select_3_tags">Select 3 tags</string>
+    <string name="interested_in_event">I\'m interested</string>
+    <string name="main_string">Main</string>
+    <string name="type_event_name">Type name of the event</string>
+    <string name="description">Description</string>
+    <string name="additionally_string">Additionally</string>
+    <string name="event_address">Event address</string>
+    <string name="add_button_srtring">Add button</string>
+    <string name="button_name_string">Type button name</string>
+    <string name="link_string">Link</string>
+    <string name="create_event">Create event</string>
+    <string name="select_date">Select Date</string>
+    <string name="select_time">Select time</string>
+    <string name="create_post">create post</string>
+    <string name="no_data">no data</string>
+    <string name="create_post_title">Create post</string>
+    <string name="event_description_string">Оповестите своих подписчиков и сообщество о скором мероприятии вашей компании или организации.</string>
+    <string name="created_new_post_activity">Created new post:</string>
+    <string name="new_follower">New follower</string>
+</resources>

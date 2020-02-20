@@ -15,8 +15,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.avla.app.Constants;
 import com.avla.app.Interface.IServer;
 import com.avla.app.MainActivity;
-import com.avla.app.model.EmailPojo;
 import com.avla.app.R;
+import com.avla.app.model.EmailPojo;
+import com.avla.app.model.UserModel;
+import com.avla.app.model.UserSingleton;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -35,6 +38,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private Button mNextBtn, mGoToRegistrationBtn, mLogInBtn;
     private Boolean isExist;
     private SharedPreferences mPrefs;
+    private UserSingleton user = UserSingleton.INSTANCE;
 
 
     @Override
@@ -75,16 +79,20 @@ public class RegistrationActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<EmailPojo> call, Response<EmailPojo> response) {
                 EmailPojo object = response.body();
-                isExist = object.getPayload().getExists();
+                if (object.getPayload() == null){
+                    Toast.makeText(RegistrationActivity.this, object.getError(), Toast.LENGTH_SHORT).show();
+                }else {
+                    isExist = object.getPayload().getExists();
 
-                if(isEmailExist(isExist)){
-                    mNextBtn.setVisibility(View.GONE);
-                    mLogInBtn.setVisibility(View.VISIBLE);
-                    mPasswordED.setVisibility(View.VISIBLE);
-                } else {
-                    mNextBtn.setVisibility(View.GONE);
-                    mPasswordED.setVisibility(View.VISIBLE);
-                    mGoToRegistrationBtn.setVisibility(View.VISIBLE);
+                    if (isEmailExist(isExist)) {
+                        mNextBtn.setVisibility(View.GONE);
+                        mLogInBtn.setVisibility(View.VISIBLE);
+                        mPasswordED.setVisibility(View.VISIBLE);
+                    } else {
+                        mNextBtn.setVisibility(View.GONE);
+                        mPasswordED.setVisibility(View.VISIBLE);
+                        mGoToRegistrationBtn.setVisibility(View.VISIBLE);
+                    }
                 }
             }
 
@@ -108,10 +116,10 @@ public class RegistrationActivity extends AppCompatActivity {
             public void onResponse(Call<EmailPojo> call, Response<EmailPojo> response) {
                 EmailPojo object = response.body();
                 if(object.getOk()){
-                    Toast.makeText(RegistrationActivity.this, "Email and pass added", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(RegistrationActivity.this, SignUp.class);
                     mPrefs.edit().putBoolean("isLogIn", true).apply();
                     intent.putExtra("token", token);
+                    sendId(token);
                     startActivity(intent);                }
             }
 
@@ -137,10 +145,11 @@ public class RegistrationActivity extends AppCompatActivity {
                 EmailPojo object = response.body();
                 if(object.getOk()){
                     Toast.makeText(RegistrationActivity.this, "You logged in", Toast.LENGTH_SHORT).show();
+                   user.setExist(true);
                     Intent intent = new Intent(RegistrationActivity.this, MainActivity.class);
                     mPrefs.edit().putBoolean("isLogIn", true).apply();
                     intent.putExtra("token", token);
-
+                    sendId(token);
                     startActivity(intent);
                 } else {
                     Toast.makeText(RegistrationActivity.this, object.getError(), Toast.LENGTH_SHORT).show();
@@ -153,6 +162,42 @@ public class RegistrationActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void sendId(String token) {
+            FirebaseInstanceId.getInstance().getInstanceId()
+                    .addOnCompleteListener(task -> {
+                        if (!task.isSuccessful()) {
+                            Log.w(TAG, "getInstanceId failed", task.getException());
+                            return;
+                        }
+
+                        // Get new Instance ID token
+                        String key = task.getResult().getToken();
+                        Retrofit retrofit = new Retrofit.Builder()
+                                .baseUrl(Constants.BASIC_URL) // Адрес сервера
+                                .addConverterFactory(GsonConverterFactory.create()) // говорим ретрофиту что для сериализации необходимо использовать GSON
+                                .build();
+
+                        IServer service = retrofit.create(IServer.class);
+                        Call<UserModel> call = service.sendRegistartionKey(token, key);
+                        call.enqueue(new Callback<UserModel>() {
+                            @Override
+                            public void onResponse(Call<UserModel> call, Response<UserModel> response) {
+
+                            }
+
+                            @Override
+                            public void onFailure(Call<UserModel> call, Throwable t) {
+                                Log.d(TAG, "onResponse: signUp fail " + t.getMessage());
+
+                            }
+                        });
+                    });
+
+
+
+
     }
 
     private Boolean isEmailExist(Boolean isExist) {

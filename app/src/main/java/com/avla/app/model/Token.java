@@ -2,13 +2,15 @@ package com.avla.app.model;
 
 import androidx.annotation.NonNull;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Token {
     @NonNull
     @Override
     public String toString() {
         return token +""+ payload+""+ok+""+error;
     }
-
+    @SerializedName("token")
     private String token;
     private Payload payload;
     private Boolean ok;
