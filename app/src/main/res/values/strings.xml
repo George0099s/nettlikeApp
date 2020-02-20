@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Avla</string>
+    <string name="app_name">nettlike</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -20,9 +20,9 @@
     <string name="tell_me_about_yourself">Tell me about yourself</string>
     <string name="what_are_you_doing">What are you doing</string>
     <string name="exmple_about_yourself">Like where you worked, what kind of experience you have</string>
-    <string name="select_your_location">Select your location</string>
+    <string name="where_are_you_from">Where are you from?</string>
     <string name="close">close</string>
-    <string name="questions_string">Questions</string>
+    <string name="posts_string">Posts</string>
     <string name="people_string">People</string>
     <string name="message_string">Message</string>
     <string name="profile_string">Profile</string>
@@ -34,4 +34,36 @@
     <string name="log_out_string">log out</string>
     <string name="follow_string">Follow</string>
     <string name="write_string">Write</string>
+    <string name="is_typing_string">Typing..</string>
+    <string name="login_or_create_string">Login or create new account</string>
+    <string name="followers_string">подписчики</string>
+    <string name="following_string">подписки</string>
+    <string name="publications_string">публикации</string>
+    <string name="unfollow_string">Following</string>
+    <string name="followbtn_string">follow</string>
+    <string name="choose_tags">Tags</string>
+    <string name="choose_3_tags">Choose 3 tags</string>
+    <string name="add_tags">Add tags</string>
+    <string name="select_3_tags">Select 3 tags</string>
+    <string name="interested_in_event">I\'m interested</string>
+    <string name="main_string">Main</string>
+    <string name="type_event_name">Type name of the event</string>
+    <string name="description">Description</string>
+    <string name="additionally_string">Additionally</string>
+    <string name="event_address">Event address</string>
+    <string name="add_button_srtring">Add button</string>
+    <string name="button_name_string">Type button name</string>
+    <string name="link_string">Link</string>
+    <string name="create_event">Create event</string>
+    <string name="select_date">Select Date</string>
+    <string name="select_time">Select time</string>
+    <string name="type_post_name">type post name</string>
+    <string name="create_post">create post</string>
+    <string name="no_data">no data</string>
+    <string name="post_string">Ask a question to other members of the community to get an answer and find a potential executor.</string>
+    <string name="create_post_title">Create post</string>
+    <string name="create_event_title">Create event</string>
+    <string name="event_description_string">Оповестите своих подписчиков и сообщество о скором мероприятии вашей компании или организации.</string>
+    <string name="created_new_post_activity">Created new post:</string>
+    <string name="new_follower">New follower</string>
 </resources>

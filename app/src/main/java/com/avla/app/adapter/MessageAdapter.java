@@ -6,25 +6,29 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.avla.app.CalendarHelper;
 import com.avla.app.R;
 import com.avla.app.model.Message;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHolder> {
-
+    private static final String TAG = "MessageAdapter";
     private List<Message> mMessages;
-
-
+    private Boolean isTyping = false;
+    private CalendarHelper calendarHelper;
+    private String lastMessage = "00";
     public MessageAdapter(Context context, List<Message> messages) {
         mMessages = messages;
-
+        calendarHelper = new CalendarHelper();
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         int layout = -1;
         switch (viewType) {
             case Message.OTHER_MSG:
@@ -44,7 +48,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int position) {
         Message message = mMessages.get(position);
-        viewHolder.setMessage(message.getText());
+        viewHolder.setMessage(message);
     }
 
     @Override
@@ -58,28 +62,39 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView mUsernameView;
-        private TextView mMessageView;
+        private TextView mMessageView, time;
+        private TextView isTypingTV;
 
         public ViewHolder(View itemView) {
             super(itemView);
-
-//            mUsernameView = (TextView) itemView.findViewById(R.id.user);
-            mMessageView = (TextView) itemView.findViewById(R.id.message_body);
+            time = itemView.findViewById(R.id.time);
+            isTypingTV = itemView.findViewById(R.id.is_typing);
+            mMessageView = itemView.findViewById(R.id.message_body);
         }
 
 
-        public void setMessage(String message) {
+        public void setMessage(Message message) {
+            String messageTime = null;
             if (null == mMessageView) return;
-            mMessageView.setText(message);
+            messageTime = calendarHelper.getIntervaledMessageTime(message.getCreatedAt());
+            String formatedDate = messageTime.substring(messageTime.length() - 4);
+            mMessageView.setText(message.getText());
+            time.setText(messageTime);
+            lastMessage = formatedDate;
         }
-
     }
-
     public  void  update(Message message){
-//        mMessages.add(message);
+       if(message != null){
         mMessages.add(0,message);
-//        notifyItemInserted(mMessages.size()-1);
+        notifyDataSetChanged();
+       }
+    }
+    public void addAll(ArrayList<Message> newList){
+        mMessages.addAll(newList);
         notifyDataSetChanged();
     }
+//    public void isTyping(Boolean isTyping){
+//        this.isTyping = isTyping;
+//        notifyDataSetChanged();
+//    }
 }

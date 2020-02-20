@@ -3,7 +3,11 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="black">#00000000</color>
+    <color name="black">#00FFFFFF</color>
     <color name="black000">#000000</color>
     <color name="blue_1071FF">#1071FF</color>
+    <color name="grey">#AFBCC6</color>
+    <color name="underline_tablayout">#1071FF</color>
+    <color name="white_FFF">#FFF</color>
+    <color name="light_grey">#EFF4F9</color>
 </resources>

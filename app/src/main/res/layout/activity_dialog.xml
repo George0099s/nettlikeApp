@@ -4,33 +4,97 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.DialogActivity">
+    android:background="#FFFFFF"
+    tools:context=".view.DialogActivity">
+
+
+    <TextView
+        android:id="@+id/is_typing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/grey"
+        android:textSize="14sp"
+        android:layout_marginTop="2dp"
+        android:text="@string/is_typing_string"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/user_name"
+        app:layout_constraintStart_toStartOf="@+id/user_name"
+        app:layout_constraintTop_toBottomOf="@+id/user_name" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/chat_recycler"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginBottom="10dp"
+        android:background="#FFF"
         app:layout_constraintBottom_toTopOf="@+id/text_body"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view4"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/user_img"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="20dp"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/ic_launcher_round"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="76dp"
+        android:textColor="@color/black000"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/user_img"
+        app:layout_constraintEnd_toStartOf="@+id/user_img"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/user_img"
+        tools:text="George Avakyan" />
+
+    <View
+        android:id="@+id/view4"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/light_grey"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/user_img" />
+
     <EditText
         android:id="@+id/text_body"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
+        android:layout_height="40dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/shape_signup_placeholder"
         android:hint="Message..."
-        android:inputType="textPersonName"
+        android:inputType="textMultiLine"
+        android:lines="10"
+        android:minLines="1"
+        android:paddingStart="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/send_msg"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/send_msg"
-        android:layout_width="30dp"
-        android:layout_height="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:foregroundGravity="center"
         app:layout_constraintBottom_toBottomOf="@+id/text_body"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/text_body"
-        app:srcCompat="@android:drawable/arrow_up_float" />
+        app:srcCompat="@drawable/ic_send" />
 </androidx.constraintlayout.widget.ConstraintLayout>

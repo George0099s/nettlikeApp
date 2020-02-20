@@ -11,39 +11,98 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
-
-        android:name=".AvlaApplication"
-        android:allowBackup="true"
+        android:name=".nettlikeApplication"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
+        android:screenOrientation="portrait"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.No"
+        android:theme="@style/Theme2"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="n">
-        <activity android:name=".fragments.DialogActivity"></activity>
-        <activity android:name=".fragments.main.peopleInner.AnotherUserProfileActivity" />
-        <activity android:name=".fragments.main.profileInnerFragments.EditUserProfileActivity" />
-        <activity android:name=".fragments.signUp.LocationCitiesActivity" />
-        <activity android:name=".profile.ProfileActivity" />
-        <activity android:name=".authorization.SignUp" />
+        <activity android:name=".view.main.profileInnerFragments.UserActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".view.main.GetTagsActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".view.main.PostInfoActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".view.followers.FollowersActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".view.main.CreatePostActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".view.main.CreateEventActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".view.main.EventInfoActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".view.signUp.SignUpChooseTagActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity
+            android:name=".view.signUp.SignUpChooseCategoryActivity"
+            android:noHistory="true"
+            android:screenOrientation="portrait"
+            />
+        <activity
+            android:name=".view.signUp.SignUpCountryActivity"
+            android:noHistory="true"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".view.DialogActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".view.main.peopleInner.AnotherUserProfileActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".view.main.profileInnerFragments.EditUserProfileActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".view.signUp.LocationCitiesActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".profile.ProfileActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".authorization.SignUp"
+            android:screenOrientation="portrait"
+            />
         <activity
             android:name=".authorization.RegistrationActivity"
-            android:noHistory="true" />
+            android:noHistory="true"
+            android:screenOrientation="portrait"
+            />
         <activity
             android:name=".OnBoarding"
-            android:noHistory="true" />
+            android:noHistory="true"
+            android:screenOrientation="portrait"
+            />
         <activity
             android:name=".StartActivity"
             android:noHistory="true">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"
+                    />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity"
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait"
+            />
+
+        <service android:name=".service.PushService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

@@ -4,31 +4,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.signUp.SignUpLocationFragment">
+    android:background="#FFFFFF"
 
-    <EditText
-        android:id="@+id/search_country"
-        android:layout_width="match_parent"
+    tools:context=".view.signUp.SignUpLocationFragment">
+
+
+    <TextView
+        android:id="@+id/select_country"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:hint="Country"
+        android:textColor="@color/black000"
+        android:textColorHint="#65000000"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/select_location_tv" />
 
     <TextView
         android:id="@+id/select_location_tv"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/select_your_location"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="48dp"
+        android:layout_marginStart="20dp"
+        android:text="@string/where_are_you_from"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/search_country" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/location_recycler"
-        android:layout_marginTop="16dp"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/select_location_tv"
-        tools:layout_editor_absoluteX="-16dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

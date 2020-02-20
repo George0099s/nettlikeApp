@@ -4,12 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.signUp.LocationCitiesActivity">
+    android:background="#FFFFFF"
+
+    tools:context=".view.signUp.LocationCitiesActivity">
 
         <EditText
+            android:alpha="125"
             android:id="@+id/search__city"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/signUpPlaceholder"
+            android:layout_width="0dp"
+            android:hint="Search"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -18,16 +22,8 @@
             android:id="@+id/location_recycler"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/close_btn"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/search__city"
             tools:layout_editor_absoluteX="-16dp" />
 
-        <Button
-            android:id="@+id/close_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/close"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

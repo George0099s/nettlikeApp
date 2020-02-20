@@ -7,7 +7,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.avla.app.Interface.IServer;
-import com.avla.app.model.User;
+import com.avla.app.model.UserModel;
 import com.avla.app.model.UserPayload;
 import com.avla.app.R;
 
@@ -36,7 +36,7 @@ public class ProfileActivity extends AppCompatActivity {
         token = getIntent().getStringExtra("token");
         Log.d(TAG, "initViews: " + token);
         getData(token);
-        userName = findViewById(R.id.job_title);
+        userName = findViewById(R.id.follower_username);
     }
 
 
@@ -47,12 +47,12 @@ public class ProfileActivity extends AppCompatActivity {
                 .build();
 
         IServer service = retrofit.create(IServer.class);
-        Call<User> call = service.getUserInfo(token);
-        call.enqueue(new Callback<User>() {
+        Call<UserModel> call = service.getUserInfo(token);
+        call.enqueue(new Callback<UserModel>() {
             @Override
-            public void onResponse(Call<User> call, Response<User> response) {
+            public void onResponse(Call<UserModel> call, Response<UserModel> response) {
 
-                User object = response.body();
+                UserModel object = response.body();
                 UserPayload userPayload = object.getPayload();
                 Log.d(TAG, "onResponse: name" + userPayload.getFirstName());
                 userName.setText(userPayload.getFirstName() + " " + userPayload.getLastName());
@@ -60,7 +60,7 @@ public class ProfileActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<User> call, Throwable t) {
+            public void onFailure(Call<UserModel> call, Throwable t) {
                 Log.d(TAG, "onResponse: signUp fail " + t.getMessage());
             }
         });

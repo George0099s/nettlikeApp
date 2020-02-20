@@ -2,7 +2,7 @@ package com.avla.app.model;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class PayloadTag {
     @SerializedName("_id")
@@ -18,12 +18,11 @@ public class PayloadTag {
     @SerializedName("order")
     private Integer order;
     @SerializedName("parent_ids")
-    private List<String> parentIds = null;
+    private ArrayList<String> parentIds = null;
     @SerializedName("status")
     private String status;
     @SerializedName("updated_at")
     private String updatedAt;
-
     @SerializedName("_id")
     public String getId() {
         return id;
@@ -85,12 +84,12 @@ public class PayloadTag {
     }
 
     @SerializedName("parent_ids")
-    public List<String> getParentIds() {
+    public ArrayList<String> getParentIds() {
         return parentIds;
     }
 
     @SerializedName("parent_ids")
-    public void setParentIds(List<String> parentIds) {
+    public void setParentIds(ArrayList<String> parentIds) {
         this.parentIds = parentIds;
     }
 
