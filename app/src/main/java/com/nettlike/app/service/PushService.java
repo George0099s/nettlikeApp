@@ -6,9 +6,9 @@ import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
-import com.avla.app.R;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+import com.nettlike.app.R;
 
 public class PushService extends FirebaseMessagingService {
     private static final String TAG = "PushService";
@@ -24,7 +24,7 @@ public class PushService extends FirebaseMessagingService {
     }
 
     private void showNotification(String title, String body) {
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "avla")
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "nettlie")
                 .setContentTitle(title)
                 .setSmallIcon(R.drawable.ic_start)
                 .setAutoCancel(true)

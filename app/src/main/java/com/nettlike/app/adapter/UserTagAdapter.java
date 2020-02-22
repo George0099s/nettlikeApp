@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.avla.app.R;
+import com.nettlike.app.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;

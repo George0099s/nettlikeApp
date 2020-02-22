@@ -7,9 +7,9 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.nettlike.app.Interface.IServer;
+import com.nettlike.app.R;
 import com.nettlike.app.model.UserModel;
 import com.nettlike.app.model.UserPayload;
-import com.avla.app.R;
 
 import retrofit2.Call;
 import retrofit2.Callback;

@@ -19,7 +19,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.avla.app.R;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.github.nkzawa.emitter.Emitter;
@@ -27,6 +26,7 @@ import com.github.nkzawa.socketio.client.Manager;
 import com.github.nkzawa.socketio.client.Socket;
 import com.nettlike.app.Constants;
 import com.nettlike.app.Interface.IServer;
+import com.nettlike.app.R;
 import com.nettlike.app.adapter.MessageAdapter;
 import com.nettlike.app.model.Message;
 import com.nettlike.app.model.MessageDialog;

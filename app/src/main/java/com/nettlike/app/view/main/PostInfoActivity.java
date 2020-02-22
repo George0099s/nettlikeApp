@@ -1,5 +1,6 @@
 package com.nettlike.app.view.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,18 +14,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.nettlike.app.Constants;
 import com.nettlike.app.Interface.IServer;
-import com.avla.app.R;
+import com.nettlike.app.R;
 import com.nettlike.app.adapter.CommentsAdapter;
 import com.nettlike.app.model.ModelPostComms;
 import com.nettlike.app.model.Post;
 import com.nettlike.app.model.PostComsPayload;
 import com.nettlike.app.model.UserSingleton;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.CenterCrop;
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
-import com.bumptech.glide.request.RequestOptions;
+import com.nettlike.app.view.main.peopleInner.AnotherUserProfileActivity;
 
 import java.util.concurrent.Callable;
 
@@ -43,7 +45,7 @@ public class PostInfoActivity extends AppCompatActivity {
     private Post post;
     private String userName;
     private ImageView postImage, sendComment, postUserImage;
-    private String token, postId, postPitureUrl;
+    private String token, postId, postPitureUrl, userId;
     private TextView postName, postDescription, postUserName;
     private CommentsAdapter commentsAdapter;
     private RecyclerView commentsRecycler;
@@ -93,20 +95,31 @@ public class PostInfoActivity extends AppCompatActivity {
     }
 
     private void onClick(View view) {
-        if(commentBody.getText() == null || commentBody.getText().toString().equals("")) {
-            commentBody.requestFocus();
-            commentBody.setError("You can't add empty comment");
-        } else {
-            sendComment(postId, userName, commentBody.getText().toString());
-            commentBody.setText("");
-            if (commentsAdapter != null)
-                commentsAdapter.notifyDataSetChanged();
-            else
-                Toast.makeText(this, "Wait please", Toast.LENGTH_SHORT).show();
-            Observable.fromCallable(new CallableGetComms(postId))
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe();
+        switch (view.getId()) {
+            case R.id.send_comm:
+                if (commentBody.getText() == null || commentBody.getText().toString().equals("")) {
+                    commentBody.requestFocus();
+                    commentBody.setError("You can't add empty comment");
+                } else {
+                    sendComment(postId, userName, commentBody.getText().toString());
+                    commentBody.setText("");
+                    if (commentsAdapter != null)
+                        commentsAdapter.notifyDataSetChanged();
+                    else
+                        Toast.makeText(this, "Wait please", Toast.LENGTH_SHORT).show();
+                    Observable.fromCallable(new CallableGetComms(postId))
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe();
+
+                }
+                break;
+            case R.id.post_info_user_name:
+            case R.id.post_info_user_img:
+                Intent intent = new Intent(PostInfoActivity.this, AnotherUserProfileActivity.class);
+                intent.putExtra("token", token);
+                intent.putExtra("user id", userId);
+                startActivity(intent);
 
         }
     }
@@ -129,6 +142,7 @@ public class PostInfoActivity extends AppCompatActivity {
                 commentsAdapter = new CommentsAdapter(payload.getComments(), getApplicationContext());
                 commentsRecycler.setAdapter(commentsAdapter);
                 postUserName.setText(String.format("%s %s", post.getCreatedBy().getFirstName(), post.getCreatedBy().getLastName()));
+                userId = post.getCreatedBy().getId();
                 Glide.with(PostInfoActivity.this).load(post.getCreatedBy().getPictureUrl()).apply(RequestOptions.circleCropTransform()).into(postUserImage);
                 if (post.getPictureUrl() != null){
                     Glide.with(PostInfoActivity.this).load(post.getPictureUrl()).apply(requestOptions).into(postImage);

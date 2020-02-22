@@ -14,12 +14,12 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
-import com.avla.app.R;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.tabs.TabLayout;
 import com.nettlike.app.Constants;
 import com.nettlike.app.Interface.IServer;
+import com.nettlike.app.R;
 import com.nettlike.app.adapter.ViewPagerAdapter;
 import com.nettlike.app.model.Account;
 import com.nettlike.app.model.Model;

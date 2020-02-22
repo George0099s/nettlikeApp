@@ -15,15 +15,15 @@ import androidx.viewpager.widget.ViewPager;
 import com.nettlike.app.Constants;
 import com.nettlike.app.Interface.IServer;
 import com.nettlike.app.MainActivity;
-import com.avla.app.R;
+import com.nettlike.app.R;
 import com.nettlike.app.adapter.ViewPagerAdapter;
+import com.nettlike.app.model.UserModel;
+import com.nettlike.app.model.UserPayload;
+import com.nettlike.app.model.UserSingleton;
 import com.nettlike.app.view.signUp.SignUpAboutYourselfFragment;
 import com.nettlike.app.view.signUp.SignUpChooseTagsFragment;
 import com.nettlike.app.view.signUp.SignUpLocationFragment;
 import com.nettlike.app.view.signUp.SignUpNameFragment;
-import com.nettlike.app.model.UserModel;
-import com.nettlike.app.model.UserPayload;
-import com.nettlike.app.model.UserSingleton;
 
 import org.json.JSONArray;
 

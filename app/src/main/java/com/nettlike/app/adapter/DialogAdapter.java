@@ -14,16 +14,16 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.nettlike.app.Constants;
 import com.nettlike.app.Interface.IServer;
-import com.avla.app.R;
+import com.nettlike.app.R;
 import com.nettlike.app.model.UserSingleton;
 import com.nettlike.app.model.dialog.DiaMember;
 import com.nettlike.app.model.dialog.DiaPayload;
 import com.nettlike.app.model.dialog.DialogModel;
 import com.nettlike.app.view.DialogActivity;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 
 import java.util.List;
 

@@ -12,7 +12,7 @@ import android.widget.EditText;
 import androidx.fragment.app.Fragment;
 
 import com.nettlike.app.Constants;
-import com.avla.app.R;
+import com.nettlike.app.R;
 import com.nettlike.app.model.UserSingleton;
 
 /**

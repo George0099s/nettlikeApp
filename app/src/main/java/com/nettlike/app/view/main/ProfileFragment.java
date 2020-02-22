@@ -13,9 +13,12 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+import com.google.android.material.tabs.TabLayout;
 import com.nettlike.app.Constants;
 import com.nettlike.app.Interface.IServer;
-import com.avla.app.R;
+import com.nettlike.app.R;
 import com.nettlike.app.adapter.ViewPagerAdapter;
 import com.nettlike.app.model.PayloadTag;
 import com.nettlike.app.model.UserModel;
@@ -25,9 +28,6 @@ import com.nettlike.app.view.followers.FollowersActivity;
 import com.nettlike.app.view.main.profileInnerFragments.EditUserProfileActivity;
 import com.nettlike.app.view.main.profileInnerFragments.PostsInnerFragment;
 import com.nettlike.app.view.main.profileInnerFragments.ProfileInnerFragment;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
-import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.List;

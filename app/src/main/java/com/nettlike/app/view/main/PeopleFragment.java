@@ -11,9 +11,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.avla.app.R;
 import com.nettlike.app.Constants;
 import com.nettlike.app.Interface.IServer;
+import com.nettlike.app.R;
 import com.nettlike.app.adapter.PeopleAdapter;
 import com.nettlike.app.model.UserSingleton;
 import com.nettlike.app.model.people.People;

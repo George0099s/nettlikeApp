@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.nettlike.app.CalendarHelper;
-import com.avla.app.R;
+import com.nettlike.app.R;
 import com.nettlike.app.model.Message;
 
 import java.util.ArrayList;

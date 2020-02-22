@@ -14,10 +14,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
-import com.avla.app.R;
 import com.google.android.material.tabs.TabLayout;
 import com.nettlike.app.Constants;
 import com.nettlike.app.Interface.IServer;
+import com.nettlike.app.R;
 import com.nettlike.app.adapter.PostAdapter;
 import com.nettlike.app.adapter.ViewPagerAdapter;
 import com.nettlike.app.model.ModelPost;

@@ -14,10 +14,10 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.avla.app.R;
 import com.github.nkzawa.emitter.Emitter;
 import com.nettlike.app.Constants;
 import com.nettlike.app.Interface.IServer;
+import com.nettlike.app.R;
 import com.nettlike.app.adapter.DialogAdapter;
 import com.nettlike.app.adapter.SwipeToDeleteCallback;
 import com.nettlike.app.model.LastMessage;

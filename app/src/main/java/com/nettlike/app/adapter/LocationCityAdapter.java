@@ -11,7 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.avla.app.R;
+import com.nettlike.app.R;
 import com.nettlike.app.model.UserSingleton;
 
 import java.util.ArrayList;

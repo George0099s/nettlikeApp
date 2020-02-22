@@ -12,14 +12,14 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.nettlike.app.Constants;
 import com.nettlike.app.Interface.IServer;
 import com.nettlike.app.MainActivity;
-import com.avla.app.R;
+import com.nettlike.app.R;
 import com.nettlike.app.model.EmailPojo;
 import com.nettlike.app.model.UserModel;
 import com.nettlike.app.model.UserSingleton;
-import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

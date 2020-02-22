@@ -14,7 +14,6 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.avla.app.R;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.nettlike.app.Interface.IServer;
 import com.nettlike.app.data.AppDatabase;
@@ -89,7 +88,7 @@ public class StartActivity extends AppCompatActivity {
                         startActivity(intent);
                         mPrefs.edit().putBoolean("firstrun", false).apply();
                     } else {
-                        if(mPrefs.getBoolean("isLogIn", true)) {
+                        if (mPrefs.getBoolean("isLogIn", false)) {
                             Intent intent = new Intent(StartActivity.this, MainActivity.class);
                             UserSingleton.INSTANCE.setExist(true);
                             intent.putExtra("token", token2);

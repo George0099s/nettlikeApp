@@ -10,10 +10,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.avla.app.R;
-import com.nettlike.app.model.Comment;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.nettlike.app.R;
+import com.nettlike.app.model.Comment;
 
 import java.util.List;
 

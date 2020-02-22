@@ -2,7 +2,7 @@ package com.nettlike.app;
 
 public class Constants {
 
-    public static final String MY_PREFERENCES = "com.avla.app";
+    public static final String MY_PREFERENCES = "com.nettlie.app";
     public static final String BASIC_URL = "https://api.nettlike.com/";
 
     //activities type

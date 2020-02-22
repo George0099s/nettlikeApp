@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.avla.app"
+    package="com.nettlike.app"
     >
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -20,6 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme2"
         tools:ignore="GoogleAppIndexingWarning"
+        android:allowBackup="true"
         tools:targetApi="n">
         <activity android:name="com.nettlike.app.view.main.profileInnerFragments.UserActivitiesActivity"
             android:screenOrientation="portrait"

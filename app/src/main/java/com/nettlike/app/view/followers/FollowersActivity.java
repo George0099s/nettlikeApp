@@ -5,9 +5,9 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
-import com.avla.app.R;
-import com.nettlike.app.adapter.ViewPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
+import com.nettlike.app.R;
+import com.nettlike.app.adapter.ViewPagerAdapter;
 
 public class FollowersActivity extends AppCompatActivity {
     private TabLayout tabLayout;

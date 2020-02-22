@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
-import com.avla.app.R;
+import com.nettlike.app.R;
 
 public class ThirdOnBoardingFragment extends Fragment {
 

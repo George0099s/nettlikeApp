@@ -23,9 +23,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.MultiplePermissionsReport;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.nettlike.app.Constants;
 import com.nettlike.app.Interface.IServer;
-import com.avla.app.R;
+import com.nettlike.app.R;
 import com.nettlike.app.adapter.UserTagAdapter;
 import com.nettlike.app.data.AppDatabase;
 import com.nettlike.app.data.TokenDao;
@@ -36,13 +43,6 @@ import com.nettlike.app.model.UserPayload;
 import com.nettlike.app.model.UserSingleton;
 import com.nettlike.app.view.signUp.SignUpChooseCategoryActivity;
 import com.nettlike.app.view.signUp.SignUpCountryActivity;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
-import com.karumi.dexter.Dexter;
-import com.karumi.dexter.MultiplePermissionsReport;
-import com.karumi.dexter.PermissionToken;
-import com.karumi.dexter.listener.PermissionRequest;
-import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 
 import org.json.JSONArray;
 

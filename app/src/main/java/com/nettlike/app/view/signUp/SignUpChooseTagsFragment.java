@@ -17,7 +17,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.avla.app.R;
+import com.nettlike.app.R;
 import com.nettlike.app.adapter.UserTagAdapter;
 import com.nettlike.app.model.UserSingleton;
 

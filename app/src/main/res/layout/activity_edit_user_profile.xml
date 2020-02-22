@@ -179,12 +179,14 @@
             app:layout_constraintTop_toBottomOf="@+id/facebook_link" />
 
         <Button
-            android:layout_marginTop="5dp"
-            style="@style/nextBtnSignUp"
             android:id="@+id/log_out_btn"
+            style="@style/nextBtnSignUp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
             android:text="@string/log_out_string"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/save_data"
             app:layout_constraintStart_toStartOf="@+id/save_data"
             app:layout_constraintTop_toBottomOf="@+id/save_data" />

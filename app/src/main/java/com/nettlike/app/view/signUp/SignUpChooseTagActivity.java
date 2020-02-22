@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.avla.app.R;
+import com.nettlike.app.R;
 import com.nettlike.app.adapter.TagAdapter;
 import com.nettlike.app.model.ModelTag;
 

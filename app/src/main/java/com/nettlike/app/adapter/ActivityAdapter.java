@@ -13,7 +13,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.avla.app.R;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
@@ -21,6 +20,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.nettlike.app.CalendarHelper;
 import com.nettlike.app.Constants;
 import com.nettlike.app.Interface.IServer;
+import com.nettlike.app.R;
 import com.nettlike.app.model.Post;
 import com.nettlike.app.model.Token;
 import com.nettlike.app.model.UserSingleton;

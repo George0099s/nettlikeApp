@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.nettlike.app.Constants;
 import com.nettlike.app.Interface.IServer;
-import com.avla.app.R;
+import com.nettlike.app.R;
 import com.nettlike.app.adapter.UserTagAdapter;
 import com.nettlike.app.model.Account;
 import com.nettlike.app.model.Model;

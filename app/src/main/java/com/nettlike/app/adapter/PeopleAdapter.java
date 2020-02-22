@@ -13,9 +13,9 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.avla.app.R;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.nettlike.app.R;
 import com.nettlike.app.model.PayloadTag;
 import com.nettlike.app.model.UserSingleton;
 import com.nettlike.app.model.people.People;

@@ -9,13 +9,12 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import com.avla.app.R;
+import com.google.android.material.tabs.TabLayout;
 import com.nettlike.app.adapter.ViewPagerAdapter;
 import com.nettlike.app.authorization.RegistrationActivity;
 import com.nettlike.app.view.onboarding.FirstOnBoardingFragment;
 import com.nettlike.app.view.onboarding.SecondOnBoardingFragment;
 import com.nettlike.app.view.onboarding.ThirdOnBoardingFragment;
-import com.google.android.material.tabs.TabLayout;
 
 public class OnBoarding extends FragmentActivity {
     private static final String TAG = "OnBoarding";

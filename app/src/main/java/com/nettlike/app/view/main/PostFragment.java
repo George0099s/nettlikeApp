@@ -11,12 +11,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
-import com.avla.app.R;
-import com.nettlike.app.adapter.ViewPagerAdapter;
-import com.nettlike.app.view.main.postInner.FeedPostFragment;
-import com.nettlike.app.view.main.postInner.AllPostFragment;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
+import com.nettlike.app.R;
+import com.nettlike.app.adapter.ViewPagerAdapter;
+import com.nettlike.app.view.main.postInner.AllPostFragment;
+import com.nettlike.app.view.main.postInner.FeedPostFragment;
 
 import org.json.JSONArray;
 

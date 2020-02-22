@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.nettlike.app.Constants;
 import com.nettlike.app.Interface.IServer;
-import com.avla.app.R;
+import com.nettlike.app.R;
 import com.nettlike.app.adapter.FollowersFollowingAdapter;
 import com.nettlike.app.model.Follower;
 import com.nettlike.app.model.FollowerModel;

@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
-import com.avla.app.R;
+import com.nettlike.app.R;
 import com.nettlike.app.model.UserSingleton;
 
 public class SignUpLocationFragment extends Fragment {
