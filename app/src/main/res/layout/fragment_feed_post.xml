@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
 
-    tools:context=".view.main.postInner.FeedPostFragment">
+    tools:context="com.nettlike.app.view.main.postInner.FeedPostFragment">
 
 
     <com.chauthai.overscroll.RecyclerViewBouncy

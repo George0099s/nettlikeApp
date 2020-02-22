@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
 
-    tools:context=".view.onboarding.SecondOnBoardingFragment">
+    tools:context="com.nettlike.app.view.onboarding.SecondOnBoardingFragment">
 
     <ImageView
         android:id="@+id/imageView2"

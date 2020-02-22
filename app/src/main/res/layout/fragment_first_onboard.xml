@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fff"
-    tools:context=".view.onboarding.FirstOnBoardingFragment">
+    tools:context="com.nettlike.app.view.onboarding.FirstOnBoardingFragment">
 
     <ImageView
         android:id="@+id/imageView"

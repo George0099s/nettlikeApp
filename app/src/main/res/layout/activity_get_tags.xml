@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.main.GetTagsActivity">
+    tools:context="com.nettlike.app.view.main.GetTagsActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/tag_another_reycler"

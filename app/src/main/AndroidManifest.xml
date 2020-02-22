@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.avla.app"
-    android:targetSandboxVersion="1">
+    >
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -11,7 +11,7 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
-        android:name=".nettlikeApplication"
+        android:name="com.nettlike.app.NettlikeApplication"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:networkSecurityConfig="@xml/network_security_config"
@@ -21,70 +21,61 @@
         android:theme="@style/Theme2"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="n">
-        <activity android:name=".view.main.profileInnerFragments.UserActivity"
+        <activity android:name="com.nettlike.app.view.main.profileInnerFragments.UserActivitiesActivity"
             android:screenOrientation="portrait"
             />
-        <activity android:name=".view.main.GetTagsActivity"
+        <activity android:name="com.nettlike.app.view.main.GetTagsActivity"
             android:screenOrientation="portrait"
             />
-        <activity android:name=".view.main.PostInfoActivity"
+        <activity android:name="com.nettlike.app.view.main.PostInfoActivity"
             android:screenOrientation="portrait"
             />
-        <activity android:name=".view.followers.FollowersActivity"
+        <activity android:name="com.nettlike.app.view.followers.FollowersActivity"
             android:screenOrientation="portrait"
             />
-        <activity android:name=".view.main.CreatePostActivity"
-            android:screenOrientation="portrait"
-            />
-        <activity android:name=".view.main.CreateEventActivity"
-            android:screenOrientation="portrait"
-            />
-        <activity android:name=".view.main.EventInfoActivity"
-            android:screenOrientation="portrait"
-            />
-        <activity android:name=".view.signUp.SignUpChooseTagActivity"
+        <activity android:name="com.nettlike.app.view.signUp.SignUpChooseTagActivity"
             android:screenOrientation="portrait"
             />
         <activity
-            android:name=".view.signUp.SignUpChooseCategoryActivity"
+            android:name="com.nettlike.app.view.signUp.SignUpChooseCategoryActivity"
             android:noHistory="true"
             android:screenOrientation="portrait"
             />
         <activity
-            android:name=".view.signUp.SignUpCountryActivity"
+            android:name="com.nettlike.app.view.signUp.SignUpCountryActivity"
             android:noHistory="true"
             android:screenOrientation="portrait"
             />
-        <activity android:name=".view.DialogActivity"
+        <activity android:name="com.nettlike.app.view.DialogActivity"
             android:screenOrientation="portrait"
             />
-        <activity android:name=".view.main.peopleInner.AnotherUserProfileActivity"
+        <activity android:name="com.nettlike.app.view.main.peopleInner.AnotherUserProfileActivity"
             android:screenOrientation="portrait"
             />
-        <activity android:name=".view.main.profileInnerFragments.EditUserProfileActivity"
+        <activity android:name="com.nettlike.app.view.main.profileInnerFragments.EditUserProfileActivity"
             android:screenOrientation="portrait"
             />
-        <activity android:name=".view.signUp.LocationCitiesActivity"
+        <activity android:name="com.nettlike.app.view.signUp.LocationCitiesActivity"
             android:screenOrientation="portrait"
             />
-        <activity android:name=".profile.ProfileActivity"
+        <activity android:name="com.nettlike.app.profile.ProfileActivity"
             android:screenOrientation="portrait"
             />
-        <activity android:name=".authorization.SignUp"
-            android:screenOrientation="portrait"
-            />
-        <activity
-            android:name=".authorization.RegistrationActivity"
-            android:noHistory="true"
+        <activity android:name="com.nettlike.app.authorization.SignUp"
             android:screenOrientation="portrait"
             />
         <activity
-            android:name=".OnBoarding"
+            android:name="com.nettlike.app.authorization.RegistrationActivity"
             android:noHistory="true"
             android:screenOrientation="portrait"
             />
         <activity
-            android:name=".StartActivity"
+            android:name="com.nettlike.app.OnBoarding"
+            android:noHistory="true"
+            android:screenOrientation="portrait"
+            />
+        <activity
+            android:name="com.nettlike.app.StartActivity"
             android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"
@@ -93,12 +84,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"
+        <activity android:name="com.nettlike.app.MainActivity"
             android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait"
             />
 
-        <service android:name=".service.PushService">
+        <service android:name="com.nettlike.app.service.PushService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>

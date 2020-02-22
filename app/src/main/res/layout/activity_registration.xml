@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
 
-    tools:context=".authorization.RegistrationActivity">
+    tools:context="com.nettlike.app.authorization.RegistrationActivity">
 
     <ScrollView
         android:layout_width="0dp"

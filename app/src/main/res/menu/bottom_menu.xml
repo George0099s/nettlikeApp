@@ -12,13 +12,13 @@
         />
     <item
         android:id="@+id/add_content"
-        android:title="@string/message_string"
-        android:icon="@drawable/ic_add"
+        android:title="@string/create_post"
+        android:icon="@drawable/ic_create"
         />
     <item
-        android:id="@+id/messages"
-        android:title="@string/message_string"
-        android:icon="@drawable/ic_message"
+        android:id="@+id/activities"
+        android:title="@string/activities"
+        android:icon="@drawable/ic_activity"
         />
     <item
         android:id="@+id/profile"

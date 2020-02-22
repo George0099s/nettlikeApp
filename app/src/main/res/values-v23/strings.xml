@@ -18,7 +18,10 @@
     <string name="create_post">create post</string>
     <string name="no_data">no data</string>
     <string name="create_post_title">Create post</string>
-    <string name="event_description_string">Оповестите своих подписчиков и сообщество о скором мероприятии вашей компании или организации.</string>
     <string name="created_new_post_activity">Created new post:</string>
     <string name="new_follower">New follower</string>
+    <string name="activities">Activities</string>
+    <string name="title_string">Title</string>
+    <string name="post">Post</string>
+    <string name="activity_string">Activity</string>
 </resources>

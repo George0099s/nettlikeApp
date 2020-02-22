@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
 
-    tools:context=".view.signUp.SignUpCountryActivity">
+    tools:context="com.nettlike.app.view.signUp.SignUpCountryActivity">
 
     <EditText
         android:id="@+id/search_country"

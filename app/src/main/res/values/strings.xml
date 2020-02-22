@@ -36,9 +36,9 @@
     <string name="write_string">Write</string>
     <string name="is_typing_string">Typing..</string>
     <string name="login_or_create_string">Login or create new account</string>
-    <string name="followers_string">подписчики</string>
-    <string name="following_string">подписки</string>
-    <string name="publications_string">публикации</string>
+    <string name="followers_string">followers</string>
+    <string name="following_string">following</string>
+    <string name="publications_string">publications</string>
     <string name="unfollow_string">Following</string>
     <string name="followbtn_string">follow</string>
     <string name="choose_tags">Tags</string>
@@ -63,7 +63,10 @@
     <string name="post_string">Ask a question to other members of the community to get an answer and find a potential executor.</string>
     <string name="create_post_title">Create post</string>
     <string name="create_event_title">Create event</string>
-    <string name="event_description_string">Оповестите своих подписчиков и сообщество о скором мероприятии вашей компании или организации.</string>
     <string name="created_new_post_activity">Created new post:</string>
     <string name="new_follower">New follower</string>
+    <string name="activities">Activities</string>
+    <string name="title_string">Title</string>
+    <string name="post">Post</string>
+    <string name="activity_string">Activity</string>
 </resources>

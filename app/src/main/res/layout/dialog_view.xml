@@ -2,17 +2,28 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:background="#FFFFFF"
-
-
-    android:layout_height="match_parent">
+    android:gravity="center"
+    android:layout_height="wrap_content">
     <TextView
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:textSize="20sp"
+        android:textAlignment="center"
+        android:textColor="@color/black000"
+        android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/login_or_create_string"/>
     <Button
+        android:layout_marginTop="20dp"
         android:id="@+id/go_to_registration123"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="onclick"
-        android:text="go to registr"/>
+        android:textColor="#FFF"
+        android:textAllCaps="false"
+        android:padding="10dp"
+        android:background="@drawable/shape_follow"
+        android:layout_marginBottom="20dp"
+        android:text="Go to registration"/>
 </LinearLayout>

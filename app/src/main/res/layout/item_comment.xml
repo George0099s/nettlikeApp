@@ -23,6 +23,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:text="TextView"
+        android:textSize="18sp"
+        android:textColor="@color/black000"
         app:layout_constraintEnd_toStartOf="@+id/comm_time"
         app:layout_constraintStart_toEndOf="@+id/user_comment_img"
         app:layout_constraintTop_toTopOf="@+id/user_comment_img" />

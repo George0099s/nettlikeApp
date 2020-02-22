@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context=".view.main.profileInnerFragments.EditUserProfileActivity">
+    tools:context="com.nettlike.app.view.main.profileInnerFragments.EditUserProfileActivity">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -189,4 +189,4 @@
             app:layout_constraintStart_toStartOf="@+id/save_data"
             app:layout_constraintTop_toBottomOf="@+id/save_data" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+</androidx.core.widget.NestedScrollView>

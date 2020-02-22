@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
 
-    tools:context=".view.signUp.LocationCitiesActivity">
+    tools:context="com.nettlike.app.view.signUp.LocationCitiesActivity">
 
         <EditText
             android:alpha="125"

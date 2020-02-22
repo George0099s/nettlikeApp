@@ -6,40 +6,64 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFF"
-    tools:context=".view.main.PostInfoActivity">
+    tools:context="com.nettlike.app.view.main.PostInfoActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ImageView
+            android:id="@+id/post_info_user_img"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:textSize="18sp"
+            android:textColor="@color/black000"
+            android:id="@+id/post_info_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            app:layout_constraintBottom_toBottomOf="@+id/post_info_user_img"
+            app:layout_constraintStart_toEndOf="@+id/post_info_user_img"
+            app:layout_constraintTop_toTopOf="@+id/post_info_user_img"
+            app:layout_constraintVertical_bias="0.516"
+            tools:text="George Avakyan" />
+
         <LinearLayout
             android:id="@+id/line1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:layout_marginTop="20dp"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
+            android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/post_info_user_img">
 
             <ImageView
                 android:id="@+id/info_post_img"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_marginTop="5dp"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_start" />
+                tools:srcCompat="@drawable/ic_start" />
 
             <TextView
                 android:id="@+id/info_post_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:text="TextView"
+                tools:text="TextView"
                 android:textColor="@color/black000"
                 android:textSize="20sp"
                 android:textStyle="bold|italic"
@@ -52,7 +76,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="TextView"
+                tools:text="TextView"
                 android:textColor="@color/black000"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="@+id/info_post_name"
@@ -61,15 +85,16 @@
 
         </LinearLayout>
 
-        <com.chauthai.overscroll.RecyclerViewBouncy
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/post_comments_recycler"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginTop="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/comm_body"
+            android:layout_marginBottom="20dp"
             app:layout_goneMarginTop="20dp" />
 
         <EditText

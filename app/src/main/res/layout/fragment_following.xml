@@ -2,8 +2,10 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="#FFF"
+
     android:layout_height="match_parent"
-    tools:context=".view.followers.FollowingFragment">
+    tools:context="com.nettlike.app.view.followers.FollowingFragment">
 
     <com.chauthai.overscroll.RecyclerViewBouncy
         android:id="@+id/following_recycler"

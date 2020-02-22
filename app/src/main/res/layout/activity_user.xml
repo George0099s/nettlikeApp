@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.main.profileInnerFragments.UserActivity">
+    tools:context="com.nettlike.app.view.main.profileInnerFragments.UserActivitiesActivity">
     <com.chauthai.overscroll.RecyclerViewBouncy
         android:id="@+id/activity_recycler"
         android:layout_height="match_parent"
