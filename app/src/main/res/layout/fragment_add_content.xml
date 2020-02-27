@@ -71,8 +71,9 @@
 
             <ImageView
                 android:id="@+id/add_post_photo"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:src="@drawable/ic_activity"
@@ -90,10 +91,10 @@
                 android:ems="10"
                 android:gravity="start|top"
                 android:inputType="textMultiLine"
-                android:maxLines="10"
                 android:minHeight="150dp"
-                android:minLines="6"
+                android:minLines="2"
                 android:textColor="@color/black000"
+                android:textIsSelectable="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 

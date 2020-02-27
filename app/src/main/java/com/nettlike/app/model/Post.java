@@ -6,6 +6,7 @@ import android.os.Parcelable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Post implements Parcelable {
@@ -20,7 +21,7 @@ public class Post implements Parcelable {
     private String name;
     @SerializedName("tags")
     @Expose
-    private List<Object> tags = null;
+    private List<PayloadTag> tags = new ArrayList<>();
     @SerializedName("comments_count")
     @Expose
     private String commentsCount;
@@ -113,11 +114,11 @@ public class Post implements Parcelable {
         this.name = name;
     }
 
-    public List<Object> getTags() {
+    public List<PayloadTag> getTags() {
         return tags;
     }
 
-    public void setTags(List<Object> tags) {
+    public void setTags(List<PayloadTag> tags) {
         this.tags = tags;
     }
 
@@ -219,6 +220,14 @@ public class Post implements Parcelable {
         this.pictureUrl = pictureUrl;
     }
 
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -234,17 +243,10 @@ public class Post implements Parcelable {
         dest.writeInt(savedCount);
         dest.writeString(description);
         dest.writeString(id);
+//        dest.writeArray(tags);
         dest.writeString(status);
         dest.writeString(votes);
         dest.writeParcelable(post, flags);
         dest.writeString(pictureUrl);
-    }
-
-    public List<Comment> getComments() {
-        return comments;
-    }
-
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
     }
 }

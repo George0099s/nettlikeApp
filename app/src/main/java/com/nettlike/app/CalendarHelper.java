@@ -35,4 +35,20 @@ public class CalendarHelper {
         }
         return dateString;
     }
+
+    public String getPostTime(String createdAt) {
+        String dateString = null;
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH);
+        SimpleDateFormat newFormat = new SimpleDateFormat("MMM HH:mm", Locale.ENGLISH);
+//        SimpleDateFormat  = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+        df.setTimeZone(TimeZone.getTimeZone("UTC"));
+        try {
+            Date date = df.parse(createdAt);
+            dateString = newFormat.format(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        newFormat.setTimeZone(TimeZone.getDefault());
+        return dateString;
+    }
 }

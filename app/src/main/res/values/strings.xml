@@ -69,4 +69,10 @@
     <string name="title_string">Title</string>
     <string name="post">Post</string>
     <string name="activity_string">Activity</string>
+    <string name="registration_string">Registration</string>
+    <string name="login_string">Login</string>
+    <string name="registration_or_login_string">Registration or Login</string>
+    <string name="enter_your_email">Enter your email</string>
+    <string name="enter_your_password">Enter your password</string>
+    <string name="delete_Tags">Delete tags</string>
 </resources>

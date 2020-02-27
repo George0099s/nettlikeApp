@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
 
-    tools:context="com.nettlike.app.authorization.RegistrationActivity">
+    tools:context=".view.authorization.RegistrationActivity">
 
     <ScrollView
         android:layout_width="0dp"
@@ -80,7 +80,11 @@
         android:layout_width="match_parent"
         android:layout_marginTop="84dp"
         android:ems="10"
+        android:hint="@string/enter_your_email"
+        android:padding="0dp"
+        android:textAlignment="center"
         android:inputType="textEmailAddress"
+        android:textColorHint="@color/grey"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -92,9 +96,25 @@
         android:layout_width="match_parent"
         android:layout_marginTop="10dp"
         android:ems="10"
+        android:hint="@string/enter_your_password"
+        android:padding="0dp"
+        android:textAlignment="center"
         android:inputType="textPassword"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/email_ed" />
+
+    <TextView
+        android:id="@+id/login_text"
+        style="@style/subTitleString"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="@string/registration_or_login_string"
+        android:textColor="@color/black000"
+        app:layout_constraintBottom_toTopOf="@+id/email_ed"
+        app:layout_constraintEnd_toEndOf="@+id/email_ed"
+        app:layout_constraintStart_toStartOf="@+id/email_ed" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

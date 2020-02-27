@@ -11,7 +11,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 import com.nettlike.app.adapter.ViewPagerAdapter;
-import com.nettlike.app.authorization.RegistrationActivity;
+import com.nettlike.app.view.authorization.RegistrationActivity;
 import com.nettlike.app.view.onboarding.FirstOnBoardingFragment;
 import com.nettlike.app.view.onboarding.SecondOnBoardingFragment;
 import com.nettlike.app.view.onboarding.ThirdOnBoardingFragment;

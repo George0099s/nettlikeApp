@@ -10,22 +10,40 @@
         android:id="@+id/tag_another_reycler"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/add_post_tag"
+        app:layout_constraintBottom_toTopOf="@+id/line1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/add_post_tag"
-        style="@style/nextBtnSignUp"
+    <LinearLayout
+        android:id="@+id/line1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+    <Button
+        android:layout_width="0dp"
+
+        android:id="@+id/add_post_tag"
+        style="@style/nextBtnSignUp"
+        android:layout_margin="5dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
         android:text="@string/add_tags"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/delete_post_tag"
+            style="@style/nextBtnSignUp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:text="@string/delete_Tags"
+            app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

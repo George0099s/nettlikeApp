@@ -18,6 +18,7 @@ public class UserSingleton {
     private String userId;
     private String jobTitle;
     private String token;
+    private String pictureURL;
     private ArrayList<String> tagsName = new ArrayList<>();
     private Boolean isExist = false;
     private ArrayList<String> followers = new ArrayList<>();
@@ -224,5 +225,13 @@ public class UserSingleton {
 
     public void setCount_publication(int count_publication) {
         this.count_publication = count_publication;
+    }
+
+    public String getPictureURL() {
+        return pictureURL;
+    }
+
+    public void setPictureURL(String pictureURL) {
+        this.pictureURL = pictureURL;
     }
 }

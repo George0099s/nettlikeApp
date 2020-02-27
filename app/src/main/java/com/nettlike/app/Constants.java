@@ -10,4 +10,10 @@ public class Constants {
     public static final String NEW_EVENT = "new_event";
     public static final String NEW_COMMENT = "new_comment";
     public static final String NEW_FOLLOWER = "new_follower";
+    public static final String PLATFORM = "android";
+
+
+    public static final int IMG_ROUND_CORNER = 8;
+
+
 }

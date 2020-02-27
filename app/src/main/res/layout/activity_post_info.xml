@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFF"
-    tools:context="com.nettlike.app.view.main.PostInfoActivity">
+    tools:context="com.nettlike.app.posts.PostInfoActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -20,6 +20,18 @@
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/post_info_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/like_img_post_info" />
 
         <TextView
             android:textSize="18sp"
@@ -76,12 +88,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                tools:text="TextView"
                 android:textColor="@color/black000"
+                android:textIsSelectable="true"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="@+id/info_post_name"
                 app:layout_constraintStart_toStartOf="@+id/info_post_name"
-                app:layout_constraintTop_toBottomOf="@+id/info_post_name" />
+                app:layout_constraintTop_toBottomOf="@+id/info_post_name"
+                tools:text="TextView" />
 
         </LinearLayout>
 
@@ -102,11 +115,12 @@
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="32dp"
             android:background="@drawable/shape_signup_placeholder"
             app:layout_constraintEnd_toStartOf="@+id/send_comm"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/line1" />
+            app:layout_constraintTop_toBottomOf="@+id/post_info_recycler" />
 
         <ImageView
             android:id="@+id/send_comm"
@@ -118,5 +132,45 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/comm_body"
             app:layout_constraintVertical_bias="0.473" />
+
+        <ImageView
+            android:id="@+id/like_img_post_info"
+            android:layout_width="16dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="28dp"
+            app:layout_constraintStart_toStartOf="@+id/line1"
+            app:layout_constraintTop_toBottomOf="@+id/line1"
+            app:srcCompat="@drawable/ic_like" />
+
+        <ImageView
+            android:id="@+id/comm_img_post_info"
+            android:layout_width="16dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="25dp"
+            app:layout_constraintStart_toEndOf="@+id/like_count_post_info"
+            app:layout_constraintTop_toTopOf="@+id/like_img_post_info"
+            app:srcCompat="@drawable/ic_chat" />
+
+        <TextView
+            android:id="@+id/like_count_post_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="1"
+            android:textColor="@color/black000"
+            app:layout_constraintBottom_toBottomOf="@+id/like_img_post_info"
+            app:layout_constraintStart_toEndOf="@+id/like_img_post_info"
+            app:layout_constraintTop_toTopOf="@+id/like_img_post_info" />
+
+        <TextView
+            android:id="@+id/comm_count_post_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="1"
+            android:textColor="@color/black000"
+            app:layout_constraintBottom_toBottomOf="@+id/comm_img_post_info"
+            app:layout_constraintStart_toEndOf="@+id/comm_img_post_info"
+            app:layout_constraintTop_toTopOf="@+id/comm_img_post_info" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

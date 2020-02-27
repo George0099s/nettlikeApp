@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
 
-    tools:context="com.nettlike.app.view.signUp.SignUpLocationFragment">
+    tools:context=".view.authorization.signUp.SignUpLocationFragment">
 
 
     <TextView

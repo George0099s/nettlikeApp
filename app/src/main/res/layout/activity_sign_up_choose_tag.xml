@@ -7,7 +7,7 @@
     android:background="#FFFFFF"
 
 
-    tools:context="com.nettlike.app.view.signUp.SignUpChooseTagActivity">
+    tools:context=".view.authorization.signUp.SignUpChooseTagActivity">
 
     <TextView
         android:id="@+id/sign_up"

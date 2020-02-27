@@ -1,7 +1,7 @@
 package com.nettlike.app.model.people;
 
-import com.nettlike.app.model.PayloadTag;
 import com.google.gson.annotations.SerializedName;
+import com.nettlike.app.model.PayloadTag;
 
 import java.util.List;
 
@@ -22,7 +22,8 @@ public class People {
     private List<PayloadTag> tag;
     @SerializedName("picture_url")
     private String pictureUrl;
-
+    @SerializedName("job_title")
+    private String jobTitle;
 
     public String getId() {
         return id;
@@ -88,5 +89,13 @@ public class People {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public String getJobTitle() {
+        return jobTitle;
+    }
+
+    public void setJobTitle(String jobTitle) {
+        this.jobTitle = jobTitle;
     }
 }

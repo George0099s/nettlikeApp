@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.nettlike.app.R;
 import com.nettlike.app.model.Payload;
 import com.nettlike.app.model.UserSingleton;
-import com.nettlike.app.view.signUp.LocationCitiesActivity;
+import com.nettlike.app.view.authorization.signUp.LocationCitiesActivity;
 
 import java.util.ArrayList;
 import java.util.List;

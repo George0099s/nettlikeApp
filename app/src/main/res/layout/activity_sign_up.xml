@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
 
-    tools:context="com.nettlike.app.authorization.SignUp">
+    tools:context=".view.authorization.SignUp">
 
     <TextView
         android:id="@+id/sign_up"

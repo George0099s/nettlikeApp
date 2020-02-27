@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
 
-    tools:context="com.nettlike.app.view.main.PeopleFragment">
+    tools:context="com.nettlike.app.people.ui.PeopleFragment">
 
     <com.chauthai.overscroll.RecyclerViewBouncy
         android:id="@+id/people_recycler"

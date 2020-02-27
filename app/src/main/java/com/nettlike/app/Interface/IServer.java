@@ -1,7 +1,6 @@
 package com.nettlike.app.Interface;
 
 import com.nettlike.app.model.EmailPojo;
-import com.nettlike.app.model.FollowerModel;
 import com.nettlike.app.model.MessageModel;
 import com.nettlike.app.model.ModelAddPostImage;
 import com.nettlike.app.model.ModelEvent;
@@ -102,9 +101,6 @@ public interface IServer {
                                  @Field("twitter_url") String twitterLink,
                                  @Field("facebook_url") String facebookLink);
 
-    @GET("public_api/account/info")
-    Call<UserModel> getUserInfo(@Query("token") String token);
-
     @GET("public_api/activities/fetch")
     Call<com.nettlike.app.model.activity.Model> getActivity(@Query("token") String token,
                                                             @Query("offset") int offset,
@@ -174,6 +170,7 @@ public interface IServer {
             @Query("token") String token,
             @Field("name") String eventName,
             @Field("tags") JSONArray tags,
+            @Field("platform") String platform,
             @Field("description") String eventDescription);
 //    @FormUrlEncoded
 //    @POST("/public_api/events/create")
@@ -239,17 +236,5 @@ public interface IServer {
                                    @Query("limit") int limit,
                                    @Query("query") String query,
                                    @Query("token") String token);
-
-    @GET("public_api/people/{account_id}/followers")
-    Call<FollowerModel> getFollowers(@Path("account_id") String accountId,
-                                     @Query("offset") int offset,
-                                     @Query("limit") int limit,
-                                     @Query("token") String token);
-
-    @GET("public_api/people/{account_id}/following")
-    Call<FollowerModel> getFollowing(@Path("account_id") String accountId,
-                                     @Query("offset") int offset,
-                                     @Query("limit") int limit,
-                                     @Query("token") String token);
 
 }

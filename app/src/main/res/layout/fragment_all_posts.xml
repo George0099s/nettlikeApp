@@ -7,7 +7,7 @@
     android:tag="all_post"
     android:background="#FFFFFF"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.nettlike.app.view.main.postInner.AllPostFragment">
+    tools:context=".posts.postInner.AllPostFragment">
 
     <com.chauthai.overscroll.RecyclerViewBouncy
         android:id="@+id/post_recycler"

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context="com.nettlike.app.view.main.profileInnerFragments.EditUserProfileActivity">
+    tools:context="com.nettlike.app.profile.profileInnerFragments.EditUserProfileActivity">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -190,5 +190,17 @@
             app:layout_constraintEnd_toEndOf="@+id/save_data"
             app:layout_constraintStart_toStartOf="@+id/save_data"
             app:layout_constraintTop_toBottomOf="@+id/save_data" />
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="Edit"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/age"
+            app:layout_constraintEnd_toEndOf="@+id/edit_img_profile"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/age" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

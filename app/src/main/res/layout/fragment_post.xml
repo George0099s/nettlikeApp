@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
 
-    tools:context="com.nettlike.app.view.main.PostFragment">
+    tools:context="com.nettlike.app.posts.PostFragment">
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout_post"
@@ -20,6 +20,13 @@
         app:tabSelectedTextColor="@color/black000"
         app:tabTextAppearance="@style/TextAppearance.AppCompat.Small" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey"
+        app:layout_constraintBottom_toBottomOf="@+id/tabLayout_post"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/post_fab"
         style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
@@ -39,10 +46,10 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.viewpager.widget.ViewPager
+        android:layout_marginTop="1dp"
         android:id="@+id/viewPager_post"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

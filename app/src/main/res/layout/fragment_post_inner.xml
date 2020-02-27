@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#FFFFFF"
-    tools:context="com.nettlike.app.view.main.profileInnerFragments.PostsInnerFragment">
+    tools:context="com.nettlike.app.profile.profileInnerFragments.PostsInnerFragment">
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/user_posts"
         android:layout_width="match_parent"

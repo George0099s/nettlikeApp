@@ -51,6 +51,7 @@ public class StartActivity extends AppCompatActivity {
                 .allowMainThreadQueries()
                 .build();
         tokenDao = db.tokenDao();
+        Log.d(TAG, "onCreate: " + tokenDao.getToken());
         getToken(tokenDao);
 //        startService(new Intent(this, PushService.class));
 
@@ -153,6 +154,8 @@ public class StartActivity extends AppCompatActivity {
 
 
     }
+
+
     private class GetToken extends AsyncTask<Void, Void, String> {
         String token;
         @Override
@@ -170,12 +173,9 @@ public class StartActivity extends AppCompatActivity {
                             token = object.getString("token");
                             validateToken(token);
                             TokenEntity tokenEntity = new TokenEntity();
-                            db =  Room.databaseBuilder(getApplicationContext(),
-                                    AppDatabase.class, "avlaDB")
-                                    .allowMainThreadQueries()
-                                    .build();
                             tokenEntity.setToken(token);
                             tokenDao.insert(tokenEntity);
+                            db.close();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
 
-    tools:context="com.nettlike.app.view.main.peopleInner.AnotherUserProfileActivity">
+    tools:context=".people.ui.AnotherUserProfileActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -131,40 +131,36 @@
             app:layout_constraintStart_toStartOf="@+id/follower_username"
             app:layout_constraintTop_toBottomOf="@+id/follower_username" />
 
-        <LinearLayout
-            android:id="@+id/line1"
-            android:layout_width="100dp"
-            android:layout_height="40dp"
+
+        <Button
+            android:id="@+id/folow_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
             android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/shape_follow"
             android:gravity="center"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="@+id/linearLayout"
-            app:layout_constraintStart_toStartOf="@+id/linearLayout"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+            android:text="@string/follow_string"
+            android:textAllCaps="false"
+            android:textColor="#FFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
-            <Button
-                android:id="@+id/folow_btn"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/shape_follow"
-                android:gravity="center"
-                android:text="@string/follow_string"
-                android:textAllCaps="false"
-                android:textColor="#FFF"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
-
-        </LinearLayout>
-
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grey"
+            app:layout_constraintBottom_toBottomOf="@+id/tablayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tablayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/line1"
+            app:layout_constraintTop_toBottomOf="@+id/folow_btn"
             app:tabGravity="fill"
             app:tabIndicatorColor="@color/underline_tablayout"
             app:tabMode="fixed"
@@ -175,6 +171,7 @@
             android:id="@+id/profile_viewpager"
             android:layout_width="match_parent"
             android:layout_height="400dp"
+            android:layout_marginTop="1dp"
             android:minHeight="400dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

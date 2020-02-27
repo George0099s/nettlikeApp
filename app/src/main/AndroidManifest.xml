@@ -22,51 +22,56 @@
         tools:ignore="GoogleAppIndexingWarning"
         android:allowBackup="true"
         tools:targetApi="n">
-        <activity android:name="com.nettlike.app.view.main.profileInnerFragments.UserActivitiesActivity"
+        <activity
+            android:name="com.nettlike.app.profile.profileInnerFragments.UserActivitiesActivity"
             android:screenOrientation="portrait"
             />
         <activity android:name="com.nettlike.app.view.main.GetTagsActivity"
             android:screenOrientation="portrait"
             />
-        <activity android:name="com.nettlike.app.view.main.PostInfoActivity"
-            android:screenOrientation="portrait"
-            />
-        <activity android:name="com.nettlike.app.view.followers.FollowersActivity"
-            android:screenOrientation="portrait"
-            />
-        <activity android:name="com.nettlike.app.view.signUp.SignUpChooseTagActivity"
+        <activity
+            android:name="com.nettlike.app.posts.PostInfoActivity"
             android:screenOrientation="portrait"
             />
         <activity
-            android:name="com.nettlike.app.view.signUp.SignUpChooseCategoryActivity"
+            android:name="com.nettlike.app.view.followers.ui.FollowersActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity
+            android:name=".view.authorization.signUp.SignUpChooseTagActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity
+            android:name=".view.authorization.signUp.SignUpChooseCategoryActivity"
             android:noHistory="true"
             android:screenOrientation="portrait"
             />
         <activity
-            android:name="com.nettlike.app.view.signUp.SignUpCountryActivity"
+            android:name=".view.authorization.signUp.SignUpCountryActivity"
             android:noHistory="true"
             android:screenOrientation="portrait"
             />
-        <activity android:name="com.nettlike.app.view.DialogActivity"
+        <activity
+            android:name=".people.ui.AnotherUserProfileActivity"
             android:screenOrientation="portrait"
             />
-        <activity android:name="com.nettlike.app.view.main.peopleInner.AnotherUserProfileActivity"
+        <activity
+            android:name="com.nettlike.app.profile.profileInnerFragments.EditUserProfileActivity"
             android:screenOrientation="portrait"
             />
-        <activity android:name="com.nettlike.app.view.main.profileInnerFragments.EditUserProfileActivity"
-            android:screenOrientation="portrait"
-            />
-        <activity android:name="com.nettlike.app.view.signUp.LocationCitiesActivity"
+        <activity
+            android:name=".view.authorization.signUp.LocationCitiesActivity"
             android:screenOrientation="portrait"
             />
         <activity android:name="com.nettlike.app.profile.ProfileActivity"
             android:screenOrientation="portrait"
             />
-        <activity android:name="com.nettlike.app.authorization.SignUp"
+        <activity
+            android:name=".view.authorization.SignUp"
             android:screenOrientation="portrait"
             />
         <activity
-            android:name="com.nettlike.app.authorization.RegistrationActivity"
+            android:name=".view.authorization.RegistrationActivity"
             android:noHistory="true"
             android:screenOrientation="portrait"
             />

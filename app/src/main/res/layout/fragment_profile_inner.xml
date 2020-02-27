@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
 
-    tools:context="com.nettlike.app.view.main.profileInnerFragments.ProfileInnerFragment">
+    tools:context="com.nettlike.app.profile.profileInnerFragments.ProfileInnerFragment">
 
     <TextView
         android:id="@+id/user_job"

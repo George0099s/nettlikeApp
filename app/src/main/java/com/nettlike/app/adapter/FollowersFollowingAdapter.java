@@ -21,7 +21,7 @@ import com.nettlike.app.R;
 import com.nettlike.app.model.Follower;
 import com.nettlike.app.model.Token;
 import com.nettlike.app.model.UserSingleton;
-import com.nettlike.app.view.main.peopleInner.AnotherUserProfileActivity;
+import com.nettlike.app.people.ui.AnotherUserProfileActivity;
 
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -93,7 +93,14 @@ public class FollowersFollowingAdapter extends RecyclerView.Adapter<FollowersFol
 
     @Override
     public int getItemCount() {
-        return followers.size();
+        if (followers != null)
+            return followers.size();
+        else return 0;
+    }
+
+    public void addAll(List<Follower> newList) {
+        followers.addAll(newList);
+        notifyDataSetChanged();
     }
 
     public class FollowViewHolder extends RecyclerView.ViewHolder {

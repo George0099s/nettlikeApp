@@ -6,13 +6,14 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
 
-    tools:context="com.nettlike.app.view.signUp.LocationCitiesActivity">
+    tools:context=".view.authorization.signUp.LocationCitiesActivity">
 
         <EditText
-            android:alpha="125"
             android:id="@+id/search__city"
             style="@style/signUpPlaceholder"
             android:layout_width="0dp"
+            android:layout_marginTop="20dp"
+            android:alpha="125"
             android:hint="Search"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -6,9 +6,9 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.provider.MediaStore;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,12 +31,14 @@ import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.nettlike.app.Constants;
 import com.nettlike.app.Interface.IServer;
 import com.nettlike.app.R;
-import com.nettlike.app.adapter.UserTagAdapter;
 import com.nettlike.app.model.ModelAddPostImage;
 import com.nettlike.app.model.ModelPost;
+import com.nettlike.app.model.PayloadTag;
 import com.nettlike.app.model.Post;
 import com.nettlike.app.model.PostPayload;
 import com.nettlike.app.model.UserSingleton;
+import com.nettlike.app.posts.PostInfoActivity;
+import com.nettlike.app.profile.UserTagAdapter;
 
 import org.json.JSONArray;
 
@@ -81,6 +83,7 @@ public class AddContentFragment extends Fragment {
     private File postImage;
     private String postId;
     private Post post = null;
+    private List<PayloadTag> payloadTagList = new ArrayList<>();
     public AddContentFragment() {
         // Required empty public constructor
     }
@@ -141,11 +144,13 @@ public class AddContentFragment extends Fragment {
                 break;
             case R.id.add_post_tags:
                 Intent intent = new Intent(getActivity(), GetTagsActivity.class);
-                intent.putExtra("token", token);
-                intent.putExtra("tags_id", postTagIdArrayList);
-                intent.putExtra("tags_name", postTagName);
+                intent.putParcelableArrayListExtra("selected_tags", (ArrayList<? extends Parcelable>) payloadTagList);
+//                intent.putExtra("token", token);
+//                intent.putExtra("tags_id", postTagIdArrayList);
+//                intent.putExtra("tags_name", postTagName);
                 startActivityForResult(intent, 42);
                 break;
+
             case R.id.add_post_add_photo:
                 requestStoragePermission();
                 break;
@@ -162,9 +167,9 @@ public class AddContentFragment extends Fragment {
                 .baseUrl(Constants.BASIC_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-//        postTagId,
         IServer service = retrofit.create(IServer.class);
-        Call<ModelPost> sendPostInfo= service.sendPostInfo(token, postName,postTagId, postDescription);
+        Call<ModelPost> sendPostInfo = service.sendPostInfo(token, postName, postTagId, Constants.PLATFORM, postDescription);
+        Log.d(TAG, "sendPostInfo: " + sendPostInfo.request().url());
         sendPostInfo.enqueue(new Callback<ModelPost>() {
 
             @Override
@@ -180,11 +185,16 @@ public class AddContentFragment extends Fragment {
                 Observable.fromCallable(new CallableAddPostImg(postId, postImage))
                         .subscribeOn(Schedulers.io())
                         .subscribe();
-//                    sendPostImage(postId, postImage);
                 } else {
                     Intent intent = new Intent(getActivity(), PostInfoActivity.class);
                     intent.putExtra("token", token);
                     intent.putExtra("post id", postId);
+                    ArrayList<String> tags = new ArrayList<>();
+                    List<PayloadTag> tagsList = post.getTags();
+                    for (int i = 0; i < tagsList.size(); i++) {
+                        tags.add(tagsList.get(i).getName());
+                    }
+                    intent.putExtra("tags_array", tags);
                     intent.putExtra("post", post);
                     startActivity(intent);
 
@@ -209,7 +219,6 @@ public class AddContentFragment extends Fragment {
         MultipartBody.Part requestImg = MultipartBody.Part.createFormData("image", eventPhoto.getName(), requestBody);
         IServer service = retrofit.create(IServer.class);
         Call<ModelAddPostImage> updateImage = service.updatePostImage(id, token, requestImg);
-        Log.d(TAG, "sendPostImage: "  + updateImage.request().url());
         updateImage.enqueue(new Callback<ModelAddPostImage>() {
 
             @Override
@@ -240,20 +249,25 @@ public class AddContentFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == 42  || requestCode == 42) {
-            postTagName = data != null ? data.getStringArrayListExtra("tags_name") : new ArrayList<>();
-            postTagIdArrayList = data != null ? data.getStringArrayListExtra("tags_id") : new ArrayList<>();
+        if (resultCode == 42 || requestCode == 42) {
+//            postTagName = data != null ? data.getStringArrayListExtra("selected_tags") : new ArrayList<>();
+//            postTagIdArrayList = data != null ? data.getStringArrayListExtra("tags_id") : new ArrayList<>();
             JSONArray tagNames = new JSONArray();
-
-            for (int i = 0; i < postTagName.size(); i++) {
-                tagNames.put(postTagName.get(i));
+            if (data != null)
+                payloadTagList = data.getParcelableArrayListExtra("selected_tags");
+            else
+                payloadTagList = new ArrayList<>();
+            for (int i = 0; i < payloadTagList.size(); i++) {
+                postTagId.put(payloadTagList.get(i).getId());
             }
-            for (int i = 0; i < postTagIdArrayList.size(); i++) {
-                postTagId.put(postTagIdArrayList.get(i));
+            for (int i = 0; i < payloadTagList.size(); i++) {
+                tagNames.put(payloadTagList.get(i).getName());
             }
             userTagAdapter = new UserTagAdapter(tagNames, getActivity());
             tagRecycler.setAdapter(userTagAdapter);
         }
+
+
         if (requestCode == IMAGE_REQUEAST && data != null
                 && data.getData() != null) {
             Uri uri = data.getData();
@@ -266,13 +280,9 @@ public class AddContentFragment extends Fragment {
                         + MimeTypeMap.getSingleton().getExtensionFromMimeType(type));
                 os = new BufferedOutputStream(new FileOutputStream(file));
                 Bitmap pictureBitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), uri); // obtaining the Bitmap
-                int dimensionInPixel = 150;
-                int dimensionInDp = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dimensionInPixel, getResources().getDisplayMetrics());
                 addPostPhoto.setVisibility(View.GONE);
                 removePhoto.setVisibility(View.VISIBLE);
                 postPhoto.setVisibility(View.VISIBLE);
-                postPhoto.getLayoutParams().height = dimensionInDp;
-                postPhoto.getLayoutParams().width = dimensionInDp;
                 postPhoto.setScaleType(ImageView.ScaleType.CENTER_CROP);
                 postPhoto.setBackground(null);
                 postPhoto.setImageBitmap(pictureBitmap);

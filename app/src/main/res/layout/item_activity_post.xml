@@ -19,8 +19,9 @@
 
     <TextView
         android:textColor="@color/underline_tablayout"
-        android:textSize="18sp"
-
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textSize="16sp"
         android:id="@+id/activity_post_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

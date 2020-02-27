@@ -1,10 +1,13 @@
 package com.nettlike.app.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 
-public class PayloadTag {
+public class PayloadTag implements Parcelable {
     @SerializedName("_id")
     private String id;
     @SerializedName("created_at")
@@ -23,6 +26,35 @@ public class PayloadTag {
     private String status;
     @SerializedName("updated_at")
     private String updatedAt;
+
+    public static final Creator<PayloadTag> CREATOR = new Creator<PayloadTag>() {
+        @Override
+        public PayloadTag createFromParcel(Parcel in) {
+            return new PayloadTag(in);
+        }
+
+        @Override
+        public PayloadTag[] newArray(int size) {
+            return new PayloadTag[size];
+        }
+    };
+
+    protected PayloadTag(Parcel in) {
+        id = in.readString();
+        createdAt = in.readString();
+        emoji = in.readString();
+        lang = in.readString();
+        name = in.readString();
+        if (in.readByte() == 0) {
+            order = null;
+        } else {
+            order = in.readInt();
+        }
+        parentIds = in.createStringArrayList();
+        status = in.readString();
+        updatedAt = in.readString();
+    }
+
     @SerializedName("_id")
     public String getId() {
         return id;
@@ -111,5 +143,28 @@ public class PayloadTag {
     @SerializedName("updated_at")
     public void setUpdatedAt(String updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(createdAt);
+        dest.writeString(emoji);
+        dest.writeString(lang);
+        dest.writeString(name);
+        if (order == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(order);
+        }
+        dest.writeStringList(parentIds);
+        dest.writeString(status);
+        dest.writeString(updatedAt);
     }
 }
