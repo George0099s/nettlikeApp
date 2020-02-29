@@ -19,6 +19,10 @@ public class UserSingleton {
     private String jobTitle;
     private String token;
     private String pictureURL;
+
+    private String twitterURL;
+    private String facebookURL;
+
     private ArrayList<String> tagsName = new ArrayList<>();
     private Boolean isExist = false;
     private ArrayList<String> followers = new ArrayList<>();
@@ -233,5 +237,21 @@ public class UserSingleton {
 
     public void setPictureURL(String pictureURL) {
         this.pictureURL = pictureURL;
+    }
+
+    public String getTwitterURL() {
+        return twitterURL;
+    }
+
+    public void setTwitterURL(String twitterURL) {
+        this.twitterURL = twitterURL;
+    }
+
+    public String getFacebookURL() {
+        return facebookURL;
+    }
+
+    public void setFacebookURL(String facebookURL) {
+        this.facebookURL = facebookURL;
     }
 }

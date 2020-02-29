@@ -10,7 +10,7 @@
     tools:context=".posts.postInner.FeedPostFragment">
 
 
-    <com.chauthai.overscroll.RecyclerViewBouncy
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/all_post_recycler"
         android:layout_width="match_parent"
         android:layout_height="0dp"

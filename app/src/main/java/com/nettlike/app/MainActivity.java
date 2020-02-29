@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.nettlike.app.activity.ActivitiesFragment;
 import com.nettlike.app.data.AppDatabase;
 import com.nettlike.app.data.TokenDao;
@@ -37,6 +38,10 @@ public class MainActivity extends AppCompatActivity {
     Fragment active = peopleFragment;
     private TokenDao tokenDao;
     private AppDatabase db;
+
+    private FirebaseAnalytics mFirebaseAnalytics;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -118,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         BottomNavigationView navigation = findViewById(R.id.bottomNavigationView);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         navigation.setSelectedItemId(R.id.people);

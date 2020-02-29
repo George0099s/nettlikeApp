@@ -9,16 +9,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".posts.postInner.AllPostFragment">
 
-    <com.chauthai.overscroll.RecyclerViewBouncy
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/post_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:speedFactor="10"
-        app:viewCountEstimateSize="5" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

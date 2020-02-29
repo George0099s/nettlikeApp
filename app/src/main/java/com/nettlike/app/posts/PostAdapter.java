@@ -77,37 +77,35 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
             finalPost = post.getPost();
         }
         if(finalPost != null) {
-            Log.d(TAG, "onBindViewHolder: " + finalPost.getTags().size());
 
             String postId = finalPost.getId();
+            holder.postTitle.setText(finalPost.getName());
+            holder.postCreator.setText(String.format("%s %s - %s", finalPost.getCreatedBy().getFirstName(), finalPost.getCreatedBy().getLastName(), calendarHelper.getPostTime(finalPost.getCreatedAt())));
+            Log.d(TAG, "onBindViewHolder: " + (finalPost.getCreatedBy().getCreatedAt()));
+            holder.likeCount.setText(String.valueOf(finalPost.getSavedCount()));
+            holder.commCount.setText(finalPost.getCommentsCount());
+
             holder.like.setOnClickListener(v -> {
+
                 markAsSave(token, postId);
                 if (userSavedPost.contains(finalPost.getId())) {
                     userSavedPost.remove(finalPost.getId());
                     finalPost.setSavedCount(finalPost.getSavedCount() - 1);
-                    notifyDataSetChanged();
+                    notifyItemChanged(position);
                 } else {
                     userSavedPost.add(finalPost.getId());
                     finalPost.setSavedCount(finalPost.getSavedCount() + 1);
-                    notifyDataSetChanged();
+                    notifyItemChanged(position);
                 }
 
             });
-                holder.postTitle.setText(finalPost.getName());
-            holder.postCreator.setText(String.format("%s %s - %s", finalPost.getCreatedBy().getFirstName(), finalPost.getCreatedBy().getLastName(), calendarHelper.getPostTime(finalPost.getCreatedBy().getCreatedAt())));
-            holder.likeCount.setText(String.valueOf(finalPost.getSavedCount()));
-            holder.commCount.setText(finalPost.getCommentsCount());
             if (userSavedPost != null)
             if (userSavedPost.contains(finalPost.getId())) {
                 holder.like.setImageDrawable(context.getDrawable(R.drawable.ic_liked));
             } else {
                 holder.like.setImageDrawable(context.getDrawable(R.drawable.ic_like));
             }
-            if (finalPost.getPictureUrl() != null) {
-                    Glide.with(context).load(finalPost.getPictureUrl()).apply(requestOptions).into(holder.postImage);
-            } else {
-                holder.postImage.setVisibility(View.GONE);
-            }
+            Glide.with(context).load(finalPost.getPictureUrl()).apply(requestOptions).into(holder.postImage);
             holder.postItem.setOnClickListener(v -> {
                 ArrayList<String> tags = new ArrayList<>();
                 List<PayloadTag> tagsList = finalPost.getTags();

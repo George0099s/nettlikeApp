@@ -92,6 +92,7 @@ public class EditUserProfileActivity extends AppCompatActivity {
     private TextView email, chooseTags, chooseCountry;
     private Button saveData, addTags;
     private Activity activity;
+    private TextView editPhoto;
     private TokenDao tokenDao;
     private ImageView editUserImg;
     private SharedPreferences mPrefs;
@@ -115,6 +116,8 @@ public class EditUserProfileActivity extends AppCompatActivity {
     }
 
     private void initViews() {
+        editPhoto = findViewById(R.id.textView12);
+        editPhoto.setOnClickListener(this::onClick);
         tagListName = new ArrayList<>();
         tagListId = new ArrayList<>();
         activity = this;
@@ -172,6 +175,7 @@ public class EditUserProfileActivity extends AppCompatActivity {
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe();
                 break;
+            case R.id.textView12:
             case R.id.edit_img_profile:
                 selectImage();
                 break;

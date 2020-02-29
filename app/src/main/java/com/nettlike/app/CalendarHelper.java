@@ -39,7 +39,7 @@ public class CalendarHelper {
     public String getPostTime(String createdAt) {
         String dateString = null;
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH);
-        SimpleDateFormat newFormat = new SimpleDateFormat("MMM HH:mm", Locale.ENGLISH);
+        SimpleDateFormat newFormat = new SimpleDateFormat("dd MMM HH:mm", Locale.ENGLISH);
 //        SimpleDateFormat  = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
         df.setTimeZone(TimeZone.getTimeZone("UTC"));
         try {

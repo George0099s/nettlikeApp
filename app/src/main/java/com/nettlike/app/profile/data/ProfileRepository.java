@@ -66,6 +66,8 @@ public class ProfileRepository {
                     user.setCount_publication(userPayload.getPosts().size() + userPayload.getEvents().size());
                     user.setFollowers((ArrayList<String>) userPayload.getFollowers());
                     user.setFollowing((ArrayList<String>) userPayload.getFollowing());
+                    user.setTwitterURL(userPayload.getTwitterURL());
+                    user.setFacebookURL(userPayload.getFacebookURL());
                     ArrayList<String> tags = new ArrayList<>();
                     List<PayloadTag> payloadTags = userPayload.getTags();
                     for (int i = 0; i < payloadTags.size(); i++) {

@@ -2,6 +2,7 @@ package com.nettlike.app.profile.profileInnerFragments;
 
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,12 +12,17 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.nettlike.app.R;
 import com.nettlike.app.model.UserSingleton;
 import com.nettlike.app.profile.UserTagAdapter;
+import com.nettlike.app.profile.data.ProfileRepository;
+import com.nettlike.app.profile.utils.ProfileViewModelFactory;
+import com.nettlike.app.profile.viewmodel.ProfileViewModel;
 
 import org.json.JSONArray;
 
@@ -28,12 +34,15 @@ import java.util.ArrayList;
 public class ProfileInnerFragment extends Fragment {
 
     private static final String TAG = "ProfileInnerFragment";
-    private ImageView sendEmal;
+    private ImageView sendEmail, sendTwitter, sendFacebook;
     private TextView userJob, aboutUser;
     private RecyclerView tagRecycler;
     private UserTagAdapter userTagAdapter;
     private JSONArray tagsJson;
     private UserSingleton user = UserSingleton.INSTANCE;
+    private ProfileRepository profileRepository;
+    private ProfileViewModel profileViewModel;
+
     public ProfileInnerFragment() {
     }
 
@@ -50,24 +59,62 @@ public class ProfileInnerFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
     }
 
-    private void initViews(View view) {
+    private Observer<UserSingleton> profileListUpdateObserver = userSingleton -> {
+        JSONArray tagsJsonArray = new JSONArray();
+        ArrayList<String> tags = userSingleton.getTagsName();
+        for (int i = 0; i < tags.size(); i++) {
+            tagsJsonArray.put(tags.get(i));
+        }
+        if (userSingleton.getTwitterURL().isEmpty())
+            sendTwitter.setVisibility(View.GONE);
+        if (userSingleton.getFacebookURL().isEmpty())
+            sendFacebook.setVisibility(View.GONE);
+        userJob.setText(userSingleton.getJobTitle());
+        aboutUser.setText(userSingleton.getAboutMyself());
+        userTagAdapter = new UserTagAdapter(tagsJsonArray, getContext());
+        tagRecycler.setAdapter(userTagAdapter);
+    };
 
+    private void initViews(View view) {
+        sendFacebook = view.findViewById(R.id.send_facebook);
+        sendTwitter = view.findViewById(R.id.send_twitter);
+        sendTwitter.setOnClickListener(this::onClick);
+        sendFacebook.setOnClickListener(this::onClick);
         tagRecycler = view.findViewById(R.id.tag_recycler);
         tagRecycler.setHasFixedSize(true);
         tagRecycler.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         userJob = view.findViewById(R.id.user_job);
         aboutUser = view.findViewById(R.id.aboutUser);
-        sendEmal = view.findViewById(R.id.send_email);
-        sendEmal.setOnClickListener(this::onClick);
-        getUserInfo();
+        sendEmail = view.findViewById(R.id.send_email);
+        sendEmail.setOnClickListener(this::onClick);
+//        getUserInfo();
+        profileRepository = new ProfileRepository(getContext());
+        profileViewModel = ViewModelProviders.of(getActivity(), new ProfileViewModelFactory(profileRepository)).get(ProfileViewModel.class);
+        profileViewModel.getProfileMutableLiveData().observe(getActivity(), profileListUpdateObserver);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        getUserInfo();
+//        getUserInfo();
+        profileViewModel.getProfileMutableLiveData().observe(getActivity(), profileListUpdateObserver);
+        if (user.getTwitterURL().isEmpty())
+            sendTwitter.setVisibility(View.GONE);
+        if (user.getFacebookURL().isEmpty())
+            sendFacebook.setVisibility(View.GONE);
     }
 
+    @Override
+    public void onStop() {
+        profileViewModel.getProfileMutableLiveData().removeObserver(profileListUpdateObserver);
+        super.onStop();
+    }
+
+    @Override
+    public void onPause() {
+        profileViewModel.getProfileMutableLiveData().removeObserver(profileListUpdateObserver);
+        super.onPause();
+    }
     private boolean getUserInfo() {
         JSONArray tagsJsonArray = new JSONArray();
         ArrayList<String> tags = user.getTagsName();
@@ -83,11 +130,23 @@ public class ProfileInnerFragment extends Fragment {
     }
 
     private void onClick(View view) {
-        Intent intent = new Intent(Intent.ACTION_SEND);
-        intent.setType("text/html");
-        intent.putExtra(Intent.EXTRA_EMAIL, "emailaddress@emailaddress.com");
-        intent.putExtra(Intent.EXTRA_SUBJECT, "Subject");
-        intent.putExtra(Intent.EXTRA_TEXT, "I'm email body.");
-        startActivity(Intent.createChooser(intent, "Send Email"));
+        switch (view.getId()) {
+            case R.id.send_email:
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/html");
+                intent.putExtra(Intent.EXTRA_EMAIL, user.getEmail());
+                intent.putExtra(Intent.EXTRA_SUBJECT, "Subject");
+                intent.putExtra(Intent.EXTRA_TEXT, "I'm email body.");
+                startActivity(Intent.createChooser(intent, "Send Email"));
+                break;
+            case R.id.send_facebook:
+                Intent openlink = new Intent(Intent.ACTION_VIEW, Uri.parse(getResources().getString(R.string.facebook_link) + Uri.parse(user.getFacebookURL())));
+                startActivity(Intent.createChooser(openlink, "Browser"));
+                break;
+            case R.id.send_twitter:
+                Intent openlinkTwitter = new Intent(Intent.ACTION_VIEW, Uri.parse(getResources().getString(R.string.twitter_link) + Uri.parse(user.getTwitterURL())));
+                startActivity(Intent.createChooser(openlinkTwitter, "Browser"));
+                break;
+        }
     }
 }

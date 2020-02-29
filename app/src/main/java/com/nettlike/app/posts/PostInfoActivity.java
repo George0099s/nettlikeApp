@@ -25,6 +25,7 @@ import com.nettlike.app.R;
 import com.nettlike.app.data.AppDatabase;
 import com.nettlike.app.data.TokenDao;
 import com.nettlike.app.model.ModelPostComms;
+import com.nettlike.app.model.PayloadTag;
 import com.nettlike.app.model.Post;
 import com.nettlike.app.model.PostComsPayload;
 import com.nettlike.app.model.Token;
@@ -35,6 +36,7 @@ import com.nettlike.app.profile.UserTagAdapter;
 import org.json.JSONArray;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.Callable;
 
 import retrofit2.Call;
@@ -63,8 +65,10 @@ public class PostInfoActivity extends AppCompatActivity {
     private AppDatabase db;
     private TokenDao tokenDao;
     private RecyclerView tagRecycler;
+    private int savedCount;
     private UserTagAdapter userTagAdapter;
     private ArrayList<String> tags;
+    private List<PayloadTag> postList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,7 +105,6 @@ public class PostInfoActivity extends AppCompatActivity {
         user = UserSingleton.INSTANCE;
         postPitureUrl = getIntent().getStringExtra("post_picture_url");
         post = getIntent().getParcelableExtra("post");
-        tags = getIntent().getStringArrayListExtra("tags_array");
         postId = getIntent().getStringExtra("post_id");
         if (postPitureUrl != null)
         post.setPictureUrl(postPitureUrl);
@@ -115,6 +118,7 @@ public class PostInfoActivity extends AppCompatActivity {
         commentsRecycler.setHasFixedSize(true);
         commentsRecycler.setLayoutManager(linearLayoutManager);
         userName = "123";
+        savedCount = post.getSavedCount();
         getPostInfo();
         Observable.fromCallable(new CallableGetComms(postId))
                 .subscribeOn(Schedulers.io())
@@ -130,6 +134,10 @@ public class PostInfoActivity extends AppCompatActivity {
                     commentBody.setError("You can't add empty comment");
                 } else {
                     sendComment(postId, userName, commentBody.getText().toString());
+                    Observable.fromCallable(new CallableGetComms(postId))
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe();
                     commentBody.setText("");
                     if (commentsAdapter != null)
                         commentsAdapter.notifyDataSetChanged();
@@ -150,16 +158,19 @@ public class PostInfoActivity extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case R.id.like_img_post_info:
-                markAsSave(token, postId);
+                Log.d(TAG, "onClick: " + savedCount);
                 if (user.getSavedPosts().contains(postId)) {
                     like.setImageDrawable(getResources().getDrawable(R.drawable.ic_like));
                     user.getSavedPosts().remove(postId);
-                    likeCount.setText(String.valueOf(post.getSavedCount() - 1));
+                    post.setSavedCount(savedCount -= 1);
+                    likeCount.setText(String.valueOf(post.getSavedCount()));
                 } else {
                     like.setImageDrawable(getResources().getDrawable(R.drawable.ic_liked));
+                    post.setSavedCount(savedCount += 1);
                     user.getSavedPosts().add(postId);
-                    likeCount.setText(String.valueOf(post.getSavedCount() + 1));
+                    likeCount.setText(String.valueOf(post.getSavedCount()));
                 }
+                markAsSave(token, postId);
                 break;
         }
     }
@@ -233,6 +244,8 @@ public class PostInfoActivity extends AppCompatActivity {
         postUserName.setText(userName);
         commCount.setText(post.getCommentsCount());
         likeCount.setText(String.valueOf(post.getSavedCount()));
+        tags = getIntent().getStringArrayListExtra("tags_array");
+        Log.d(TAG, "getPostInfo: " + tags.size());
         JSONArray jsonArray = new JSONArray();
         for (int i = 0; i < tags.size(); i++) {
             jsonArray.put(tags.get(i));

@@ -59,6 +59,15 @@ public class PostsInnerFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        Observable.just((getUserPost()))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe();
+    }
+
     private void initViews(View view) {
         token = getActivity().getIntent().getStringExtra("token");
         postsRecyclerView = view.findViewById(R.id.user_posts);

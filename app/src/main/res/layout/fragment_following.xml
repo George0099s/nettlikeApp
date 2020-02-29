@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context="com.nettlike.app.view.followers.ui.FollowingFragment">
 
-    <com.chauthai.overscroll.RecyclerViewBouncy
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/following_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

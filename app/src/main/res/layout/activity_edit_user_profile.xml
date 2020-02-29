@@ -139,30 +139,28 @@
             app:layout_constraintTop_toBottomOf="@+id/choose_tags" />
 
         <EditText
-            android:textColorHint="@color/grey"
             android:id="@+id/facebook_link"
-            android:layout_height="wrap_content"
             android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:ems="10"
-            android:hint="@string/profile_username"
+            android:hint="@string/facebook_link"
             android:inputType="textPersonName"
-            android:text="@string/facebook_link"
+            android:textColorHint="@color/grey"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.4"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/twitter_link" />
 
         <EditText
-            android:textColorHint="@color/grey"
-
             android:id="@+id/twitter_link"
-            android:layout_height="wrap_content"
+
             android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:ems="10"
-            android:hint="@string/profile_username"
-            android:text="@string/twitter_link"
+            android:hint="@string/twitter_link"
+            android:textColorHint="@color/grey"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/about_yourself_ed" />

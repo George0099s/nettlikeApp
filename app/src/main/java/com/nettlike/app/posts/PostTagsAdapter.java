@@ -2,7 +2,6 @@ package com.nettlike.app.posts;
 
 import android.app.Activity;
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,7 +69,6 @@ public class PostTagsAdapter extends RecyclerView.Adapter<PostTagsAdapter.TagsVi
             if (!holder.tag.isChecked()) {
                 if (selectedTags.size() < 3) {
                     selectedTags.add(tag);
-                    Log.d(TAG, "onBindViewHolder: +");
                     holder.tag.setChecked(true);
                     holder.tag.setCheckMarkDrawable(R.drawable.ic_checked);
                     holder.tag.setTextColor(context.getResources().getColor(R.color.blue_1071FF));
@@ -78,17 +76,16 @@ public class PostTagsAdapter extends RecyclerView.Adapter<PostTagsAdapter.TagsVi
                     Toast.makeText(context, "You can choose only 3 tags", Toast.LENGTH_SHORT).show();
                 }
             } else {
-                for (PayloadTag selected : selectedTags) {
-                    if (selected.getId().equals(payloadTagList.get(position).getId())) {
-//                            postTagsId.remove(i);
-//                            postTagsName.remove(i);
-                        Log.d(TAG, "onBindViewHolder: -");
-                        selectedTags.remove(tag);
+                if (selectedTags != null && selectedTags.size() != 0)
+//                for (PayloadTag selected : selectedTags)
+//                    if (payloadTagList.contains(selected.getId())) {
+                    selectedTags.remove(tag);
                             holder.tag.setChecked(false);
                             holder.tag.setCheckMarkDrawable(null);
                             holder.tag.setTextColor(context.getResources().getColor(R.color.black000));
-                        }
-                }
+//                        }
+
+//                }
             }
         });
     }

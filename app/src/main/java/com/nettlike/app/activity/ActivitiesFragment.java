@@ -54,6 +54,14 @@ public class ActivitiesFragment extends Fragment {
                 .subscribe();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        Observable.fromCallable(new CallableGetActivity())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe();
+    }
 
     private Void getActivities(){
         Retrofit retrofit = new Retrofit.Builder()

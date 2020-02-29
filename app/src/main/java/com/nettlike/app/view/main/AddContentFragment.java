@@ -73,6 +73,7 @@ public class AddContentFragment extends Fragment {
     private TextView createPost;
     private JSONArray postTagId = new JSONArray();
     private ArrayList<String> postTagIdArrayList = new ArrayList<>();
+    private JSONArray tagNames;
     private ArrayList<String> postTagName = new ArrayList<>();
     private ImageView addPostPhoto, removePhoto, postPhoto;
     private String token;
@@ -136,6 +137,9 @@ public class AddContentFragment extends Fragment {
                     Observable.fromCallable(new CallableAddPost(postName.getText().toString(), postDescription.getText().toString()))
                             .subscribeOn(Schedulers.io())
                             .subscribe();
+                    userTagAdapter = null;
+                    tagNames = null;
+                    postPhoto.setImageDrawable(null);
                     postDescription.setText("");
                     postName.setText("");
                     postTagId = new JSONArray();
@@ -231,6 +235,12 @@ public class AddContentFragment extends Fragment {
                         intent.putExtra("post_id", postId);
                         intent.putExtra("post_picture_url", post.getPictureUrl());
                         intent.putExtra("post", post);
+                        ArrayList<String> tags = new ArrayList<>();
+                        List<PayloadTag> tagsList = post.getTags();
+                        for (int i = 0; i < tagsList.size(); i++) {
+                            tags.add(tagsList.get(i).getName());
+                        }
+                        intent.putExtra("tags_array", tags);
                         startActivity(intent);
                     } else {
                         Toast.makeText(getContext(), "There are some works on server", Toast.LENGTH_SHORT).show();
@@ -252,7 +262,7 @@ public class AddContentFragment extends Fragment {
         if (resultCode == 42 || requestCode == 42) {
 //            postTagName = data != null ? data.getStringArrayListExtra("selected_tags") : new ArrayList<>();
 //            postTagIdArrayList = data != null ? data.getStringArrayListExtra("tags_id") : new ArrayList<>();
-            JSONArray tagNames = new JSONArray();
+            tagNames = new JSONArray();
             if (data != null)
                 payloadTagList = data.getParcelableArrayListExtra("selected_tags");
             else
@@ -283,8 +293,7 @@ public class AddContentFragment extends Fragment {
                 addPostPhoto.setVisibility(View.GONE);
                 removePhoto.setVisibility(View.VISIBLE);
                 postPhoto.setVisibility(View.VISIBLE);
-                postPhoto.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                postPhoto.setBackground(null);
+//                postPhoto.setBackground(null);
                 postPhoto.setImageBitmap(pictureBitmap);
                 pictureBitmap.compress(Bitmap.CompressFormat.JPEG,50 , os); // saving the Bitmap to a file compressed as a JPEG with 85% compression rate
                 postImage = file;

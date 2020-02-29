@@ -21,6 +21,7 @@ import com.nettlike.app.CalendarHelper;
 import com.nettlike.app.Constants;
 import com.nettlike.app.Interface.IServer;
 import com.nettlike.app.R;
+import com.nettlike.app.model.PayloadTag;
 import com.nettlike.app.model.Post;
 import com.nettlike.app.model.Token;
 import com.nettlike.app.model.UserSingleton;
@@ -31,6 +32,7 @@ import com.nettlike.app.model.activity.TargetFollower;
 import com.nettlike.app.people.ui.AnotherUserProfileActivity;
 import com.nettlike.app.posts.PostInfoActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
 
@@ -112,6 +114,12 @@ public class ActivityAdapter extends RecyclerView.Adapter<ActivityAdapter.Activi
                     intent.putExtra("token", token);
                         intent.putExtra("post_id", finalPost.getId());
                         intent.putExtra("post", finalPost);
+                        ArrayList<String> tags = new ArrayList<>();
+                        List<PayloadTag> tagsList = finalPost.getTags();
+                        for (int i = 0; i < tagsList.size(); i++) {
+                            tags.add(tagsList.get(i).getName());
+                        }
+                        intent.putExtra("tags_array", tags);
                     context.startActivity(intent);
                 });
                     break;

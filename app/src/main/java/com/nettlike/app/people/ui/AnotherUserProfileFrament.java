@@ -2,12 +2,15 @@ package com.nettlike.app.people.ui;
 
 
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
@@ -41,11 +44,13 @@ import rx.schedulers.Schedulers;
 public class AnotherUserProfileFrament extends Fragment {
     private static final String TAG = "AnotherUserProfileFrame";
     private TextView userJob, aboutUser;
+    private ImageView sendEmail, sendFacebook, sendTwitter;
     private String token, userId;
     private RecyclerView tagRecycler;
     private UserTagAdapter userTagAdapter;
     private JSONArray tagsJson = new JSONArray();
     private ProgressDialog pd;
+    private String twitterLink, facebookLink, email;
     public AnotherUserProfileFrament() {
         // Required empty public constructor
     }
@@ -60,6 +65,12 @@ public class AnotherUserProfileFrament extends Fragment {
     }
 
     private void initViews(View view) {
+        sendEmail = view.findViewById(R.id.send_email_another);
+        sendFacebook = view.findViewById(R.id.send_facebook_another);
+        sendTwitter = view.findViewById(R.id.send_twitter_another);
+        sendTwitter.setOnClickListener(this::onClick);
+        sendFacebook.setOnClickListener(this::onClick);
+        sendEmail.setOnClickListener(this::onClick);
         tagRecycler = view.findViewById(R.id.tag_another_user);
         tagRecycler.setHasFixedSize(true);
         tagRecycler.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
@@ -75,6 +86,27 @@ public class AnotherUserProfileFrament extends Fragment {
                 .build());
 
         rxRequest();
+    }
+
+    private void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.send_email_another:
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/html");
+                intent.putExtra(Intent.EXTRA_EMAIL, email);
+                intent.putExtra(Intent.EXTRA_SUBJECT, "Subject");
+                intent.putExtra(Intent.EXTRA_TEXT, "I'm email body.");
+                startActivity(Intent.createChooser(intent, "Send Email"));
+                break;
+            case R.id.send_facebook_another:
+                Intent openlink = new Intent(Intent.ACTION_VIEW, Uri.parse(getResources().getString(R.string.facebook_link) + Uri.parse(facebookLink)));
+                startActivity(Intent.createChooser(openlink, "Browser"));
+                break;
+            case R.id.send_twitter_another:
+                Intent openlinkTwitter = new Intent(Intent.ACTION_VIEW, Uri.parse(getResources().getString(R.string.twitter_link) + Uri.parse(twitterLink)));
+                startActivity(Intent.createChooser(openlinkTwitter, "Browser"));
+                break;
+        }
     }
 
     private void rxRequest(){
@@ -110,6 +142,13 @@ public class AnotherUserProfileFrament extends Fragment {
                 }
                 userJob.setText(account.getJobTitle());
                 aboutUser.setText(account.getAboutYourself());
+                email = account.getEmail();
+                twitterLink = account.getTwitter_url();
+                facebookLink = account.getFacebook_url();
+                if (twitterLink.isEmpty() || twitterLink == null)
+                    sendTwitter.setVisibility(View.GONE);
+                if (facebookLink.isEmpty() || facebookLink == null)
+                    sendFacebook.setVisibility(View.GONE);
                 userTagAdapter = new UserTagAdapter(tagsJson, getContext());
                 tagRecycler.setAdapter(userTagAdapter);
                 pd.cancel();

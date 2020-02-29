@@ -8,8 +8,9 @@
     tools:context="com.nettlike.app.view.main.AddContentFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_marginBottom="10dp">
 
         <TextView
             android:id="@+id/add_post_create_post"
@@ -70,9 +71,12 @@
             app:layout_constraintTop_toBottomOf="@+id/add_post_name">
 
             <ImageView
+                android:layout_height="300dp"
+                android:layout_weight="1"
                 android:id="@+id/add_post_photo"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:maxHeight="400dp"
+                android:scaleType="fitCenter"
                 android:layout_gravity="center"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
@@ -82,12 +86,12 @@
 
             <EditText
                 android:id="@+id/add_post_description"
+
+                android:padding="0dp"
                 style="@style/signUpPlaceholder"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginEnd="20dp"
                 android:ems="10"
                 android:gravity="start|top"
                 android:inputType="textMultiLine"

@@ -11,6 +11,12 @@ public class Account {
     private String lastName;
     @SerializedName("country")
     private String country;
+    @SerializedName("email")
+    private String email;
+    @SerializedName("twitter_url")
+    private String twitter_url;
+    @SerializedName("facebook_url")
+    private String facebook_url;
     @SerializedName("city")
     private String city;
     @SerializedName("picture_url")
@@ -135,5 +141,29 @@ public class Account {
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getTwitter_url() {
+        return twitter_url;
+    }
+
+    public void setTwitter_url(String twitter_url) {
+        this.twitter_url = twitter_url;
+    }
+
+    public String getFacebook_url() {
+        return facebook_url;
+    }
+
+    public void setFacebook_url(String facebook_url) {
+        this.facebook_url = facebook_url;
     }
 }

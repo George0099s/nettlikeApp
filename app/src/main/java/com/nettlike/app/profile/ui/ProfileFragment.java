@@ -115,6 +115,7 @@ public class ProfileFragment extends Fragment {
 //        profileRepository = new ProfileRepository(getContext());
 //        profileViewModel = ViewModelProviders.of(getActivity(), new ProfileViewModelFactory(profileRepository)).get(ProfileViewModel.class);
 //        profileViewModel.getProfileMutableLiveData().postValue(UserSingleton.INSTANCE);
+
         profileViewModel.getProfileMutableLiveData().observe(getActivity(), profileListUpdateObserver);
 
     }

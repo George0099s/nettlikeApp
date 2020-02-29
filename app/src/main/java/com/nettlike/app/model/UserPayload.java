@@ -60,6 +60,10 @@ public class UserPayload {
     private String updatedAt;
     @SerializedName("job_title")
     private String jobTitle;
+    @SerializedName("facebook_url")
+    private String facebookURL;
+    @SerializedName("twitter_url")
+    private String twitterURL;
     @SerializedName("picture_url")
     private String pictureUrl;
     @SerializedName("events")
@@ -325,6 +329,22 @@ public class UserPayload {
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
+    }
+
+    public String getFacebookURL() {
+        return facebookURL;
+    }
+
+    public void setFacebookURL(String facebookURL) {
+        this.facebookURL = facebookURL;
+    }
+
+    public String getTwitterURL() {
+        return twitterURL;
+    }
+
+    public void setTwitterURL(String twitterURL) {
+        this.twitterURL = twitterURL;
     }
 }
 
