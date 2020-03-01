@@ -7,12 +7,14 @@ import androidx.lifecycle.MutableLiveData;
 import com.nettlike.app.Constants;
 import com.nettlike.app.model.Follower;
 import com.nettlike.app.model.FollowerModel;
+import com.nettlike.app.view.followers.callback.CallbackFollower;
 import com.nettlike.app.view.followers.network.FollowersApi;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
+
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -24,6 +26,7 @@ public class FollowersRepository {
     private String accountId, token;
     private int offset, limit;
     private MutableLiveData<List<Follower>> followerLiveData;
+    private CallbackFollower callback;
 
     public FollowersRepository(String accountId, int offset, int limit, String token) {
         this.accountId = accountId;
@@ -31,8 +34,13 @@ public class FollowersRepository {
         this.limit = limit;
     }
 
-    public MutableLiveData<List<Follower>> getFollowersLiveData() {
-        followerLiveData = new MutableLiveData<>();
+    public void registerCallBack(CallbackFollower callback){
+        this.callback = callback;
+    }
+
+//    public MutableLiveData<List<Follower>> getFollowersLiveData() {
+//        followerLiveData = new MutableLiveData<>();
+public void getFollowersLiveData() {
 
         getFollowerList(new Callback<FollowerModel>() {
             @Override
@@ -41,10 +49,10 @@ public class FollowersRepository {
 
                     FollowerModel model = response.body();
                     followerList = model.getPayload();
+                    callback.setData(followerList);
 
-//                        followerLiveData.setValue(followerList);
 
-                    followerLiveData.setValue(followerList);
+//                    followerLiveData.setValue(followerList);
 
                 }
             }
@@ -54,7 +62,7 @@ public class FollowersRepository {
                 Log.d("LOG", "Something went wrong :c");
             }
         });
-        return followerLiveData;
+//        return followerLiveData;
     }
 
     private void getFollowerList(Callback<FollowerModel> callback) {
@@ -66,7 +74,6 @@ public class FollowersRepository {
         FollowersApi service = retrofit.create(FollowersApi.class);
         Call<FollowerModel> call = service.getFollowers(accountId, offset, limit, token);
         call.enqueue(callback);
-        Log.d(TAG, "getFollowerList: " + call.request().url());
     }
 
     public void setOffset(int offset) {

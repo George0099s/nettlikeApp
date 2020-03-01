@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,6 +25,10 @@ import com.nettlike.app.view.followers.viewmodel.FollowersViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
+import rx.Observable;
+import rx.schedulers.Schedulers;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -35,7 +40,7 @@ public class FollowersFragment extends Fragment {
     private FollowersFollowingAdapter followersFollowingAdapter;
     private RecyclerView followersRecycler;
     private String token, accountId;
-    Observer<List<Follower>> userListUpdateObserver = new Observer<List<Follower>>() {
+    private Observer<List<Follower>> userListUpdateObserver = new Observer<List<Follower>>() {
         @Override
         public void onChanged(List<Follower> followers) {
             if (followersFollowingAdapter == null) {
@@ -53,6 +58,7 @@ public class FollowersFragment extends Fragment {
     private int limit = 100;
     private FollowersViewModel followersViewModel;
     private FollowersRepository followersRepository;
+    private boolean isLoading = false;
 
 
     public FollowersFragment() {
@@ -72,11 +78,14 @@ public class FollowersFragment extends Fragment {
 
         token = getActivity().getIntent().getStringExtra("token");
         accountId = getActivity().getIntent().getStringExtra("account_id");
-        followersRepository = new FollowersRepository(accountId, offset, limit, token);
         followersRecycler = view.findViewById(R.id.followers_recycler);
         followersRecycler.setHasFixedSize(true);
         followersRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
-        followersViewModel = ViewModelProviders.of(getActivity(), new FollowersViewModelFactory(followersRepository)).get(FollowersViewModel.class);
+
+
+        followersRepository = new FollowersRepository(accountId, offset, limit, token);
+        followersViewModel = new ViewModelProvider(getActivity(), new FollowersViewModelFactory(followersRepository)).get(FollowersViewModel.class);
+        followersRepository.registerCallBack(followersViewModel);
         followersViewModel.getNewsRepository().observe(getActivity(), userListUpdateObserver);
 
 
@@ -88,28 +97,12 @@ public class FollowersFragment extends Fragment {
                 int visibleItemCount = linearLayout.getChildCount();
                 int totalItemCount = linearLayout.getItemCount();
                 int firstVisibleItemPosition = linearLayout.findFirstVisibleItemPosition();
-//                    if ((visibleItemCount + firstVisibleItemPosition) < totalItemCount && firstVisibleItemPosition > 0) {
-//
-//                        followersRepository.setOffset(25);
-//                    }
-                if (dy % 10 != 0) {
+                if (isLoading)
+                    if (totalItemCount <= (firstVisibleItemPosition + visibleItemCount)){
                     followersRepository.setOffset(25);
-                    followersViewModel.getNewsRepository().observe(getActivity(), userListUpdateObserver);
+                    followersViewModel.getNewsRepository().observe(Objects.requireNonNull(getActivity()), userListUpdateObserver);
                 }
             }
         });
-    }
-
-    @Override
-    public void onStop() {
-        followersViewModel.getNewsRepository().removeObserver(userListUpdateObserver);
-        super.onStop();
-
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        followersViewModel.getNewsRepository().observe(getActivity(), userListUpdateObserver);
     }
 }

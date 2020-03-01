@@ -98,9 +98,9 @@ public class ProfileInnerFragment extends Fragment {
         super.onResume();
 //        getUserInfo();
         profileViewModel.getProfileMutableLiveData().observe(getActivity(), profileListUpdateObserver);
-        if (user.getTwitterURL().isEmpty())
+        if (user.getTwitterURL().isEmpty() || user.getTwitterURL() == null)
             sendTwitter.setVisibility(View.GONE);
-        if (user.getFacebookURL().isEmpty())
+        if (user.getFacebookURL().isEmpty() || user.getFacebookURL() == null)
             sendFacebook.setVisibility(View.GONE);
     }
 
