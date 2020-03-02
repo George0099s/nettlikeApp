@@ -276,7 +276,6 @@ public class EditUserProfileActivity extends AppCompatActivity {
 
         UserInfoAPI service = retrofit.create(UserInfoAPI.class);
         Call<UserModel> call = service.getUserInfo(token);
-        Log.d(TAG, "getUserInfo: " + call.request().url());
         call.enqueue(new Callback<UserModel>() {
             @Override
             public void onResponse(Call<UserModel> call, Response<UserModel> response) {
@@ -434,7 +433,6 @@ public class EditUserProfileActivity extends AppCompatActivity {
 
         IServer service = retrofit.create(IServer.class);
         Call<Payload> call = service.validateToken(token2);
-        Log.d(TAG, "validateToken: " + call.request().url());
         call.enqueue(new Callback<Payload>() {
             @Override
             public void onResponse(Call<Payload> call, Response<Payload> response) {
@@ -446,10 +444,8 @@ public class EditUserProfileActivity extends AppCompatActivity {
                     if (object.getOk()) {
                         TokenEntity tokenEntity = new TokenEntity();
                         tokenDao.deleteAll();
-                        Log.d(TAG, "onResponse:delete " + tokenDao.getToken());
                         tokenEntity.setToken(token2);
                         tokenDao.insert(tokenEntity);
-                        Log.d(TAG, "onResponse:insert " + tokenDao.getToken());
                         finish();
                     } else {
                         GetToken getToken = new GetToken();

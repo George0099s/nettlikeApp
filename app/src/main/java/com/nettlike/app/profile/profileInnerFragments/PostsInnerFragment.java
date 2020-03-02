@@ -97,8 +97,10 @@ public class PostsInnerFragment extends Fragment {
             public void onResponse(Call<UserModel> call, Response<UserModel> response) {
                 UserModel object = response.body();
                 UserPayload userPayload = object.getPayload();
-                postAdapter = new PostAdapter(userPayload.getPosts(), token, getContext());
-                postsRecyclerView.setAdapter(postAdapter);
+                if (userPayload != null) {
+                    postAdapter = new PostAdapter(userPayload.getPosts(), token, getContext());
+                    postsRecyclerView.setAdapter(postAdapter);
+                }
             }
 
             @Override

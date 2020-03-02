@@ -24,32 +24,33 @@
         tools:targetApi="n">
         <activity
             android:name="com.nettlike.app.profile.profileInnerFragments.UserActivitiesActivity"
-            android:screenOrientation="fullSensor"
+            android:screenOrientation="portrait"
             />
         <activity android:name="com.nettlike.app.view.main.GetTagsActivity"
-            android:screenOrientation="fullSensor"
+            android:screenOrientation="portrait"
             />
         <activity
             android:name="com.nettlike.app.posts.PostInfoActivity"
-            android:screenOrientation="fullSensor"
+            android:screenOrientation="portrait"
             />
         <activity
             android:name="com.nettlike.app.view.followers.ui.FollowersActivity"
-            android:screenOrientation="fullSensor"
+            android:screenOrientation="portrait"
             />
         <activity
             android:name=".view.authorization.signUp.SignUpChooseTagActivity"
-            android:screenOrientation="fullSensor"
+            android:screenOrientation="portrait"
+
             />
         <activity
             android:name=".view.authorization.signUp.SignUpChooseCategoryActivity"
             android:noHistory="true"
-            android:screenOrientation="fullSensor"
+            android:screenOrientation="portrait"
             />
         <activity
             android:name=".view.authorization.signUp.SignUpCountryActivity"
             android:noHistory="true"
-            android:screenOrientation="fullSensor"
+            android:screenOrientation="portrait"
             />
         <activity
             android:name=".people.ui.AnotherUserProfileActivity"
@@ -57,25 +58,25 @@
             />
         <activity
             android:name="com.nettlike.app.profile.profileInnerFragments.EditUserProfileActivity"
-            android:screenOrientation="fullSensor"
+            android:screenOrientation="portrait"
             />
         <activity
             android:name=".view.authorization.signUp.LocationCitiesActivity"
-            android:screenOrientation="fullSensor"
+            android:screenOrientation="portrait"
             />
         <activity
             android:name=".view.authorization.SignUp"
-            android:screenOrientation="fullSensor"
+            android:screenOrientation="portrait"
             />
         <activity
             android:name=".view.authorization.RegistrationActivity"
             android:noHistory="true"
-            android:screenOrientation="fullSensor"
+            android:screenOrientation="portrait"
             />
         <activity
             android:name="com.nettlike.app.OnBoarding"
             android:noHistory="true"
-            android:screenOrientation="fullSensor"
+            android:screenOrientation="portrait"
             />
         <activity
             android:name="com.nettlike.app.StartActivity"
@@ -89,7 +90,7 @@
         </activity>
         <activity android:name="com.nettlike.app.MainActivity"
             android:windowSoftInputMode="adjustPan"
-            android:screenOrientation="fullSensor"
+            android:screenOrientation="portrait"
             />
 
         <service android:name="com.nettlike.app.service.PushService">

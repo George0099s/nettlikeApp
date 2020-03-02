@@ -240,7 +240,9 @@ public class UserSingleton {
     }
 
     public String getTwitterURL() {
+        if (twitterURL != null)
         return twitterURL;
+         else return "";
     }
 
     public void setTwitterURL(String twitterURL) {
@@ -248,7 +250,9 @@ public class UserSingleton {
     }
 
     public String getFacebookURL() {
+        if (facebookURL != null)
         return facebookURL;
+         else return "";
     }
 
     public void setFacebookURL(String facebookURL) {

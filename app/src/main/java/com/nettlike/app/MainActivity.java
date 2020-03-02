@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
                     active = postFragment;
                 return true;
             case R.id.activities:
-                if (user.getExist()) {
+                if (user.getExist()  && activitiesFragment != null) {
                     fm.beginTransaction().hide(active).show(activitiesFragment).commit();
                     active = activitiesFragment;
                 } else {
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 return true;
             case R.id.profile:
-                if (user.getExist()) {
+                if (user.getExist() && profileFragment != null) {
                     fm.beginTransaction().hide(active).show(profileFragment).commit();
                     active = profileFragment;
                 } else {
@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 return true;
             case R.id.add_content:
-                if (user.getExist()) {
+                if (user.getExist() && addContentFragment != null) {
                     fm.beginTransaction().hide(active).show(addContentFragment).commit();
                     active = addContentFragment;
                 } else {
@@ -96,18 +96,11 @@ public class MainActivity extends AppCompatActivity {
         if (!user.getExist()) {
 //            fm.beginTransaction().replace(R.id.container, peopleFragment, "3").commit();
 //            fm.beginTransaction().add(R.id.container, postFragment, "4").commit();
-
-//            profileFragment = null;
-//            activitiesFragment = null;
-//            addContentFragment = null;
-        } else {
-//            profileFragment = new ProfileFragment();
-//            activitiesFragment = new ActivitiesFragment();
-//            addContentFragment = new AddContentFragment();
-//
-//            fm.beginTransaction().add(R.id.container, addContentFragment, "5").hide(addContentFragment).commit();
-//            fm.beginTransaction().add(R.id.container, activitiesFragment, "2").hide(activitiesFragment).commit();
-//            fm.beginTransaction().add(R.id.container, profileFragment, "1").hide(profileFragment).commit();
+            fm.beginTransaction().show(peopleFragment);
+            fm.beginTransaction().hide(postFragment);
+            profileFragment = null;
+            activitiesFragment = null;
+            addContentFragment = null;
         }
     }
 

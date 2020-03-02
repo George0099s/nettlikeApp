@@ -88,7 +88,7 @@ public class AnotherUserProfileActivity extends AppCompatActivity {
         userName = findViewById(R.id.follower_username);
         userLocation = findViewById(R.id.user_location);
 
-        if (userId.equals(userSingleton.getUserId()))
+        if (userId.equals(userSingleton.getUserId()) || !userSingleton.getExist())
             follow.setVisibility(View.GONE);
         rxRequest(userId, token);
         tabLayout = findViewById(R.id.tablayout);
